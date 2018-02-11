@@ -1,0 +1,73 @@
+department:
+id 	name 		slug
+1 	Grocery 	grocery
+
+categories:
+id 	department_id	name 
+1		1			egg
+2		1			rice
+3		1			oil 	
+4 		1			gur
+
+product:
+id 	category_id		name 	 	
+1 		1			layer-egg
+2		1			deshi-dim-murgi
+3 		1			egg-hash
+4 		2 			balam-chal
+5 		2  			kalijira-chal
+
+images:
+id 	imageable_id 	imageable_type 		type 		status
+1 	1				category 			slide 		1
+2 	1 				product 			profile 	1
+
+mix_packages:
+id 		name
+1 		chal+egg+tel-one	
+1 		chal+egg+tel-two	
+1 		chal+egg+tel+gur	
+
+packages:
+id 	packageable_id 	packgeable_type 	title 				description
+1	1				mix 				For you mom!		5 kg chal. 10 pcs dim. 2L oil.
+2	1				mix 				For you mom!		10 kg chal. 10 pcs dim. 2L oil.
+3	1				product 			Bachelor Jindabat!	25pcs layer egges.
+
+price:
+
+
+
+kroymullo:
+id product_id  	quantity 	amount 	
+
+expences:
+id 	name 
+1. transport
+2. kuli
+
+assets:
+1. jhuri
+2. bycicle
+
+
+stock: 
+id 	product_id  remain  unit 
+
+
+
+prices:
+id 	priceable_id priceable_type 	price 
+
+
+gifts:
+id 	name 
+
+
+product_package
+
+product_id package_id price
+
+
+
+

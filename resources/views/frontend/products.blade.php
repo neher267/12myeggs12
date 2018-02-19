@@ -2,7 +2,7 @@
 
 @section('content')
 
-layouts.	<!-- start content -->	
+	<!-- start content -->	
 	<div class="w_content">
 		<div class="women">
 			<a href="#"><h4>Enthecwear - <span>4449 items</span> </h4></a>
@@ -42,10 +42,4 @@ layouts.	<!-- start content -->
   	<div class="clearfix"></div>
   </div>
 <!-- end content -->
-
-<div class="fo-top-di">
-	@include('layouts.partials._join')		
-</div>
-
-@include('layouts.partials._footer')
 @endsection

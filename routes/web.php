@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function(){
+// 	return view('layouts.master');
+// });
 
 Route::get('/', 'PublicController@index');
 Route::get('contact-us', 'PublicController@contact_us');
@@ -47,7 +50,7 @@ Route::group(['middleware'=>['sentinel.auth']], function(){
 });
 
 Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], function(){
-	Route::resource('brances','BranchController');
+	Route::resource('branches','BranchController');
 	Route::resource('categories','CategoryController');
 	Route::resource('departments','DepartmentController');
 	Route::resource('gifts','GiftController');

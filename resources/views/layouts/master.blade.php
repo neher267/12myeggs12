@@ -6,13 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="{{config('app.keywords')}}" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="{{asset('css/style.css')}}" rel='stylesheet' type='text/css' />
+<!-- Graph CSS -->
+<link href="{{asset('css/font-awesome.css')}}" rel="stylesheet"> 
+<!-- jQuery -->
 <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="{{asset('css/backend.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- lined-icons -->
+<link rel="stylesheet" href="{{asset('css/icon-font.min.css')}}" type='text/css' />
+<script src="{{asset('js/simpleCart.min.js')}}"> </script>
+<script src="{{asset('js/amcharts.js')}}"></script>	
+<script src="{{asset('js/serial.js')}}"></script>
+<!-- //lined-icons -->
 <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
-
 </head> 
 
 <body>
@@ -32,12 +41,17 @@
 			<!-- //header-ends -->
 					
 			<!--content-->
-			<div class="content">	
-				@yield('content')
+			<div class="content">
+				<div class="women_main">
+					@yield('content')
+					@include('layouts.partials._footer')	
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<!--content-->
 		</div>
 	</div>
+	<div class="clearfix"></div>
 	<!--//content-inner-->
 
 	<!--/sidebar-menu-->
@@ -46,7 +60,15 @@
 	</div>
 	<div class="clearfix"></div>		
 </div>
-<script src="{{asset('js/backend.js')}}"></script>
+
+<!--js -->
+<script src="{{asset('js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('js/scripts.js')}}"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<!-- /Bootstrap Core JavaScript -->
+<script src="{{asset('js/jquery.fn.gantt.js')}}"></script>
+
 <script>
 	var toggle = true;
 			
@@ -67,12 +89,7 @@
 	toggle = !toggle;
 	});
 </script>
-<!--js -->
-<!-- Bootstrap Core JavaScript -->
-<!-- /Bootstrap Core JavaScript -->
-<!-- real-time -->
 <script type="text/javascript">
-
 $(function() {
 	// We use an inline data source in the example, usually data would
 	// be fetched from a server
@@ -276,5 +293,6 @@ $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
 		prettyPrint();
 	});
 </script>
+<script src="{{asset('js/menu_jquery.js')}}"></script>
 </body>
 </html>

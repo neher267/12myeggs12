@@ -18,6 +18,7 @@ class CreateBranchesTable extends Migration
             $table->integer('address_id')->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

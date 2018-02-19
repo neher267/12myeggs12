@@ -24,7 +24,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.settings.branch.create');
     }
 
     /**

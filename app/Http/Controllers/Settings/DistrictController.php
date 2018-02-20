@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Settings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Address;
-use App\Models\Settings\Area;
-use App\Models\Settings\Branch;
+use App\Models\Settings\District;
 
-class BranchController extends Controller
+class DistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +25,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $areas = Area::orderBy('name', 'asc')->get();
-        return view('backend.settings.branch.create', compact('areas'));
+         return view('backend.settings.district.create');
     }
 
     /**
@@ -39,15 +36,9 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all())
-        $address = Address::create($request->all());
-
-        $branch = new Branch;
-        $branch->name = $request->name;
-        $branch->slug = strtolower(str_replace(' ', '_', $request->name));
-        $branch->address()->associate($address);
-        $branch->save();
-
+        $data = $request->all();
+        $data['slug'] = strtolower(str_replace(' ', '_', $request->name));
+        District::create($data);
         return redirect()->back()->withSuccess('Create Success!');
     }
 

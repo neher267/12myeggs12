@@ -13,7 +13,7 @@ class CreateAdderessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adderesses', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('area_id')->unsigned();            
             $table->string('block')->nullable();

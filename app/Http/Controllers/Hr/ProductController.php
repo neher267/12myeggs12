@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Image;
+use App\Models\Hr\Product;
+use App\Models\Settings\Category;
 
 class ProductController extends Controller
 {
@@ -24,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('backend.hr.product.create', compact('categories'));
     }
 
     /**
@@ -35,7 +39,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->name = $request->name;
+        $product->category()->associate($request->category_id);
+        $product->unit = $request->unit;
+        $product->save();
+
+        $image = new Image;
+        $image->type = 'profile';
+        $image->src = 'images/'.time().'jpg';
+        $product->images()->save($image);
+
+
     }
 
     /**

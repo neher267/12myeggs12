@@ -53,3 +53,8 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 
 
 
+Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
+	Route::resource('products','ProductController');
+});
+
+

@@ -8,7 +8,7 @@ id 	branch_id(nullable) 	name 		slug
 2 				Assets 	assets
 
 categories:
-id 	branch_id	department_id	name 
+id 	branch_id	department_id		name 
 1			1			egg
 2			1			rice
 3			1			oil 	

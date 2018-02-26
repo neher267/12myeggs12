@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('imageable_id')->unsigned();
             $table->string('imageable_type', 30);
-            $table->string('type');
+            $table->string('type'); // profile, slide, 
             $table->boolean('status')->default(true);
             $table->string('src', 30)->unique();         
             $table->timestamps();

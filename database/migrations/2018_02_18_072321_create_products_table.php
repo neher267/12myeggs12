@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('branch_id')->unsigned()->nullable();
             $table->string('name', 50)->unique();
             $table->string('unit', 10);
+            $table->boolean('for_sale');//for sale or not
             $table->timestamps();
         });
     }

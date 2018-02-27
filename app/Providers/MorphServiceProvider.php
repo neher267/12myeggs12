@@ -16,6 +16,7 @@ class MorphServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'product' => 'App\Models\Hr\Product',
+            'mix package' => 'App\Models\Hr\MixPackage',
 
             ]);
     }

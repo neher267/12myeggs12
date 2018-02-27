@@ -6,7 +6,7 @@
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				<div class="form-title" style="margin-top: 15px">
-					<h4>Create Mix Package</h4>
+					<h4>Create Package</h4>
 				</div>
 
 				@include('common.flash-message')
@@ -15,9 +15,14 @@
 					<form action="{{route('mix-packages.store')}}" method="post">
 					{{ csrf_field() }}
 
-						<div class="form-group"> 
-							<label for="name">Mix Package Name</label> 
-							<input type="text" name="name" class="form-control" id="name" placeholder="Ex: Chal + dim + tel" required> 
+						<div class="form-group">
+							<label for="product_id">Package For</label>
+							<select name="product_id" id="product_id" class="form-control" required>
+								<option value="">Select</option>
+								@foreach($products as $product)
+								<option value="{{$product->id}}">{{$product->name}}</option>
+								@endforeach
+							</select>
 						</div>	
 
 						<div class="form-group"> 

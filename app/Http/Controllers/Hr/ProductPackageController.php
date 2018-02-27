@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Models\Hr\Package;
-use App\Models\Hr\MixPackage;
+use App\Models\Hr\Product;
 
-class MixPackageController extends Controller
+class ProductPackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +20,10 @@ class MixPackageController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('backend.hr.mix-package.create');
+        $products = Product::
+        return view('backend.hr.product-package.create');
     }
 
     /**
@@ -38,14 +34,10 @@ class MixPackageController extends Controller
      */
     public function store(Request $request)
     {
-        $mix_package = new MixPackage;
-        $mix_package->name = $request->name;
-        $mix_package->save();
-
         $package = new Package;
         $package->title = $request->title;
         $package->description = $request->description;
-        $mix_package->packages()->save($package);
+        $mix_package->packages()->save($request->product_id);
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }

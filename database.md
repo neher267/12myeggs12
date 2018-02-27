@@ -16,7 +16,7 @@ id 	branch_id	department_id		name
 5			2			tools
 
 product:
-id 	category_id		name 	 		unit 	branch_id(nullable)
+id 	category_id		name 	 		unit	sale(boolean) 	branch_id(nullable)
 1 	1			layer-egg		pcs
 2	1			deshi-dim-murgi	pcs
 3 	1			egg-hash		pcs

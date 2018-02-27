@@ -16,7 +16,7 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('packageable_id')->unsigned();
-            $table->string('packageable', 30);
+            $table->string('packageable_type', 30);
             $table->string('title');
             $table->text('description');
             $table->boolean('status')->default(true); 

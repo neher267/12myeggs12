@@ -20,6 +20,7 @@
 <script src="{{asset('js/simpleCart.min.js')}}"> </script>
 <script src="{{asset('js/amcharts.js')}}"></script>	
 <script src="{{asset('js/serial.js')}}"></script>
+<script src="{{asset('js/light.js')}}"></script>
 <!-- //lined-icons -->
 <script src="{{asset('js/jquery-1.10.2.min.js')}}"></script>
 </head> 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\Hr;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MixPackage extends Model
+class Price extends Model
 {
     //
 }

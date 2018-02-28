@@ -43,6 +43,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->category()->associate($request->category_id);
         $product->unit = $request->unit;
+        $product->for_sale = true;
         $product->save();
 
         $image = new Image;

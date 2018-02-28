@@ -6,17 +6,17 @@
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				<div class="form-title" style="margin-top: 15px">
-					<h4>Create Package</h4>
+					<h4>Purchase Product</h4>
 				</div>
 
 				@include('common.flash-message')
 				
 				<div class="form-body">
-					<form action="{{route('product-packages.store')}}" method="post">
+					<form action="{{route('purchases.store')}}" method="post">
 					{{ csrf_field() }}
 
 						<div class="form-group">
-							<label for="product_id">Package For</label>
+							<label for="product_id">Product Name</label>
 							<select name="product_id" id="product_id" class="form-control" required>
 								<option value="">Select</option>
 								@foreach($products as $product)
@@ -24,16 +24,26 @@
 								@endforeach
 							</select>
 						</div>	
+						
+						<div class="form-group">
+							<label for="merchant">Merchant Name</label>
+							<select name="merchant_id" id="merchant" class="form-control" required>
+								<option value="">Select</option>
+								@foreach($merchants as $merchant)
+								<option value="{{$merchant->id}}">{{$merchant->name}}</option>
+								@endforeach
+							</select>
+						</div>
 
 						<div class="form-group"> 
-							<label for="title">Package Title</label> 
-							<input type="text" name="title" class="form-control" id="title" placeholder="Ex: This is for you mom!" required> 
-						</div>	
+							<label for="quantity">Quantiry</label> 
+							<input type="number" name="quantity" class="form-control" id="quantity" placeholder="Total Quantity" required> 
+						</div>			
 
 						<div class="form-group"> 
-							<label for="description">Package Discription</label>
-							<textarea name="description" id="description" cols="50" rows="4" class="form-control"></textarea>			
-						</div>						
+							<label for="price">Price</label> 
+							<input type="number" name="price" class="form-control" id="price" placeholder="Total price" required> 
+						</div>											
 
 						<button type="submit" class="btn btn-default">Save</button>
 					</form> 

@@ -1,11 +1,13 @@
 <div class="login">
 	<div id="loginContainer"><a id="loginButton" class=""><span>Login</span></a>
 		<div id="loginBox" style="display: none;">                
-			<form id="loginForm">
+			<form id="loginForm" action="{{url('login')}}" method="post">
+			{{ csrf_field() }}
+
 				<fieldset id="body">
 					<fieldset>
-						<label for="email">Email Address</label>
-						<input type="text" name="email" id="email">
+						<label for="mobile">Mobile No</label>
+						<input type="text" name="mobile" id="mobile">
 					</fieldset>
 					<fieldset>
 						<label for="password">Password</label>

@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Settings;
 
 use Illuminate\Http\Request;
-use App\Models\Hr\Product;
-use App\Purchase;
-use Sentinel;
+use App\Http\Controllers\Controller;
+use Cartalyst\Sentinel\Roles\EloquentRole;
 
-class PurchaseController extends Controller
+class RoleController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $roles = EloquentRole::orderBy('name', 'asc')->get();
+        return view('role.index', compact('roles'));
     }
 
     /**
@@ -26,9 +26,7 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        $products = Product::orderBy('name', 'asc')->get();
-        $merchants = Sentinel::findRoleBySlug('merchant')->users()->get();
-        return view('backend.hr.purchases.create', compact('products', 'merchants'));
+        return view('backend.settings.role.create');
     }
 
     /**
@@ -39,15 +37,16 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $purchese = new Purchase;
-        $purchese->buyer_id = $request->user()->id;
-        $purchese->merchant_id = $request->merchant_id;
-        $purchese->product_id = $request->product_id;
-        $purchese->branch_id = $request->user()->branch_id;
-        $purchese->quantity = $request->quantity;
-        $purchese->price = $request->price;
-        $purchese->save();
-        return redirect()->back()->withSuccess('Create Success!');
+	$data = $request->validate([
+		'name' => 'required|string | min:3 | max:50',        
+	]);
+        
+         $role = new EloquentRole;
+         $role->name = $request->name; 
+         $role->slug = strtolower(str_replace(' ', '_', $request->name));      
+         $role->save();
+         
+         return redirect()->back()->withSuccess('Success');
     }
 
     /**

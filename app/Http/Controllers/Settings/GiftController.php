@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Settings\Gift;
 
 class GiftController extends Controller
 {
@@ -24,7 +25,7 @@ class GiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.settings.gift.create');
     }
 
     /**
@@ -35,7 +36,8 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gift::create($request->all());
+        return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**

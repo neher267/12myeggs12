@@ -15,9 +15,8 @@ Route::get('details','PublicController@details');
 
 
 Route::group(['namespace'=>'Auth', 'middleware'=>['guest']], function(){
-	Route::resource('register','RegisterController');
-	Route::get('login','LoginController@login');
-	Route::post('login','LoginController@post_login');
+	Route::resource('register','SentinelRegisterController');
+	Route::post('login','SentinelLoginController@login');
 });
 
 Route::group(['middleware'=>['sentinel.auth', 'buyer']], function(){
@@ -49,6 +48,7 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 	Route::resource('departments','DepartmentController');
 	Route::resource('districts','DistrictController');
 	Route::resource('gifts','GiftController');
+	Route::resource('roles','RoleController');
 });
 
 

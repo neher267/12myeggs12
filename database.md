@@ -76,11 +76,11 @@ id 	name		points
 3 	ball		4
 
 users:
-id 	branch_id 	mobile 		name 		points  	address_id (nullable)
+id 	branch_id 	mobile 		name 		points
 1 	1		01784255196 	Neher 		10
 
 addresses:
-id   	area_id      block      road_no      house_no        house_name   	floor
+id   addressable_id      addressable_type 	area_id      block      road_no      house_no        house_name   	floor
 
 orders:
 id 	user_id 	discount 	

@@ -22,8 +22,8 @@ class ProductPackageController extends Controller
 
     public function create()
     {
-        $products = Product::
-        return view('backend.hr.product-package.create');
+        $products = Product::where('for_sale', true)->orderBy('name', 'asc')->get();
+        return view('backend.hr.product-package.create', compact('products'));
     }
 
     /**
@@ -37,7 +37,8 @@ class ProductPackageController extends Controller
         $package = new Package;
         $package->title = $request->title;
         $package->description = $request->description;
-        $mix_package->packages()->save($request->product_id);
+        $product = Product::find($request->product_id);
+        $product->packages()->save($package);
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }

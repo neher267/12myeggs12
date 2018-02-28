@@ -14,18 +14,10 @@
 
 						<div class="form-group"> 
 							<label for="name">Department Name</label> 
-							<input type="text" name="name" class="form-control" id="name" placeholder="Branch Name" required> 
-						</div>	
+							<input type="text" name="name" class="form-control" id="name" placeholder="Department Name" required> 
+						</div>								
 
-						<div class="form-group">
-							<label for="branch_id">Branch Name</label>
-							<select name="branch_id" id="branch_id" class="form-control" required>
-								<option>Select</option>
-								<option>v</option>
-							</select>
-						</div>			
-
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-default">Save</button>
 					</form> 
 				</div>
 			</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Settings\Department;
 
 class DepartmentController extends Controller
 {
@@ -24,7 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.settings.department.create');
     }
 
     /**
@@ -35,7 +36,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $department = new Department;
+         $department->name = $request->name; 
+         $department->slug = strtolower(str_replace(' ', '_', $request->name));      
+         $department->save();
+         return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**

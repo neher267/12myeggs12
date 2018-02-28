@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Models\Hr\Product;
-use App\Purchase;
+use App\Http\Controllers\Controller;
 use Sentinel;
+use App\Models\Settings\Branch;
+use Cartalyst\Sentinel\Roles\EloquentRole;
 
-class PurchaseController extends Controller
+class SentinelRegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
@@ -26,9 +23,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        $products = Product::orderBy('name', 'asc')->get();
-        $merchants = Sentinel::findRoleBySlug('merchant')->users()->get();
-        return view('backend.hr.purchases.create', compact('products', 'merchants'));
+        $roles = EloquentRole::orderBy('name', 'asc')->get();
+        $branches = Branch::orderBy('name', 'asc')->get();
+        return view('auth.register', compact('branches', 'roles'));
     }
 
     /**
@@ -39,15 +36,10 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $purchese = new Purchase;
-        $purchese->buyer_id = $request->user()->id;
-        $purchese->merchant_id = $request->merchant_id;
-        $purchese->product_id = $request->product_id;
-        $purchese->branch_id = $request->user()->branch_id;
-        $purchese->quantity = $request->quantity;
-        $purchese->price = $request->price;
-        $purchese->save();
-        return redirect()->back()->withSuccess('Create Success!');
+        $user = Sentinel::registerAndActivate($request->all());
+        $role = Sentinel::findRoleBySlug($request->role);
+        $role->users()->attach($user);
+        return redirect('/');
     }
 
     /**

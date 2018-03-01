@@ -5,6 +5,7 @@ namespace App\Models\Hr;
 use Illuminate\Database\Eloquent\Model;
 use App\Image;
 use App\Models\Settings\Category;
+use App\Models\Hr\Price;
 
 class Product extends Model
 {
@@ -21,5 +22,10 @@ class Product extends Model
     public function packages()
     {
     	return $this->morphMany(Package::class, 'packageable');
+    }
+
+    public function unit_prices()
+    {
+        return $this->morphMany(Price::class, 'priceable');
     }
 }

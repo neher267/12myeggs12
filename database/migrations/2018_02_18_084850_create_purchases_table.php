@@ -21,6 +21,7 @@ class CreatePurchasesTable extends Migration
             $table->integer('branch_id')->unsigned();
             $table->decimal('quantity',8,0);
             $table->decimal('price',8,0);
+            $table->boolean('update_stock')->default(false);
             $table->timestamps();         
         });
     }

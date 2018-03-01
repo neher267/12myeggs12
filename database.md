@@ -38,12 +38,12 @@ id 	name			branch_id
 
 packages:
 id 	packageable_id 	packgeable_type 	title 				description
-1	1			mix 			For you mom!		5 kg chal. 10 pcs dim. 2L oil.
-2	1			mix 			For you mom!		10 kg chal. 10 pcs dim. 2L oil.
+1	1			mix 			For you mom!			5 kg chal. 10 pcs dim. 2L oil.
+2	1			mix 			For you mom!			10 kg chal. 10 pcs dim. 2L oil.
 3	1			product 		Bachelor Jindabat!		25pcs layer egges.
 
 purchases
-id 	merchant_id(user_id)  	buyer_id(user_id)	product_id 	quantity 	price 		branch_id
+id 	merchant_id(user_id)  	buyer_id(user_id)	product_id 	quantity 		price 		branch_id
 1	1				10			1		500		2500
 2	1				11			5		100		5000	
 

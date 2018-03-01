@@ -7,10 +7,10 @@
 <meta name="keywords" content="{{config('app.keywords')}}" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<!-- <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
-Custom CSS
+<link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
 <link href="{{asset('css/style.css')}}" rel='stylesheet' type='text/css' />
-Graph CSS -->
+<!-- Graph CSS -->
 <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet"> 
 <!-- jQuery -->
 <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>

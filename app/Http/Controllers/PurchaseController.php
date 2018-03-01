@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hr\Product;
+use App\Models\Hr\Price;
 use App\Purchase;
 use Sentinel;
 

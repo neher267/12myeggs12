@@ -17,7 +17,7 @@
 
 						<div class="form-group"> 
 							<label for="name">Area Name</label> 
-							<input type="text" name="name" class="form-control" id="name" placeholder="Branch Name" required> 
+							<input type="text" name="name" class="form-control" id="name" placeholder="Area Name" required> 
 						</div>	
 
 						<div class="form-group">

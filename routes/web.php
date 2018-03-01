@@ -36,7 +36,6 @@ Route::group(['middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
 	Route::resource('packages','PackageController');
 	Route::resource('mix-packages','MixPackageController');
-	Route::resource('stock','StockController');
 	Route::resource('trets','TretController');
 	Route::resource('users','UserController');
 });
@@ -57,6 +56,8 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
 	Route::resource('mix-packages','MixPackageController');
 	Route::resource('product-packages','ProductPackageController');
+	Route::resource('stock','StockController');
+	
 });
 
 

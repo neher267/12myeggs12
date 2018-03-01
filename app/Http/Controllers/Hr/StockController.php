@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Stock;
+use App\Purchase;
 
 class StockController extends Controller
 {
@@ -24,7 +26,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+        $purchase_products = Purchase::where('update_stock', false)->get();
+        return view('backend.hr.stock.create', compact('purchase_products'));
     }
 
     /**
@@ -35,7 +38,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,7 +49,7 @@ class StockController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

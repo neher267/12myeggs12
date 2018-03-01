@@ -95,11 +95,10 @@ class MigrationCartalystSentinel extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('address_id')->unsigned();
             $table->integer('branch_id')->unsigned()->nullable();
             $table->string('mobile');            
             $table->string('name');
-            $table->decimal('points',6,0);
+            $table->decimal('points',6,0)->default(0);
             $table->string('password');
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();            

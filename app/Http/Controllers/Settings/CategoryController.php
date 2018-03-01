@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Settings;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Settings\Category;
+use App\Models\Settings\Department;
 
 class CategoryController extends Controller
 {
@@ -24,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::orderBy('name', 'asc')->get();
+        return view('backend.settings.category.create', compact('departments'));
     }
 
     /**
@@ -35,7 +38,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $category = new Category;
+         $category->name = $request->name; 
+         $category->slug = strtolower(str_replace(' ', '_', $request->name));
+         $category->department()->associate($request->department_id);                
+         $category->save();
+         return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**

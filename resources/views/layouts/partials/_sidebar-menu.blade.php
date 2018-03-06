@@ -14,6 +14,9 @@
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('departments.create')}}">Department</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('categories.create')}}">Categories</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('roles.create')}}">Roles</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.create')}}">Purchease</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('products.create')}}">Product</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('register.create')}}">Register user</a></li>
 			   	
 			</ul>
 		 </li>

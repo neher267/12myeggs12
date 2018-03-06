@@ -28,7 +28,7 @@ class PurchaseController extends Controller
     public function create()
     {
         $products = Product::orderBy('name', 'asc')->get();
-        $merchants = Sentinel::findRoleBySlug('merchant')->users()->get();
+        $merchants = Sentinel::findRoleBySlug('marchant')->users()->get();
         return view('backend.hr.purchases.create', compact('products', 'merchants'));
     }
 

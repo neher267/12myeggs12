@@ -24,6 +24,14 @@ class BladeServiceProvider extends ServiceProvider
                 return false;
             }
         });
+
+        Blade::if('guest', function(){
+            return !Sentinel::check();
+        });
+
+        Blade::if('check', function(){
+            return Sentinel::check();
+        });
     }
 
     /**

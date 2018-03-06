@@ -568,11 +568,11 @@ ul.qty li p{
     color: #ffffff;
     margin: 0;
 }
-.top_left h2 span {
+.top_left li a {
   color: #000000;
   margin-right: 0px;
   padding: 1px 10px;
-  background: url(../images/phon.png) no-repeat 4px 2px;
+  /*background: url(../images/phon.png) no-repeat 4px 2px;*/
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -4525,10 +4525,13 @@ input[type="date"] {
 }
 .top_left {
     float: none;
-	text-align:center;
+	  text-align:center;
+    
 }
-.top_left h2 {
+.top_left ul li {
     text-align:center;
+    clear: white;
+    font-size: 14px;
 }
 	#loginBox {
 		right: -217px;

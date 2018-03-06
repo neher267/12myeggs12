@@ -13,6 +13,8 @@ Route::get('about-us', 'PublicController@about_us');
 Route::get('/{category}/products','PublicController@products');
 Route::get('details','PublicController@details');
 
+Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentinel.auth');
+
 
 Route::group(['namespace'=>'Auth', 'middleware'=>['guest']], function(){
 	Route::resource('register','SentinelRegisterController');

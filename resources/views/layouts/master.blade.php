@@ -8,6 +8,7 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <!-- Custom CSS -->
 <link href="{{asset('css/style.css')}}" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
@@ -45,7 +46,9 @@
 			<div class="content">
 				<div class="women_main">
 					@yield('content')
-					@include('layouts.partials._footer')	
+					@role('customer')
+						@include('layouts.partials._footer')
+					@endrole	
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -69,6 +72,18 @@
    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- /Bootstrap Core JavaScript -->
 <script src="{{asset('js/jquery.fn.gantt.js')}}"></script>
+
+<!-- js Neher -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('.datatable').DataTable();
+	    $('.flash').delay(7000).fadeOut(1000);
+	} );
+</script>
+<!-- end js Neher -->
 
 <script>
 	var toggle = true;

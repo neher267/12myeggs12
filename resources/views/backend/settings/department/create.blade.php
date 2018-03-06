@@ -8,6 +8,7 @@
 				<div class="form-title">
 					<h4>Create Department</h4>
 				</div>
+				@include('common.flash-message')
 				<div class="form-body">
 					<form action="{{route('departments.store')}}" method="post">
 					{{ csrf_field() }}

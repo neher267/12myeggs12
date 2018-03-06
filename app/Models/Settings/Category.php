@@ -5,12 +5,18 @@ namespace App\Models\Settings;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Hr\Product;
 use App\Models\Settings\Department;
+use App\Models\Settings\Branch;
 
 class Category extends Model
 {
     public function products()
     {
     	return $this->hasMany(Product::class);
+    }
+
+    public function branch()
+    {
+    	return $this->belongsTo(Branch::class);
     }
 
     public function department()

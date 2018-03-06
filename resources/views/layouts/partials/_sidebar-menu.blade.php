@@ -16,13 +16,13 @@
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('roles.create')}}">Roles</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.create')}}">Purchease</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('products.create')}}">Product</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('product-packges.create')}}">Product Package</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('mix-packges.create')}}">Mix Package</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('register.create')}}">Register user</a></li>
 			   	
 			</ul>
 		 </li>
-		@endrole
-
-		
+		@endrole		
 
 		 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> New Arrivals</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 			<ul id="menu-academico-sub" >

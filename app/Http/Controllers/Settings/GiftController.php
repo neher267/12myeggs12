@@ -15,7 +15,8 @@ class GiftController extends Controller
      */
     public function index()
     {
-        //
+        $gifts = Gift::orderBy('name', 'asc')->get();
+         return view('backend.settings.gift.index', compact('gifts'));
     }
 
     /**

@@ -15,7 +15,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::orderBy('name', 'asc')->get();
+         return view('backend.settings.department.index', compact('departments'));
     }
 
     /**

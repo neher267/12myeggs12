@@ -17,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::where('for_sale', true)->orderBy('name', 'asc')->get();
+        return view('backend.hr.product.index', compact('products'));
     }
 
     /**

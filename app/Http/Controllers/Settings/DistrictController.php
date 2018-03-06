@@ -15,7 +15,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        $districts = District::orderBy('name', 'asc')->get();
+         return view('backend.settings.district.index', compact('districts'));
     }
 
     /**

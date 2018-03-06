@@ -16,7 +16,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+        $areas = Area::orderBy('name', 'asc')->get();
+         return view('backend.settings.area.index', compact('areas'));
     }
 
     /**

@@ -6,29 +6,37 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
+					<a href="{{route('product-packages.add', $package_for)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
+					@include('common.flash-message')
+					<hr>
+				</div>
+
+				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-				            <tr>
-								<th>Name</th>
-								<th>Category</th>
-								<th>Unit</th>
-								<th>Branch</th>
+					            		<tr>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Status</th>
 								<th>Actions</th>
-				            </tr>
+					            		</tr>
 						</thead>
 						<tbody>
-						@foreach($products as $product)
+						@foreach($packages as $package)
 							<tr>
-								<td>{{$product->name}}</td>
-								<td>{{$product->category()->first()->name}}</td>
-								<td>{{$product->unit}}</td>
+								<td>{{$package->title}}</td>
+								<td>{{$package->description}}</td>
 								<td>
-									<?php
-									echo $product->branch_id == null ? 'All' : $product->branch()->first()->name;
-									?>
+									@if($package->status == true)
+									<span>Active</span>
+									@else
+									<span>Disable</span>									
+									@endif
 								</td>
+								
 								<td>
-									<a href="{{route('categories.edit', $product)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('categories.edit', $package)}}" class="btn btn-default">Edit</a>
 								</td>
 						            </tr>
 						@endforeach

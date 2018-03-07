@@ -50,9 +50,8 @@ class ProductController extends Controller
         $image = new Image;
         $image->type = 'profile';
         $image->src = 'images/'.time().'jpg';
-        $product->images()->save($image);
-
-
+        $product->images()->save($image);            
+        return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**
@@ -68,8 +67,9 @@ class ProductController extends Controller
 
     public function packages($id)
     {
-        $packages = Product::find($id)->packages()->get();
-        return view('backend.hr.package.index', compact('packages'));
+        $package_for = Product::find($id);
+        $packages = $package_for->packages()->get();
+        return view('backend.hr.product-package.index', compact('packages', 'package_for'));
     }
 
     /**

@@ -5,24 +5,19 @@
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
-				<div class="form-title" style="margin-top: 15px">
-					<h4>Create Package</h4>
+				<div class="col-md-12">
+					<a href="{{route('products.packages', $package_for)}}" class="btn btn-default">back</a>
+					@include('common.flash-message')
+					<hr>
 				</div>
-
-				@include('common.flash-message')
 				
 				<div class="form-body">
 					<form action="{{route('product-packages.store')}}" method="post">
 					{{ csrf_field() }}
 
-						<div class="form-group">
-							<label for="product_id">Package For</label>
-							<select name="product_id" id="product_id" class="form-control" required>
-								<option value="">Select</option>
-								@foreach($products as $product)
-								<option value="{{$product->id}}">{{$product->name}}</option>
-								@endforeach
-							</select>
+						<div class="form-group"> 
+							<label for="name">Package For : {{$package_for->name}}</label> 
+							<input type="hidden" name="product_id" value="{{$package_for->id}}">
 						</div>	
 
 						<div class="form-group"> 

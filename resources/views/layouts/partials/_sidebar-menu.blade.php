@@ -17,7 +17,7 @@
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.index')}}">Purchease</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('products.index')}}">Product</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('product-packages.index')}}">Product Package</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('mix-packages.index')}}">Mix Package</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('mix-package-names.index')}}">Mix Package</a></li>
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('register.index')}}">Register user</a></li>
 			   	
 			</ul>

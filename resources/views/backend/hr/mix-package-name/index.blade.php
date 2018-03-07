@@ -6,7 +6,7 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">					
-					<a href="{{route('categories.create')}}" class="btn btn-default">Add New Category</a>
+					<a href="{{route('mix-package-names.create')}}" class="btn btn-default">Add Mix Package Name</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
@@ -15,28 +15,27 @@
 						<thead>
 						            <tr>
 								<th>Name</th>
-								<th>Department</th>
 								<th>Branch</th>
 								<th>Actions</th>
 						            </tr>
 						</thead>
 						<tbody>
-						@foreach($categories as $category)
+						@foreach($mix_packages as $mix_package)
 							<tr>
-								<td>{{$category->name}}</td>
-								<td>{{$category->department()->first()->name}}</td>
+								<td>{{$mix_package->name}}</td>
 								<td>
 									<?php
-									echo $category->branch_id == null ? 'All Branches' : $category->branch()->first()->name;
+									echo $mix_package->branch_id == null ? 'All Branches' : $mix_package->branch()->first()->name;
 									?>
 								</td>
 								<td>
-									<a href="{{route('categories.edit', $category)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('mix-packages.edit', $mix_package)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('mix-packages.packages', $mix_package)}}" class="btn btn-default">Packages</a>
 								</td>
 						            </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		            			</table>
 				</div>
 			</div>
 		</div>

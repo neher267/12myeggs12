@@ -22,9 +22,15 @@ class ProductPackageController extends Controller
 
     public function create()
     {
-        $products = Product::where('for_sale', true)->orderBy('name', 'asc')->get();
-        return view('backend.hr.product-package.create', compact('products'));
+        //
     }
+
+    public function add_package($id)
+    {
+        $package_for = Product::find($id);
+        return view('backend.hr.product-package.create', compact('package_for'));
+    }
+
 
     /**
      * Store a newly created resource in storage.

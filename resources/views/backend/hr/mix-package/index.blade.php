@@ -6,27 +6,37 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
+					<a href="{{route('mix-packages.add', $package_for)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('mix-package-names.index')}}" class="btn btn-default">All Mix Package Names</a>
+					@include('common.flash-message')
+					<hr>
+				</div>
+
+				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-				            <tr>
-								<th>Name</th>
-								<th>Branch</th>
+					            		<tr>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Status</th>
 								<th>Actions</th>
-				            </tr>
+					            		</tr>
 						</thead>
 						<tbody>
-						@foreach($mix_packages as $mix_package)
+						@foreach($packages as $package)
 							<tr>
-								<td>{{$mix_package->name}}</td>
+								<td>{{$package->title}}</td>
+								<td>{{$package->description}}</td>
 								<td>
-									<?php
-									echo $mix_package->branch_id == null ? 'All Branches' : $mix_package->branch()->first()->name;
-									?>
+									@if($package->status == true)
+									<span>Active</span>
+									@else
+									<span>Disable</span>									
+									@endif
 								</td>
+								
 								<td>
-									<a href="{{route('mix-packages.edit', $mix_package)}}" class="btn btn-default">Edit</a>
-									<a href="{{route('mix-packages.packages', $mix_package)}}" class="btn btn-default">Packages</a>
-									<a href="{{route('mix-packages.create')}}" class="btn btn-default">Add Package</a>
+									<a href="{{route('categories.edit', $package)}}" class="btn btn-default">Edit</a>
 								</td>
 						            </tr>
 						@endforeach

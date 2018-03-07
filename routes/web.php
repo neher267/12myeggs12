@@ -56,7 +56,9 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 
 Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
+	Route::get('products/{id}/packages', 'ProductController@packages')->name('products.packages');
 	Route::resource('mix-packages','MixPackageController');
+	Route::get('mix-packages/{id}/packages', 'MixPackageController@packages')->name('mix-packages.packages');	
 	Route::resource('product-packages','ProductPackageController');
 	Route::resource('stock','StockController');
 	

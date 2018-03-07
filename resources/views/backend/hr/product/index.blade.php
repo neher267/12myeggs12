@@ -8,13 +8,13 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
+				            <tr>
 								<th>Name</th>
 								<th>Category</th>
 								<th>Unit</th>
 								<th>Branch</th>
 								<th>Actions</th>
-						            </tr>
+				            </tr>
 						</thead>
 						<tbody>
 						@foreach($products as $product)
@@ -28,7 +28,8 @@
 									?>
 								</td>
 								<td>
-									<a href="{{route('categories.edit', $product)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('products.edit', $product)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('products.packages', $product)}}" class="btn btn-default">Packages</a>
 								</td>
 						            </tr>
 						@endforeach

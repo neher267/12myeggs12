@@ -66,6 +66,12 @@ class ProductController extends Controller
         //
     }
 
+    public function packages($id)
+    {
+        $packages = Product::find($id)->packages()->get();
+        return view('backend.hr.package.index', compact('packages'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

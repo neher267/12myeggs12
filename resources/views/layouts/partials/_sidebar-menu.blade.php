@@ -8,17 +8,17 @@
 		@role('admin')
 		<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span>Settings</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 			<ul id="menu-academico-sub" >
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('areas.create')}}">Area</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('branches.create')}}">Branch</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('districts.create')}}">Districts</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('departments.create')}}">Department</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('categories.create')}}">Categories</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('roles.create')}}">Roles</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.create')}}">Purchease</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('products.create')}}">Product</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('product-packges.create')}}">Product Package</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('mix-packges.create')}}">Mix Package</a></li>
-			   	<li id="menu-academico-avaliacoes" ><a href="{{route('register.create')}}">Register user</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('areas.index')}}">Area</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('branches.index')}}">Branch</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('districts.index')}}">Districts</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('departments.index')}}">Department</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('categories.index')}}">Categories</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('roles.index')}}">Roles</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.index')}}">Purchease</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('products.index')}}">Product</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('product-packages.index')}}">Product Package</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('mix-packages.index')}}">Mix Package</a></li>
+			   	<li id="menu-academico-avaliacoes" ><a href="{{route('register.index')}}">Register user</a></li>
 			   	
 			</ul>
 		 </li>

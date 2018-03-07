@@ -17,7 +17,8 @@ class MixPackageController extends Controller
      */
     public function index()
     {
-        //
+        $mix_packages = MixPackage::orderBy('name', 'asc')->get();
+        return view('backend.hr.mix-package.index', compact('mix_packages'));
     }
 
     /**
@@ -59,6 +60,13 @@ class MixPackageController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function packages($id)
+    {
+        $packages = MixPackage::find($id)->packages()->get();
+        return view('backend.hr.package.index', compact('packages'));
     }
 
     /**

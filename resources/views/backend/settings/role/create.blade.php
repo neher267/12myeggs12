@@ -5,11 +5,11 @@
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
-				<div class="form-title">
-					<h4>Create Role</h4>
+				<div class="col-md-12">
+					<a href="{{route('roles.index')}}" class="btn btn-default">All Roles</a>
+					@include('common.flash-message')
+					<hr>
 				</div>
-
-				@include('common.flash-message')
 
 				<div class="form-body">
 					<form action="{{route('roles.store')}}" method="post">

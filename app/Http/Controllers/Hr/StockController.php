@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Stock;
 use App\Purchase;
+use App\Models\Hr\Product;
+use Sentinel;
 
 class StockController extends Controller
 {
@@ -26,8 +28,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        $purchase_products = Purchase::where('update_stock', false)->get();
-        return view('backend.hr.stock.create', compact('purchase_products'));
+        $purchases = Purchase::with('product')->where('update_stock', false)->get();
+        return view('backend.hr.stock.create', compact('purchases'));
     }
 
     /**
@@ -38,7 +40,21 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $product = Product::find($request->product_id);
+        $stock  = new Stock;
+        $stock->deposit = $request->deposit;
+        $stock_product = Stock::where('branch_id', Sentinel::getUser())
+                            ->where('product_id', $request->product_id)
+                            ->first();
+
+        if($stock_product)
+        dd($balance);
+
+        $stock->balance = $request->deposit + $balance;
+
+
+        dd($request->all());
     }
 
     /**

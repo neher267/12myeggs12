@@ -17,7 +17,8 @@ class MixPackageController extends Controller
      */
     public function index()
     {
-        //
+        $packages = Package::where('packageable_type', 'mix package')->get();
+        return view('backend.hr.package.index', compact('packages'));
     }
 
     /**

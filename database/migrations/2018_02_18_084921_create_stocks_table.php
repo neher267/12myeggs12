@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration
             $table->integer('branch_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->decimal('deposit',8,0);
-            $table->decimal('withdraw',8,0);
+            $table->decimal('withdraw',8,0)->default(0);
             $table->decimal('balance',8,0);
             $table->timestamps();
         });

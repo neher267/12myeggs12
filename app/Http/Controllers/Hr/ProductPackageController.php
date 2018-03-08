@@ -17,7 +17,8 @@ class ProductPackageController extends Controller
      */
     public function index()
     {
-        //
+        $packages = Package::where('packageable_type', 'product')->get();
+        return view('backend.hr.package.index', compact('packages'));
     }
 
     public function create()

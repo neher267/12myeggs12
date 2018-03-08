@@ -8,6 +8,7 @@ use App\Models\Hr\Price;
 use App\Purchase;
 use Sentinel;
 
+
 class PurchaseController extends Controller
 {
     /**
@@ -17,7 +18,8 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->get();
+        return view('backend.hr.purchases.index', compact('purchases'));
     }
 
     /**

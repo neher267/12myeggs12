@@ -63,7 +63,7 @@ id	branch_id	product_id 	reason  	quantity
 1	1		1		broken		20
 
 expences:
-id 	branch_id 	title 		amount 	short_description
+id 	user_id 	title 		amount 	short_description
 1 	1		transport	500		
 2 	1		laborer 	120
 3 	1		tea 		50		5 persons

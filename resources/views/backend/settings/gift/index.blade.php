@@ -7,6 +7,11 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
+					<a href="{{route('gifts.create')}}" class="btn btn-default">Create Gift</a>
+					@include('common.flash-message')
+					<hr>
+				</div>
+				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 						            <tr>

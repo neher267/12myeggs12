@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Expense;
+use Sentinel;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +16,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = Expense::with(['user', 'user.branch'])->latest()->get();
+        return view('backend.hr.expense.index', compact('expenses'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.hr.expense.create');
     }
 
     /**
@@ -35,7 +38,13 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $expense = new Expense;
+        $expense->user()->associate(Sentinel::getUser());
+        $expense->title = $request->title;
+        $expense->description = $request->description;
+        $expense->amount = $request->amount;
+        $expense->save();
+        return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**

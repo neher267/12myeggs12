@@ -2,49 +2,51 @@
 
 @section('content')
 <div class="grids">
+	<div class="row">
+		<div class="col-md-12">
+			<a href="{{url('')}}" class="btn btn-default">back</a>			
+			<a href="{{route('stock.index')}}" class="btn btn-default">Stock Products</a>					
+			<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
+			<a href="{{route('mix-packages.index')}}" class="btn btn-default">Mix Packages</a>
+			<hr>
+		</div>
+
+	</div>
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class=" form-grids form-grids-right">
 				<div class="widget-shadow " data-example-id="basic-forms"> 
-					<div class="col-md-12">
-					<a href="{{route('stock.index')}}" class="btn btn-default">Stock Products</a>
-					@include('common.flash-message')
-					<hr>
-				</div>
+					<div class="col-md-12"  style="text-align: center;">
+						<span>Manage Stock</span>
+						@include('common.flash-message')
+					</div>
 					<div class="form-body">
-
-						<table class="table table-striped">
+						<table class="table table-striped table-bordered datatable"  cellspacing="0" width="100%">
 							<thead>
 								<tr>
 									<td>Product Name</td>
 									<td>Purchase Quantity</td>
 									<td>Deposit Quantity</td>
-									<td>Action</td>
 								</tr>
-								<tbody>
-									@foreach($purchases as $purchase)	
-									<tr>
-										<td>{{$purchase->product->name}}</td>
-										<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>
-										<td>
-											<form action="{{route('stock.store')}}" method="post">
-											{{ csrf_field() }}
-												<div class="row">
-													<div class="col-sm-9">
-														<input type="text" name="diposit" placeholder="Deposit Quantity"  style="float: right;">
-														<input type="hidden" name="product_id" value="{{$purchase->product->id}}">	
-													</div>
-													<div class="col-sm-3">
-														<input type="submit" class="btn">
-													</div>									
-												</div>						
-											</form>
-										</td>
-										<td></td>
-									</tr>
-									@endforeach
-								</tbody>
 							</thead>
+							<tbody>
+								@foreach($purchases as $purchase)	
+								<tr>
+									<td>{{$purchase->product->name}}</td>
+									<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>
+									<td>
+										<form class="form-inline" action="{{route('stock.store')}}" method="post">
+										{{ csrf_field() }}
+										  <div class="form-group">
+										    <input name="deposit" type="number" class="form-control">
+										    <input type="hidden" name="product_id" value="{{$purchase->product->id}}">
+										  </div>
+										  <input type="submit" class="btn btn-default" value="Deposit">
+										</form>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
 						</table>						 
 					</div>
 				</div>

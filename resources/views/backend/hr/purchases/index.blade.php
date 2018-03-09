@@ -30,7 +30,7 @@
 								<td>{{$purchase->buyer->name}}</td>							
 								<td>{{$purchase->branch->name}}</td>							
 								<td>{{$purchase->merchant->name}}</td>							
-								<td>{{$purchase->quantity}}</td>							
+								<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>							
 								<td>{{$purchase->price}}</td>							
 								<td>
 									<a href="{{route('categories.edit', $purchase)}}" class="btn btn-default">Edit</a>

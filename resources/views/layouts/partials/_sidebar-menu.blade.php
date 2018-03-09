@@ -29,7 +29,7 @@
 		 </li>
 		@endrole		
 
-		 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> New Arrivals</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+		 <!-- <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> New Arrivals</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 			<ul id="menu-academico-sub" >
 			   	<li id="menu-academico-avaliacoes" ><a href="shoes.html">Shoes</a></li>
 				<li id="menu-academico-avaliacoes" ><a href="products.html">Watches</a></li>
@@ -54,6 +54,6 @@
 				<li><a href="input.html"> Input</a></li>
 				<li><a href="validation.html">Validation</a></li>
 			</ul>
-		</li>
+		</li> -->
 	</ul>
 </div>

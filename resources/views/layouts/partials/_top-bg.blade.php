@@ -13,17 +13,17 @@
 		<!-- notifications end -->
 		<div class="top_left">
 			<ul class="nav navbar-nav navbar-right">
-				@if('guest')
-				<li><div class="log">
-					@include('layouts.partials._login')
-				</div>
-				<div class="reg">
-					<a href="">REGISTER</a>
-				</div></li>
+				@guest				
+				<li>					
+					<a href="{{url('login')}}"  style="color: white; font-size: 14px; display: inline;">Login</a>
+					<span style="color: white">|</span>
+					<a href="{{route('register.create')}}"  style="color: white; font-size: 14px; display: inline;">Register</a>
+				</li>
+
 				@else
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" style="color: white; font-size: 14px">
-                            {{ $user->name }} <span class="caret"></span>
+                            {{ Sentinel::getUser()->name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -40,7 +40,7 @@
                             </li>
                         </ul>
                     </li>
-                    @endif
+                    @endguest
             </ul>			
 		</div>		
 		<div class="clearfix"> </div>

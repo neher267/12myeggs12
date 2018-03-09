@@ -18,7 +18,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $s_products = Stock::with('product')->where('branch_id', request()->user()->branch_id)->get();
+        return view('backend.hr.stock.index', compact('s_products'));
     }
 
     /**
@@ -40,21 +41,30 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
+        $branch_id = Sentinel::getUser()->branch_id;
+        if($s_product = $this->check_stock_available_product($branch_id, $request->product_id))
+        {
+            $s_product->deposit = (int)$s_product->deposit + (int)$request->deposit;
+            $s_product->balance = (int)$s_product->balance + (int)$request->deposit;
+            $s_product->save();
+        }
 
-        $product = Product::find($request->product_id);
-        $stock  = new Stock;
-        $stock->deposit = $request->deposit;
-        $stock_product = Stock::where('branch_id', Sentinel::getUser())
-                            ->where('product_id', $request->product_id)
-                            ->first();
+        else
+        {
+            $stock  = new Stock;        
+            $stock->branch()->associate($branch_id);
+            $stock->product()->associate($request->product_id);        
+            $stock->deposit = (int)$request->deposit;
+            $stock->balance = (int)$request->deposit;
+            $stock->save();
+        }
+       
+       return redirect()->back()->withSuccess('Stock Update Success!');
+    }
 
-        if($stock_product)
-        dd($balance);
-
-        $stock->balance = $request->deposit + $balance;
-
-
-        dd($request->all());
+    private function check_stock_available_product($branch_id, $product_id)
+    {
+        return Stock::where('branch_id', $branch_id)->where('product_id', $product_id)->first();
     }
 
     /**

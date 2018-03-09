@@ -18,7 +18,8 @@ Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentin
 
 Route::group(['namespace'=>'Auth', 'middleware'=>['guest']], function(){
 	Route::resource('register','SentinelRegisterController');
-	Route::post('login','SentinelLoginController@login');
+	Route::post('login','SentinelLoginController@post_login');
+	Route::get('login','SentinelLoginController@login');
 });
 
 Route::group(['middleware'=>['sentinel.auth', 'buyer']], function(){

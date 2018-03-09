@@ -37,9 +37,11 @@
 				@include('layouts.partials._top-bg')		
 				<!-- /top_bg -->
 			</div>
+			@role('customer')
 			<div class="header_bg">			
 				@include('layouts.partials._header-bg')						
 			</div>
+			@endrole
 			<!-- //header-ends -->
 					
 			<!--content-->

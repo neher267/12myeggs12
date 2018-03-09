@@ -9,15 +9,20 @@ use Sentinel;
 class SentinelLoginController extends Controller
 {
 
-    public function login(Request $request)
+    public function login()
     {
-        	Sentinel::authenticate($request->all());
-        	if(Sentinel::check())
-        	{
-            	return redirect('/');
-        	}
-        	else
-        		return redirect()->back();
+        return view('auth.login');
+    }
+
+    public function post_login(Request $request)
+    {
+        Sentinel::authenticate($request->all());
+    	if(Sentinel::check())
+    	{
+            return redirect('/');
+    	}
+    	else
+    		return redirect()->back();
     }
 
     public function logout()

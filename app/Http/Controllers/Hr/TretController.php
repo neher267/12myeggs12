@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Hr\Product;
 use App\Tret;
+use App\Stock;
 use Sentinel;
 
 class TretController extends Controller
@@ -17,7 +18,7 @@ class TretController extends Controller
      */
     public function index()
     {
-        $trets = Tret::with(['product', 'branch'])->latest()->get();
+        $trets = Tret::with(['stock.branch', 'stock.product'])->latest()->get();
         return view('backend.hr.tret.index', compact('trets'));
     }
 
@@ -28,8 +29,8 @@ class TretController extends Controller
      */
     public function create()
     {
-        $products = Product::orderBy('name', 'asc')->get();
-        return view('backend.hr.tret.create', compact('products'));
+        $s_products = Stock::with('product')->where('branch_id', Sentinel::getUser()->branch_id)->get();
+        return view('backend.hr.tret.create', compact('s_products'));
     }
 
     /**
@@ -40,13 +41,17 @@ class TretController extends Controller
      */
     public function store(Request $request)
     {
-        $tret = new Tret;
-        $tret->branch()->associate(Sentinel::getUser()->branch_id);
-        $tret->product()->associate(Product::find($request->product_id));
-        $tret->reason = $request->reason;
-        $tret->quantity = $request->quantity;       
+        $stock = Stock::find($request->stock_id);
+        $stock->balance = (int)$stock->balance - (int)$request->quantity;
+        $stock->save();
 
+        $tret = new Tret;
+        $tret->stock()->associate($stock);
+        $tret->reason = $request->reason;
+        $tret->quantity = $request->quantity;
         $tret->save();
+
+
         return redirect()->back()->withSuccess('Create Success!');
     }
 
@@ -58,7 +63,9 @@ class TretController extends Controller
      */
     public function show($id)
     {
-        //
+        $stock = Stock::find($id);
+        $trets = $stock->trets;
+        return view('backend.hr.tret.index', compact('trets'));
     }
 
     /**

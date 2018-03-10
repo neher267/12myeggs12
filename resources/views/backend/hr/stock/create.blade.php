@@ -17,7 +17,7 @@
 			<div class=" form-grids form-grids-right">
 				<div class="widget-shadow " data-example-id="basic-forms"> 
 					<div class="col-md-12"  style="text-align: center;">
-						<span>Manage Stock</span>
+						<strong>Manage Stock</strong>
 						@include('common.flash-message')
 					</div>
 					<div class="form-body">
@@ -26,7 +26,7 @@
 								<tr>
 									<td>Product Name</td>
 									<td>Purchase Quantity</td>
-									<td>Deposit Quantity</td>
+									<td>Action</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -40,6 +40,7 @@
 										  <div class="form-group">
 										    <input name="deposit" type="number" class="form-control">
 										    <input type="hidden" name="product_id" value="{{$purchase->product->id}}">
+										    <input type="hidden" name="purchase_id" value="{{$purchase->id}}">
 										  </div>
 										  <input type="submit" class="btn btn-default" value="Deposit">
 										</form>

@@ -15,8 +15,7 @@ class CreateTretsTable extends Migration
     {
         Schema::create('trets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('branch_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->integer('stock_id')->unsigned();
             $table->string('reason');
             $table->decimal('quantity',8,0);
             $table->timestamps();

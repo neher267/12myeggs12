@@ -24,8 +24,8 @@
 						<tbody>
 						@foreach($trets as $tret)
 							<tr>
-								<td>{{$tret->product->name}}</td>							
-								<td>{{$tret->branch->name}}</td>						
+								<td>{{$tret->stock->product->name}}</td>							
+								<td>{{$tret->stock->branch->name}}</td>						
 								<td>{{$tret->reason}}</td>						
 								<td>{{$tret->quantity}}</td>						
 								<td>

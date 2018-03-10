@@ -3,9 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Sentinel;
+use App\Http\Middleware\Traits\SentinelTrait;
 
 class BuyerMiddleware
 {
+    use SentinelTrait;
+
     /**
      * Handle an incoming request.
      *
@@ -15,6 +19,9 @@ class BuyerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($this->authorize('buyer')) 
+            return $next($request);
+        else
+            return redirect()->back();
     }
 }

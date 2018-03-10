@@ -18,4 +18,9 @@ class Stock extends Model
     {
     	return $this->belongsTo(Product::class);
     }
+
+    public function trets()
+    {
+    	return $this->hasMany(Tret::class);
+    }
 }

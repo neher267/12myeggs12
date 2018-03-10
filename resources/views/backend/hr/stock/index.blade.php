@@ -25,7 +25,7 @@
 									<td>Deposit</td>
 									<td>Withdrow</td>
 									<td>Balance</td>
-									<td>Unit</td>
+									<td>Trets</td>
 									<td>Actions</td>
 								</tr>
 							</thead>
@@ -35,10 +35,11 @@
 									<td>{{$s_product->product->name}}</td>
 									<td>{{$s_product->deposit}}</td>		
 									<td>{{$s_product->withdraw}}</td>	
-									<td>{{$s_product->balance}}</td>	
-									<td>{{$s_product->product->unit}}</td>	
+									<td>{{$s_product->balance}} {{$s_product->product->unit}}</td>	
+									<td>{{$s_product->trets->sum('quantity')}} {{$s_product->product->unit}}</td>	
 									<td>
 										<a href="" class="btn btn-default">Edit</a>
+										<a href="{{route('trets.show', $s_product)}}" class="btn btn-default">trets</a>
 									</td>
 								</tr>
 								@endforeach

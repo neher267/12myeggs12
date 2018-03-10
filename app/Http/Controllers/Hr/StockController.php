@@ -18,7 +18,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        $s_products = Stock::with('product')->where('branch_id', request()->user()->branch_id)->get();
+
+        $s_products = Stock::with(['product', 'trets'])->where('branch_id', Sentinel::getUser()->branch_id)->get();
         return view('backend.hr.stock.index', compact('s_products'));
     }
 
@@ -58,6 +59,11 @@ class StockController extends Controller
             $stock->balance = (int)$request->deposit;
             $stock->save();
         }
+
+        $purchase = Purchase::find($request->purchase_id);
+        $purchase->deposit = $request->deposit;
+        $purchase->update_stock = true; 
+        $purchase->save();
        
        return redirect()->back()->withSuccess('Stock Update Success!');
     }

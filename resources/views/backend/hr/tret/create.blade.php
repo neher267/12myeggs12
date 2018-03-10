@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 
 @section('content')
@@ -17,10 +18,10 @@
 
 						<div class="form-group">
 							<label for="product_id">Product Name</label>
-							<select name="product_id" id="product_id" class="form-control" required>
+							<select name="stock_id" id="product_id" class="form-control" required>
 								<option value="">Select</option>
-								@foreach($products as $product)
-								<option value="{{$product->id}}">{{$product->name}}</option>
+								@foreach($s_products as $s_product)
+								<option value="{{$s_product->id}}">{{$s_product->product->name}}</option>
 								@endforeach
 							</select>
 						</div>	

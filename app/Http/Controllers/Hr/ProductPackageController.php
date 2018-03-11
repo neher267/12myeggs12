@@ -32,6 +32,8 @@ class ProductPackageController extends Controller
         return view('backend.hr.product-package.create', compact('package_for'));
     }
 
+    
+
 
     /**
      * Store a newly created resource in storage.

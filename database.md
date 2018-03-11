@@ -26,9 +26,9 @@ id 	category_id		name 	 		unit	sale(boolean) 	branch_id(nullable)
 
 images:
 id 	imageable_id 	imageable_type 	type 		status  	src
-1 	1			category 		slide 		1
-2 	1 			product 		profile 		1
-2 	1 			branch 		profile 		1
+1 	1				category 		slide 			1
+2 	1 				product 		profile 		1
+2 	1 				branch 			profile 		1
 
 mix_packages:
 id 	name			branch_id

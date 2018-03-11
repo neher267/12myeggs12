@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Hr;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Image;
-use App\Models\Hr\Package;
 
-class PackageController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +16,7 @@ class PackageController extends Controller
         //
     }
 
-    public function images($id)
-    {
-        $package = Package::find($id);
-        dd($package->images();
-        $images = $product->images();
-        return view('backend.hr.product-package.create', compact('package_for'));
-    }
+    
 
     /**
      * Show the form for creating a new resource.

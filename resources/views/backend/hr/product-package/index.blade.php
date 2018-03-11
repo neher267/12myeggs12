@@ -15,12 +15,12 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-					            		<tr>
+		            		<tr>
 								<th>Title</th>
 								<th>Description</th>
 								<th>Status</th>
 								<th>Actions</th>
-					            		</tr>
+		            		</tr>
 						</thead>
 						<tbody>
 						@foreach($packages as $package)
@@ -36,9 +36,10 @@
 								</td>
 								
 								<td>
-									<a href="{{route('categories.edit', $package)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('product-packages.edit', $package)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('product-packages.images', $package)}}" class="btn btn-default">Images</a>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
 		            </table>

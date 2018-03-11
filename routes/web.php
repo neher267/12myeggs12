@@ -64,6 +64,8 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::get('mix-packages/{id}/create','MixPackageController@add_package')->name('mix-packages.add');	
 	Route::resource('product-packages','ProductPackageController');
 	Route::get('product-packages/{id}/create','ProductPackageController@add_package')->name('product-packages.add');	
+	Route::get('product-packages/{id}/images','PackageController@images')->name('product-packages.images');	
+	Route::resource('stock','ImageController');
 	Route::resource('stock','StockController');
 	Route::resource('expenses','ExpenseController');
 	Route::resource('trets','TretController');

@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where('for_sale', true)->orderBy('name', 'asc')->get();
-        return view('backend.hr.product.index', compact('products'));
+        $title = "All Products";
+        return view('backend.hr.product.index', compact('products', 'title'));
     }
 
     /**
@@ -69,7 +70,8 @@ class ProductController extends Controller
     {
         $package_for = Product::find($id);
         $packages = $package_for->packages()->get();
-        return view('backend.hr.product-package.index', compact('packages', 'package_for'));
+        $title = $package_for->name." All Packages";
+        return view('backend.hr.product-package.index', compact('packages', 'package_for', 'title'));
     }
 
     /**
@@ -80,7 +82,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $title = 'Edit '.$product->name;
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('backend.hr.product.edit', compact('categories','title', 'product'));
     }
 
     /**
@@ -92,7 +97,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->category()->associate($request->category_id);
+        $product->unit = $request->unit;
+        $product->for_sale = true;
+        $product->save();
+
+        return redirect("products")->withSuccess("Edit Successful!");
     }
 
     /**
@@ -103,6 +115,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

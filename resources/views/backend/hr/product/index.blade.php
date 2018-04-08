@@ -9,6 +9,8 @@
 					<a href="{{route('products.create')}}" class="btn btn-default">Add New Product</a>
 					@include('common.flash-message')
 					<hr>
+					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
+					<hr>
 				</div>
 
 				<div class="col-md-12">
@@ -35,6 +37,14 @@
 								</td>
 								<td>
 									<a href="{{route('products.edit', $product)}}" class="btn btn-default">Edit</a>
+
+									<form action="{{route('products.destroy', $product)}}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+
+										<button type="submit" class="btn btn-danger">Delete</button>
+									</form>
+
 									<a href="{{route('products.packages', $product)}}" class="btn btn-default">Packages</a>
 								</td>
 						            </tr>

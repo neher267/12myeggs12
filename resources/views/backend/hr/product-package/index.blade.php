@@ -10,6 +10,8 @@
 					<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
 					@include('common.flash-message')
 					<hr>
+					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
+					<hr>
 				</div>
 
 				<div class="col-md-12">

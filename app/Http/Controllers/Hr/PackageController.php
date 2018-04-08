@@ -22,9 +22,8 @@ class PackageController extends Controller
     public function images($id)
     {
         $package = Package::find($id);
-        dd($package->images();
-        $images = $product->images();
-        return view('backend.hr.product-package.create', compact('package_for'));
+        $images = $package->images();
+        return view('backend.hr.images.index', compact('package','images'));
     }
 
     /**

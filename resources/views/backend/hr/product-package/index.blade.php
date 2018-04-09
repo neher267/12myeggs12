@@ -14,10 +14,11 @@
 					<hr>
 				</div>
 
-				<div class="col-md-12">
-					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
+				<div class="col-md-12" style="overflow-x: scroll; overflow-y: scroll;">
+					<table class="table table-striped table-bordered datatable" cellspacing="0"	>
 						<thead>
 		            		<tr>
+								<th style="width: 55px;">No</th>
 								<th>Title</th>
 								<th>Description</th>
 								<th>Status</th>
@@ -25,8 +26,10 @@
 		            		</tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($packages as $package)
 							<tr>
+								<td>{{++$i}}</td>
 								<td>{{$package->title}}</td>
 								<td>{{$package->description}}</td>
 								<td>
@@ -39,7 +42,15 @@
 								
 								<td>
 									<a href="{{route('product-packages.edit', $package)}}" class="btn btn-default">Edit</a>
-									<a href="{{route('product-packages.images', $package)}}" class="btn btn-default">Images</a>
+
+									<form action="{{route('product-packages.destroy', $package)}}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+
+										<button type="submit" class="btn btn-danger">Delete</button>
+									</form>
+
+									<a href="{{route('product-packages.images', $package)}}" class="btn btn-default">Images</a>									
 								</td>
 						    </tr>
 						@endforeach

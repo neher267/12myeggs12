@@ -29,7 +29,8 @@ class ProductPackageController extends Controller
     public function add_package($id)
     {
         $package_for = Product::find($id);
-        return view('backend.hr.product-package.create', compact('package_for'));
+        $title = "Create Package For: ".$package_for->name;
+        return view('backend.hr.product-package.create', compact('package_for', 'title'));
     }
 
     
@@ -71,7 +72,9 @@ class ProductPackageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $package = Package::find($id);
+        $title = "Edit ".$package->packageable->name. " Package";
+        return view('backend.hr.product-package.edit', compact('package', 'title'));
     }
 
     /**
@@ -83,7 +86,13 @@ class ProductPackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $package = Package::find($id);
+        $package->title = $request->title;
+        $package->description = $request->description;
+        $package->save();
+        $product = $package->packageable->id;
+        
+        return redirect("products/$product/packages")->withSuccess('Update Successfully!');
     }
 
     /**

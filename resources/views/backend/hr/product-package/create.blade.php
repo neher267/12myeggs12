@@ -9,6 +9,8 @@
 					<a href="{{route('products.packages', $package_for)}}" class="btn btn-default">back</a>
 					@include('common.flash-message')
 					<hr>
+					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
+					<hr>
 				</div>
 				
 				<div class="form-body">
@@ -16,7 +18,6 @@
 					{{ csrf_field() }}
 
 						<div class="form-group"> 
-							<label for="name">Package For : {{$package_for->name}}</label> 
 							<input type="hidden" name="product_id" value="{{$package_for->id}}">
 						</div>	
 

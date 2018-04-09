@@ -16,17 +16,20 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
+				            <tr>
+								<th style="width: 50px;">No</th>
 								<th>Name</th>
 								<th>Category</th>
 								<th>Unit</th>
 								<th>Branch</th>
 								<th>Actions</th>
-						            </tr>
+				            </tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($products as $product)
 							<tr>
+								<td>{{++$i}}</td>
 								<td>{{$product->name}}</td>
 								<td>{{$product->category()->first()->name}}</td>
 								<td>{{$product->unit}}</td>

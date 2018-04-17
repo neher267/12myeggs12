@@ -36,7 +36,6 @@ Route::group(['namespace'=>'Auth', 'middleware'=>['sentinel.auth']], function(){
 });
 
 Route::group(['middleware'=>['sentinel.auth']], function(){
-	Route::resource('products','ProductController');
 	Route::resource('packages','PackageController');
 	Route::resource('mix-packages','MixPackageController');	
 	Route::resource('trets','TretController');
@@ -49,8 +48,18 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 	Route::resource('categories','CategoryController');
 	Route::resource('departments','DepartmentController');
 	Route::resource('districts','DistrictController');
-	Route::resource('gifts','GiftController');
 	Route::resource('roles','RoleController');
+	Route::resource('gifts','GiftController');
+
+	// gift image
+	Route::get('gifts/{id}/images', 'GiftImageController@index')->name('gift.images.index');
+	Route::post('gifts/{id}/images', 'GiftImageController@store')->name('gift.images.store');
+	Route::get('gifts/{id}/images/create', 'GiftImageController@create')->name('gift.images.create');
+	Route::get('gifts/{gift_id}/images/{image_id}/edit', 'GiftImageController@edit')->name('gift.images.edit');
+	Route::PUT('gifts/{gift_id}/images/{image_id}', 'GiftImageController@update')->name('gift.images.update');
+	Route::DELETE('gifts/{gift_id}/images/{image_id}', 'GiftImageController@destroy')->name('gift.images.destroy');
+	//end gift image
+	
 });
 
 
@@ -86,10 +95,20 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::DELETE('products/{product_id}/packages/{package_id}/images/{image_id}', 'ProductPackageImageController@destroy')->name('product.package.images.destroy');
 	//end product package image
 
+	Route::resource('mix-products','MixProductsController');
+
+	//mix products images
+	Route::get('mix-products/{id}/images', 'MixProductsImageController@index')->name('mix-products.images.index');
+	Route::post('mix-products/{id}/images', 'MixProductsImageController@store')->name('mix-products.images.store');
+	Route::get('mix-products/{id}/images/create', 'MixProductsImageController@create')->name('mix-products.images.create');
+	Route::get('mix-products/{product_id}/images/{image_id}/edit', 'MixProductsImageController@edit')->name('mix-products.images.edit');
+	Route::PUT('mix-products/{product_id}/images/{image_id}', 'MixProductsImageController@update')->name('mix-products.images.update');
+	Route::DELETE('mix-products/{product_id}/images/{image_id}', 'MixProductsImageController@destroy')->name('mix-products.images.destroy');
+
+	//end mix products images
 
 
 
-	Route::resource('mix-package-names','MixPackageNameController');
 	Route::resource('mix-packages','MixPackageController');
 
 	Route::get('mix-packages/{id}/packages', 'MixPackageController@packages')->name('mix-packages.packages');	

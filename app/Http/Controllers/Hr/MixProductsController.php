@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Hr\MixPackage;
 
-class MixPackageNameController extends Controller
+class MixProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class MixPackageNameController extends Controller
     public function index()
     {
         $mix_packages = MixPackage::orderBy('name', 'asc')->get();
-        return view('backend.hr.mix-package-name.index', compact('mix_packages'));
+        return view('backend.hr.mix-products.index', compact('mix_packages'));
     }
 
     /**
@@ -26,7 +26,7 @@ class MixPackageNameController extends Controller
      */
     public function create()
     {
-        return view('backend.hr.mix-package-name.create');
+        return view('backend.hr.mix-products.create');
     }
 
     /**

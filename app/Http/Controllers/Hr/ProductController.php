@@ -49,11 +49,7 @@ class ProductController extends Controller
         $product->for_sale = true;
         $product->save();
 
-        $image = new Image;
-        $image->type = 'profile';
-        $image->src = 'images/'.time().'jpg';
-        $product->images()->save($image);            
-        return redirect()->back()->withSuccess('Create Success!');
+        return back()->withSuccess('Create Success!');
     }
 
     /**

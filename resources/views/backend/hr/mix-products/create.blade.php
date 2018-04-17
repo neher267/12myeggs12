@@ -6,13 +6,13 @@
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				<div class="col-md-12">
-					<a href="{{route('mix-package-names.index')}}" class="btn btn-default">All Mix Package Names</a>
+					<a href="{{route('mix-products.index')}}" class="btn btn-default">Back</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
 				
 				<div class="form-body">
-					<form action="{{route('mix-package-names.store')}}" method="post">
+					<form action="{{route('mix-products.store')}}" method="post">
 					{{ csrf_field() }}
 
 						<div class="form-group"> 

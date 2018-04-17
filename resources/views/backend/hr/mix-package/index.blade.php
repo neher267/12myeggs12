@@ -6,8 +6,8 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
+					<a href="{{route('mix-products.index')}}" class="btn btn-default">Back</a>				
 					<a href="{{route('mix-packages.add', $package_for)}}" class="btn btn-default">Add New Package</a>
-					<a href="{{route('mix-package-names.index')}}" class="btn btn-default">All Mix Package Names</a>
 					@include('common.flash-message')
 					<hr>
 				</div>

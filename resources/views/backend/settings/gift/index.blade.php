@@ -29,11 +29,12 @@
 								<td>{{$gift->points}}</td>
 								<td>
 									<a href="{{route('gifts.edit', $gift)}}" class="btn btn-default">Edit</a>
-								</td>
-						            </tr>
+									<a href="{{route('gift.images.index', $gift)}}" class="btn btn-default">Images</a>
+								</td>								
+						    </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		            </table>
 				</div>
 			</div>
 		</div>

@@ -58,9 +58,12 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
 	//Product Image
-	Route::get('products/{id}/images', 'ProductController@images')->name('products.images');
-	Route::post('products/{id}/images', 'ProductController@images_store')->name('products.images.store');
-	Route::get('products/{id}/images/create', 'ProductController@images_create')->name('products.images.create');
+	Route::get('products/{id}/images', 'ProductImageController@index')->name('product.images.index');
+	Route::post('products/{id}/images', 'ProductImageController@store')->name('product.images.store');
+	Route::get('products/{id}/images/create', 'ProductImageController@create')->name('product.images.create');
+	Route::get('products/{product_id}/images/{image_id}/edit', 'ProductImageController@edit')->name('product.images.edit');
+	Route::PUT('products/{product_id}/images/{image_id}', 'ProductImageController@update')->name('product.images.update');
+	Route::DELETE('products/{product_id}/images/{image_id}', 'ProductImageController@destroy')->name('product.images.destroy');
 	//end product image
 	
 	//product package
@@ -78,7 +81,9 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 
 	Route::get('products/{product_id}/packages/{package_id}/images/{image_id}/edit', 'ProductPackageImageController@edit')->name('product.package.images.edit');
 
-	Route::get('products/{product_id}/packages/{package_id}/images/{image_id}/edit', 'ProductPackageImageController@edit')->name('product.package.images.edit');
+	Route::PUT('products/{product_id}/packages/{package_id}/images/{image_id}', 'ProductPackageImageController@update')->name('product.package.images.update');
+
+	Route::DELETE('products/{product_id}/packages/{package_id}/images/{image_id}', 'ProductPackageImageController@destroy')->name('product.package.images.destroy');
 	//end product package image
 
 

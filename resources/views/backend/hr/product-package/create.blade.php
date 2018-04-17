@@ -31,7 +31,7 @@
 							<textarea name="description" id="description" cols="50" rows="4" class="form-control"></textarea>			
 						</div>						
 
-						<button type="submit" class="btn btn-default">Save</button>
+						<button type="submit" class="btn btn-success">Save</button>
 					</form> 
 				</div>
 			</div>

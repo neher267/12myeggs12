@@ -85,6 +85,13 @@
 	    $('.flash').delay(7000).fadeOut(1000);
 	} );
 </script>
+
+<script type="text/javascript">
+function alertUser($message)
+{
+	return confirm('Are you sure want to '+$message);
+}	
+</script>
 <!-- end js Neher -->
 
 <script>

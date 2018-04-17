@@ -6,8 +6,8 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('products.index')}}" class="btn btn-default">Back</a>					
-					<a href="{{route('product.packages.create', $product)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('products.index')}}" class="btn btn-default">Back</a>
+					<a href="{{route('product.images.create', $product)}}" class="btn btn-default">Add New Image</a>		
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
@@ -19,21 +19,23 @@
 						<thead>
 		            		<tr>
 								<th style="width: 55px;">No</th>
-								<th>Title</th>
-								<th>Description</th>
+								<th>Image</th>
+								<th>Used For</th>
 								<th>Status</th>
 								<th>Actions</th>
 		            		</tr>
 						</thead>
 						<tbody>
 						<?php $i=0; ?>
-						@foreach($packages as $package)
+						@foreach($images as $image)
 							<tr>
 								<td>{{++$i}}</td>
-								<td>{{$package->title}}</td>
-								<td>{{$package->description}}</td>
 								<td>
-									@if($package->status == true)
+									<img src="{{asset($image->src)}}" style="height: 50px; widows: 40px">
+								</td>
+								<td style="text-transform: capitalize;">{{$image->type}}</td>
+								<td>
+									@if($image->status == true)
 									<span>Active</span>
 									@else
 									<span>Disable</span>									
@@ -41,16 +43,15 @@
 								</td>
 								
 								<td>
-									<a href="{{route('product.packages.edit',[$product->id, $package->id])}}" class="btn btn-default">Edit</a>
+									<a href="{{route('product.images.edit', [$product, $image])}}" class="btn btn-default">Edit</a>
 
-									<form action="{{route('product-packages.destroy', $package)}}" method="POST" style="display: inline;">
+									<form action="{{route('product.images.destroy',[$product, $image])}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 
-										<button type="submit" class="btn btn-danger">Delete</button>
-									</form>
-
-									<a href="{{route('product.package.images.index',[$product, $package])}}" class="btn btn-default">Images</a>									
+										<input type="hidden" name="avatar" value="{{$image->src}}">
+										<button type="submit" class="btn btn-danger" onclick="return alertUser('delete it?')">Delete</button>
+									</form>								
 								</td>
 						    </tr>
 						@endforeach

@@ -8,34 +8,33 @@ use App\Image;
 use App\Models\Hr\Package;
 use App\Models\Hr\Product;
 
-class ProductPackageImageController extends Controller
+class ProductImageController extends Controller
 {
-    private $path = "images/products/packages";
+    private $path = "images/products";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($product_id, $package_id)
+    public function index($id)
     {
-        $package = Package::find($package_id);
-        $images = $package->images()->get();        
-        $title = $package->packageable->name.'->'.$package->title."-> All Images";
-        return view('backend.hr.product-package.images.index', compact('images', 'title', 'product_id', 'package_id'));
-    }       
-
+        $product = Product::find($id);
+        $images = $product->images()->get();
+        $title = $product->name." All Images";
+        return view('backend.hr.product.images.index', compact('images', 'product', 'title'));
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($product_id, $package_id)
+    public function create($id)
     {
-        $package = Package::find($package_id);
-        $images = $package->images()->get();        
-        $title = $package->packageable->name.'->'.$package->title."-> Add Image";        
-        return view('backend.hr.product-package.images.create', compact('title', 'product_id', 'package_id', 'images'));
+        $product = Product::find($id);
+        $images = $product->images()->get();      
+        $title = $product->name.": Add Images";
+        return view('backend.hr.product.images.create', compact('images', 'product', 'title'));
     }
 
     /**
@@ -44,22 +43,19 @@ class ProductPackageImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $product_id, $package_id)
+    public function store(Request $request, $id)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $package = Package::find($package_id);
-
+        $product = Product::find($id);        
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;
-        $package->images()->save($image); 
+        $product->images()->save($image);  
 
-        $images = $package->images();
-
-        return back()->with(compact('images'))->withSuccess('You have successfully save an image.');
+        return back()->withSuccess('You have successfully add an image.');
     }
 
     /**
@@ -79,12 +75,11 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id, $package_id, $image_id)
+    public function edit($product_id, $image_id)
     {
         $image = Image::find($image_id);
-        $package = Package::find($package_id);
-        $title = $package->packageable->name.'->'.$package->title."-> Edit Image";
-        return view('backend.hr.product-package.images.edit', compact('title', 'product_id', 'package_id','image'));
+        $title = $image->imageable->name.': Edit Image';
+        return view('backend.hr.product.images.edit', compact('title', 'product_id', 'image'));
     }
 
     /**
@@ -94,7 +89,7 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $product_id, $package_id, $image_id)
+    public function update(Request $request, $product_id, $image_id)
     {
         if(!empty($request->src))
         {
@@ -115,7 +110,7 @@ class ProductPackageImageController extends Controller
             $image->save();
         }
 
-        return redirect("products/$product_id/packages/$package_id/images")->withSuccess('Update success');
+        return redirect("products/$product_id/images")->withSuccess('Update success');
     }
 
     /**
@@ -124,10 +119,10 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $product_id, $package_id, $image_id)
+    public function destroy(Request $request, $product_id, $image_id)
     {
         unlink($request->avatar);
         $image = Image::find($image_id)->delete();
         return back()->withSuccess("Delation Success!");
-    }
+    }   
 }

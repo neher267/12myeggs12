@@ -41,7 +41,7 @@
 								<td>
 									<a href="{{route('products.edit', $product)}}" class="btn btn-default">Edit</a>
 
-									<a href="{{route('products.images', $product)}}" class="btn btn-default">Images</a>
+									<a href="{{route('product.images.index', $product)}}" class="btn btn-default">Images</a>
 
 									<form action="{{route('products.destroy', $product)}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
@@ -55,7 +55,7 @@
 						            </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		            </table>
 				</div>
 			</div>
 		</div>

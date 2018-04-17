@@ -7,15 +7,21 @@
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				
 				<div class="col-md-12">
-					<a href="{{url($url)}}" class="btn btn-default">Back</a>
+					<a href="{{route('product.images.index',$product)}}" class="btn btn-default">Back</a>
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
 					<hr>
+					<div>
+						@foreach($images as $image)
+							<img src="{{asset($image->src)}}" title="{{$image->type}}" style="height: 80px; box-shadow: 2px 4px 5px darkgrey; margin: 5px;">		
+						@endforeach
+					</div>
+					<hr>
 				</div>
 				
 				<div class="form-body">
-					<form action="{{url($url)}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('product.images.store', $product)}}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}					
 
 						<div class="form-group"> 
@@ -26,8 +32,6 @@
 								<option value="{{$type}}">{{$type}}</option>
 								@endforeach
 							</select>
-
-							<input type="hidden" name="id" value="{{$imageable_id}}">
 						</div>	
 
 						<div class="form-group"> 
@@ -35,7 +39,7 @@
 							<input type="file" name="src" class="form-control" required>			
 						</div>						
 
-						<button type="submit" class="btn btn-default">Save</button>
+						<button type="submit" class="btn btn-success">Save</button>
 					</form> 
 				</div>
 			</div>

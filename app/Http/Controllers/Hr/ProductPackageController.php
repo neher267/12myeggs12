@@ -21,19 +21,20 @@ class ProductPackageController extends Controller
         return view('backend.hr.package.index', compact('packages'));
     }
 
-    public function create()
+    public function packages($id)
     {
-        //
+        $product = Product::find($id);
+        $packages = $product->packages()->get();
+        $title = $product->name." All Packages";
+        return view('backend.hr.product-package.index', compact('packages', 'product', 'title'));
     }
 
-    public function add_package($id)
+    public function create($id)
     {
         $package_for = Product::find($id);
         $title = "Create Package For: ".$package_for->name;
         return view('backend.hr.product-package.create', compact('package_for', 'title'));
-    }
-
-    
+    }   
 
 
     /**
@@ -64,17 +65,22 @@ class ProductPackageController extends Controller
         
     }
 
+    public function images($product_id, $package_id)
+    {
+        dd('ok');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product_id, $package_id)
     {
-        $package = Package::find($id);
+        $package = Package::find($package_id);
         $title = "Edit ".$package->packageable->name. " Package";
-        return view('backend.hr.product-package.edit', compact('package', 'title'));
+        return view('backend.hr.product-package.edit', compact('package', 'title','product_id'));
     }
 
     /**
@@ -103,6 +109,6 @@ class ProductPackageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }

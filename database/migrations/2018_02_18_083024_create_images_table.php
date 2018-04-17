@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('imageable_type', 30);
             $table->string('type'); // profile, slide, 
             $table->boolean('status')->default(true);
-            $table->string('src', 30)->unique();         
+            $table->string('src')->unique();         
             $table->timestamps();
         });
     }

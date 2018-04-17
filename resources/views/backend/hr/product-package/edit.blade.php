@@ -6,7 +6,7 @@
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				<div class="col-md-12">
-					<a href="{{route('products.packages', $package)}}" class="btn btn-default">back</a>
+					<a href="{{route('product.packages', $product_id)}}" class="btn btn-default">back</a>
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>

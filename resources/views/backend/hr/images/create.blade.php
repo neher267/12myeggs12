@@ -5,29 +5,34 @@
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
+				
 				<div class="col-md-12">
-					<a href="{{route('mix-packages.packages', $package_for)}}" class="btn btn-default">back</a>
+					<a href="{{url($url)}}" class="btn btn-default">Back</a>
 					@include('common.flash-message')
+					<hr>
+					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
 					<hr>
 				</div>
 				
 				<div class="form-body">
-					<form action="{{route('mix-packages.store')}}" method="post">
-					{{ csrf_field() }}
+					<form action="{{url($url)}}" method="POST" enctype="multipart/form-data">
+					{{ csrf_field() }}					
 
 						<div class="form-group"> 
-							<label for="name">Mix Package Name : {{$package_for->name}}</label> 
-							<input type="hidden" name="mix_package_id" value="{{$package_for->id}}">
+							<label for="type">Used For</label> 
+							<select name="type" id="type_id" class="form-control" required>
+								<option value="">Select</option>
+								@foreach(config('settings.imgae-for') as $type)
+								<option value="{{$type}}">{{$type}}</option>
+								@endforeach
+							</select>
+
+							<input type="hidden" name="id" value="{{$imageable_id}}">
 						</div>	
 
 						<div class="form-group"> 
-							<label for="title">Package Title</label> 
-							<input type="text" name="title" class="form-control" id="title" placeholder="Ex: This is for you mom!" required> 
-						</div>	
-
-						<div class="form-group"> 
-							<label for="description">Package Discription</label>
-							<textarea name="description" id="description" cols="50" rows="4" class="form-control"></textarea>			
+							<label for="src">Upload Image</label>
+							<input type="file" name="src" class="form-control" required>			
 						</div>						
 
 						<button type="submit" class="btn btn-default">Save</button>

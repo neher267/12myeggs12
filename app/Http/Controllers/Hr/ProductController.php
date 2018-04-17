@@ -10,6 +10,7 @@ use App\Models\Settings\Category;
 
 class ProductController extends Controller
 {
+    private $path = "images/products";
     /**
      * Display a listing of the resource.
      *
@@ -64,14 +65,36 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+    }    
+
+    public function images($id)
+    {
+        $product = Product::find($id);
+        $images = $product->images()->get();
+        $title = $product->name." All Images";
+        return view('backend.hr.images.index', compact('images', 'product', 'title'));
     }
 
-    public function packages($id)
+    public function images_create($id)
     {
-        $package_for = Product::find($id);
-        $packages = $package_for->packages()->get();
-        $title = $package_for->name." All Packages";
-        return view('backend.hr.product-package.index', compact('packages', 'package_for', 'title'));
+        $product = Product::find($id);
+        $title = $product->name.": Add Images";
+        return view('backend.hr.images.create', compact('product', 'title'));
+    }
+
+    public function images_store(Request $request, $id)
+    {
+        $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+        $request->src->move(public_path($this->path), $imageName);
+        
+        $product = Product::find($id);        
+        $image = new Image;
+        $image->type = $request->type;
+        $image->src = $this->path.'/'.$imageName;
+        $product->images()->save($image);  
+
+        return back()->withSuccess('You have successfully upload image.');
     }
 
     /**

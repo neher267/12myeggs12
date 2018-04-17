@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
@@ -13,10 +14,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        dd("ok");
+        //
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +24,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        dd("ok");
+        //
     }
 
     /**
@@ -36,7 +35,7 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**

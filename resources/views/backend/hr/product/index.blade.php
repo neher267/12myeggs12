@@ -41,6 +41,8 @@
 								<td>
 									<a href="{{route('products.edit', $product)}}" class="btn btn-default">Edit</a>
 
+									<a href="{{route('products.images', $product)}}" class="btn btn-default">Images</a>
+
 									<form action="{{route('products.destroy', $product)}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
@@ -48,7 +50,7 @@
 										<button type="submit" class="btn btn-danger">Delete</button>
 									</form>
 
-									<a href="{{route('products.packages', $product)}}" class="btn btn-default">Packages</a>
+									<a href="{{route('product.packages', $product)}}" class="btn btn-default">Packages</a>
 								</td>
 						            </tr>
 						@endforeach

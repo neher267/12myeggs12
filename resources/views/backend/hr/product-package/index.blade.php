@@ -6,7 +6,7 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('product-packages.add', $package_for)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('product.packages.create', $product)}}" class="btn btn-default">Add New Package</a>
 					<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
 					@include('common.flash-message')
 					<hr>
@@ -14,7 +14,7 @@
 					<hr>
 				</div>
 
-				<div class="col-md-12" style="overflow-x: scroll; overflow-y: scroll;">
+				<div class="col-md-12" style="overflow: auto;">
 					<table class="table table-striped table-bordered datatable" cellspacing="0"	>
 						<thead>
 		            		<tr>
@@ -41,7 +41,7 @@
 								</td>
 								
 								<td>
-									<a href="{{route('product-packages.edit', $package)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('product.packages.edit',[$product->id, $package->id])}}" class="btn btn-default">Edit</a>
 
 									<form action="{{route('product-packages.destroy', $package)}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
@@ -50,7 +50,7 @@
 										<button type="submit" class="btn btn-danger">Delete</button>
 									</form>
 
-									<a href="{{route('product-packages.images', $package)}}" class="btn btn-default">Images</a>									
+									<a href="{{route('product.package.images',[$product, $package])}}" class="btn btn-default">Images</a>									
 								</td>
 						    </tr>
 						@endforeach

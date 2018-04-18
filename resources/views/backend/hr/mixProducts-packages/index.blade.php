@@ -6,21 +6,23 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('mix-products.index')}}" class="btn btn-default">Back</a>				
-					<a href="{{route('mix-packages.add', $package_for)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('mix-products.packages.index', $product)}}" class="btn btn-default">Back</a>				
+					<a href="{{route('mix-products.packages.create', $product)}}" class="btn btn-default">Add New Package</a>
 					@include('common.flash-message')
+					<hr>
+					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
 					<hr>
 				</div>
 
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-					            		<tr>
+		            		<tr>
 								<th>Title</th>
 								<th>Description</th>
 								<th>Status</th>
 								<th>Actions</th>
-					            		</tr>
+		            		</tr>
 						</thead>
 						<tbody>
 						@foreach($packages as $package)
@@ -36,9 +38,10 @@
 								</td>
 								
 								<td>
-									<a href="{{route('categories.edit', $package)}}" class="btn btn-default">Edit</a>
+									<a href="" class="btn btn-default">Edit</a>
+									<a href="{{route('mix-products.package.images.index', [$product, $package])}}" class="btn btn-default">Images</a>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
 		            </table>

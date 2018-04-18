@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Host:                         localhost
--- Server version:               5.7.19 - MySQL Community Server (GPL)
--- Server OS:                    Win64
+-- Server version:               10.2.3-MariaDB-log - mariadb.org binary distribution
+-- Server OS:                    Win32
 -- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
 
@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS `activations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
   `completed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.activations: ~3 rows (approximately)
+-- Dumping data for table egg.activations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `activations` DISABLE KEYS */;
 INSERT INTO `activations` (`id`, `user_id`, `code`, `completed`, `completed_at`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'wHcbkzpgQja5OoOyaapsDyNRlv10t6Nj', 1, '2018-03-07 07:25:12', '2018-03-07 07:25:12', '2018-03-07 07:25:12'),
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY `categories_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.categories: ~2 rows (approximately)
+-- Dumping data for table egg.categories: ~3 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` (`id`, `branch_id`, `department_id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 	(1, NULL, 1, 'Egg', 'egg', '2018-03-06 10:10:39', '2018-03-06 10:10:39'),
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `districts` (
   UNIQUE KEY `districts_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.districts: ~0 rows (approximately)
+-- Dumping data for table egg.districts: ~1 rows (approximately)
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
 INSERT INTO `districts` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 	(1, 'Dhaka', 'dhaka', '2018-03-06 09:15:50', '2018-03-06 09:15:50');
@@ -202,20 +202,21 @@ CREATE TABLE IF NOT EXISTS `images` (
   `imageable_id` int(10) unsigned NOT NULL,
   `imageable_type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `src` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `images_src_unique` (`src`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.images: ~3 rows (approximately)
+-- Dumping data for table egg.images: ~4 rows (approximately)
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
 INSERT INTO `images` (`id`, `imageable_id`, `imageable_type`, `type`, `status`, `src`, `created_at`, `updated_at`) VALUES
 	(1, 8, 'product', 'Thumbnail', 1, 'images/products/1523684334.jpg', '2018-04-14 05:38:54', '2018-04-14 05:38:54'),
 	(2, 6, 'product', 'Thumbnail', 1, 'images/products/1523684461.jpg', '2018-04-14 05:41:01', '2018-04-14 05:41:01'),
-	(3, 9, 'App\\Models\\Hr\\Package', 'Thumbnail', 1, 'images/products/packages/1523897027.jpg', '2018-04-16 16:46:08', '2018-04-16 16:46:08');
+	(3, 9, 'App\\Models\\Hr\\Package', 'Thumbnail', 1, 'images/products/packages/1523897027.jpg', '2018-04-16 16:46:08', '2018-04-16 16:46:08'),
+	(6, 15, 'App\\Models\\Hr\\Package', 'Thumbnail', 1, 'images/MixProductsImages/1524036657.jpg', '2018-04-18 07:30:57', '2018-04-18 07:30:57');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 -- Dumping structure for table egg.migrations
@@ -249,8 +250,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(18, '2018_02_20_060425_create_districts_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Dumping structure for table egg.mix_packages
-CREATE TABLE IF NOT EXISTS `mix_packages` (
+-- Dumping structure for table egg.mix_products
+CREATE TABLE IF NOT EXISTS `mix_products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `branch_id` int(10) unsigned DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -260,14 +261,14 @@ CREATE TABLE IF NOT EXISTS `mix_packages` (
   UNIQUE KEY `mix_packages_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.mix_packages: ~3 rows (approximately)
-/*!40000 ALTER TABLE `mix_packages` DISABLE KEYS */;
-INSERT INTO `mix_packages` (`id`, `branch_id`, `name`, `created_at`, `updated_at`) VALUES
+-- Dumping data for table egg.mix_products: ~4 rows (approximately)
+/*!40000 ALTER TABLE `mix_products` DISABLE KEYS */;
+INSERT INTO `mix_products` (`id`, `branch_id`, `name`, `created_at`, `updated_at`) VALUES
 	(1, NULL, 'Chal + Dim + Tel', '2018-03-07 09:04:01', '2018-03-07 09:04:01'),
 	(2, NULL, 'Chal + Dim', '2018-03-07 09:05:38', '2018-03-07 09:05:38'),
 	(3, NULL, 'Dim + Tel', '2018-03-07 09:47:36', '2018-03-07 09:47:36'),
 	(4, NULL, 'Chal + dal +dim + Tel', '2018-03-10 06:54:30', '2018-03-10 06:54:30');
-/*!40000 ALTER TABLE `mix_packages` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mix_products` ENABLE KEYS */;
 
 -- Dumping structure for table egg.packages
 CREATE TABLE IF NOT EXISTS `packages` (
@@ -276,13 +277,13 @@ CREATE TABLE IF NOT EXISTS `packages` (
   `packageable_type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.packages: ~9 rows (approximately)
+-- Dumping data for table egg.packages: ~15 rows (approximately)
 /*!40000 ALTER TABLE `packages` DISABLE KEYS */;
 INSERT INTO `packages` (`id`, `packageable_id`, `packageable_type`, `title`, `description`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'product', 'Bachalor Jindabad!', '25 pcs Layer Dim', 1, '2018-03-06 10:42:46', '2018-03-06 10:42:46'),
@@ -297,7 +298,9 @@ INSERT INTO `packages` (`id`, `packageable_id`, `packageable_type`, `title`, `de
 	(10, 8, 'product', 'Join Family Package', '50 kg balam chal', 1, '2018-03-09 05:44:06', '2018-03-09 05:44:06'),
 	(11, 8, 'product', 'Bachelor package', '10 kg chal', 1, '2018-03-09 05:44:34', '2018-04-09 14:35:59'),
 	(12, 8, 'product', 'Valobasa', '35 kg', 1, '2018-03-10 06:52:19', '2018-03-10 06:52:19'),
-	(13, 8, 'product', 'Eso he boishakh 1425', '25  kg balam chal.', 1, '2018-04-14 14:19:50', '2018-04-14 14:19:50');
+	(13, 8, 'product', 'Eso he boishakh 1425', '25  kg balam chal.', 1, '2018-04-14 14:19:50', '2018-04-14 14:19:50'),
+	(14, 4, 'mix package', 'Boishakh 1425', '1. Chal 25 kg\r\n2. Dal 25 kg\r\n3. Dim 25 pcs', 1, '2018-04-18 05:40:40', '2018-04-18 05:40:40'),
+	(15, 4, 'App\\Models\\Hr\\MixProducts', 'Anonde atkhan', '1. Balam Chal 25 kg\r\n2. Dal 5 kg\r\n2. Dim 25 pcs\r\n4. Tel 5 L', 1, '2018-04-18 07:09:56', '2018-04-18 07:09:56');
 /*!40000 ALTER TABLE `packages` ENABLE KEYS */;
 
 -- Dumping structure for table egg.password_resets
@@ -321,18 +324,14 @@ CREATE TABLE IF NOT EXISTS `persistences` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `persistences_code_unique` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.persistences: ~5 rows (approximately)
+-- Dumping data for table egg.persistences: ~3 rows (approximately)
 /*!40000 ALTER TABLE `persistences` DISABLE KEYS */;
 INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'VHsNZW51LDbUG9x06MvpadRPGl7VxE82', '2018-03-07 07:25:36', '2018-03-07 07:25:36'),
 	(2, 1, 'zNNSkEBDehi9HrenrS4nZRMdNhGVjGKj', '2018-03-07 08:13:04', '2018-03-07 08:13:04'),
-	(8, 5, 'Uw0Qer4GpLGUQsuWfKJpLIE7oo0zc0Eq', '2018-03-09 07:13:57', '2018-03-09 07:13:57'),
-	(13, 3, 'PbfC5VpoumALdhYSMVkZWPWAf8DNJu5U', '2018-04-14 04:56:47', '2018-04-14 04:56:47'),
-	(14, 3, '2VKM1V5K1wbyUbGq9twgmasuR3OOfPCp', '2018-04-14 12:49:39', '2018-04-14 12:49:39'),
-	(15, 3, 'YtxkH9TFTcC0EEyyfWw5axUKv04njOAB', '2018-04-16 14:46:03', '2018-04-16 14:46:03'),
-	(16, 3, 'MxVoT4X51jcvjVkuQ95qvy5MnE9Wuiuk', '2018-04-17 02:58:13', '2018-04-17 02:58:13');
+	(8, 5, 'Uw0Qer4GpLGUQsuWfKJpLIE7oo0zc0Eq', '2018-03-09 07:13:57', '2018-03-09 07:13:57');
 /*!40000 ALTER TABLE `persistences` ENABLE KEYS */;
 
 -- Dumping structure for table egg.prices
@@ -382,10 +381,10 @@ CREATE TABLE IF NOT EXISTS `purchases` (
   `product_id` int(10) unsigned NOT NULL,
   `branch_id` int(10) unsigned NOT NULL,
   `quantity` decimal(8,0) NOT NULL,
-  `deposit` decimal(8,0) DEFAULT '0',
-  `tret` decimal(8,0) DEFAULT '0',
+  `deposit` decimal(8,0) DEFAULT 0,
+  `tret` decimal(8,0) DEFAULT 0,
   `price` decimal(8,0) NOT NULL,
-  `update_stock` tinyint(1) NOT NULL DEFAULT '0',
+  `update_stock` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -404,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `reminders` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
   `completed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -420,14 +419,14 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `permissions` text COLLATE utf8mb4_unicode_ci,
+  `permissions` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.roles: ~5 rows (approximately)
+-- Dumping data for table egg.roles: ~6 rows (approximately)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
 	(1, 'admin', 'Admin', NULL, '2018-03-06 10:17:22', '2018-03-06 10:17:22'),
@@ -447,7 +446,7 @@ CREATE TABLE IF NOT EXISTS `role_users` (
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.role_users: ~3 rows (approximately)
+-- Dumping data for table egg.role_users: ~5 rows (approximately)
 /*!40000 ALTER TABLE `role_users` DISABLE KEYS */;
 INSERT INTO `role_users` (`user_id`, `role_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, '2018-03-07 07:25:12', '2018-03-07 07:25:12'),
@@ -463,14 +462,14 @@ CREATE TABLE IF NOT EXISTS `stocks` (
   `branch_id` int(10) unsigned NOT NULL,
   `product_id` int(10) unsigned NOT NULL,
   `deposit` decimal(8,0) NOT NULL,
-  `withdraw` decimal(8,0) NOT NULL DEFAULT '0',
+  `withdraw` decimal(8,0) NOT NULL DEFAULT 0,
   `balance` decimal(8,0) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.stocks: ~2 rows (approximately)
+-- Dumping data for table egg.stocks: ~3 rows (approximately)
 /*!40000 ALTER TABLE `stocks` DISABLE KEYS */;
 INSERT INTO `stocks` (`id`, `branch_id`, `product_id`, `deposit`, `withdraw`, `balance`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 500, 0, 450, '2018-03-09 06:28:44', '2018-03-10 05:59:27'),
@@ -518,7 +517,7 @@ CREATE TABLE IF NOT EXISTS `trets` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.trets: ~3 rows (approximately)
+-- Dumping data for table egg.trets: ~4 rows (approximately)
 /*!40000 ALTER TABLE `trets` DISABLE KEYS */;
 INSERT INTO `trets` (`id`, `stock_id`, `reason`, `quantity`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Broken', 10, '2018-03-08 09:38:14', '2018-03-08 09:38:14'),
@@ -533,9 +532,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `branch_id` int(10) unsigned DEFAULT NULL,
   `mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `points` decimal(6,0) NOT NULL DEFAULT '0',
+  `points` decimal(6,0) NOT NULL DEFAULT 0,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `permissions` text COLLATE utf8mb4_unicode_ci,
+  `permissions` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_login` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -543,10 +542,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_mobile_unique` (`mobile`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table egg.users: ~2 rows (approximately)
+-- Dumping data for table egg.users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `branch_id`, `mobile`, `name`, `points`, `password`, `permissions`, `last_login`, `created_at`, `updated_at`) VALUES
-	(3, 1, '01784255196', 'Neher', 0, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-04-17 02:58:13', '2018-03-08 05:56:21', '2018-04-17 02:58:13'),
+	(3, 1, '01784255196', 'Neher', 0, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-04-18 05:21:02', '2018-03-08 05:56:21', '2018-04-18 05:21:02'),
 	(4, 1, '01784255111', 'Mr. Lob', 0, '$2y$10$M2nCkps8ougSXwubhZYMIuPZ8Y13JztyaBfIwD80/0SLLtb7Qu10e', NULL, NULL, '2018-03-08 06:32:39', '2018-03-08 06:32:39'),
 	(5, 1, '01797224312', 'Neher Ranjan Halder', 0, '$2y$10$krIXbjHasYkPtwVINVhMAOmFRDv3F4t9wy2qy4pXAUuZOZssNH1fG', NULL, '2018-03-09 07:13:57', '2018-03-09 07:13:22', '2018-03-09 07:13:57'),
 	(6, 1, '01784255199', 'Buyer', 0, '$2y$10$Md4XMRqfJ3DfbPOBi3hSf.P8t0MHbVLjEIg7CGFAwb5v48b2ci0u6', NULL, '2018-03-10 11:36:45', '2018-03-10 11:36:28', '2018-03-10 11:36:45');

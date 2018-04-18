@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Image;
 
 
-class MixPackage extends Model
+class MixProducts extends Model
 {
 
     public function packages()

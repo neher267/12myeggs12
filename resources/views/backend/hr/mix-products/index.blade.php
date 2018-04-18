@@ -20,18 +20,18 @@
 				            </tr>
 						</thead>
 						<tbody>
-						@foreach($mix_packages as $mix_package)
+						@foreach($packages as $package)
 							<tr>
-								<td>{{$mix_package->name}}</td>
+								<td>{{$package->name}}</td>
 								<td>
 									<?php
-									echo $mix_package->branch_id == null ? 'All Branches' : $mix_package->branch()->first()->name;
+									echo $package->branch_id == null ? 'All Branches' : $package->branch()->first()->name;
 									?>
 								</td>
 								<td>
-									<a href="{{route('mix-packages.edit', $mix_package)}}" class="btn btn-default">Edit</a>
-									<a href="{{route('mix-packages.packages', $mix_package)}}" class="btn btn-default">Packages</a>
-									<a href="{{route('mix-products.images.index', $mix_package)}}" class="btn btn-default">Images</a>
+									<a href="{{route('mix-products.edit', $package)}}" class="btn btn-default">Edit</a>
+									<a href="{{route('mix-products.packages.index', $package)}}" class="btn btn-default">Packages</a>
+									<a href="{{route('mix-products.images.index', $package)}}" class="btn btn-default">Images</a>
 								</td>
 						    </tr>
 						@endforeach

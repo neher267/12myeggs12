@@ -6,19 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Models\Hr\Package;
-use App\Models\Hr\MixPackage;
+use App\Models\Hr\MixProducts;
 
-class MixPackageController extends Controller
+class MixProductsPackageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $packages = Package::where('packageable_type', 'mix package')->get();
-        return view('backend.hr.package.index', compact('packages'));
+        $product = MixProducts::find($id);
+        $packages = $product->packages()->get();
+        $title = $product->name.": All Packages";
+        return view('backend.hr.mixProducts-packages.index', compact('packages', 'product','title'));     
     }
 
     /**
@@ -26,17 +28,13 @@ class MixPackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $product = MixProducts::find($id);
+        $title = $product->name.": Add Package";
+        return view('backend.hr.mixProducts-packages.create', compact('product', 'title'));
     }
-
-    public function add_package($id)
-    {
-
-        $package_for = MixPackage::find($id);
-        return view('backend.hr.mix-package.create', compact('package_for'));
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -44,14 +42,14 @@ class MixPackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $mix_package = MixPackage::find($request->mix_package_id);
+        $mix_products = MixProducts::find($id);
 
         $package = new Package;
         $package->title = $request->title;
         $package->description = $request->description;
-        $mix_package->packages()->save($package);
+        $mix_products->packages()->save($package);
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }
@@ -67,13 +65,6 @@ class MixPackageController extends Controller
         //
     }
 
-
-    public function packages($id)
-    {
-        $package_for = MixPackage::find($id);
-        $packages = $package_for->packages()->get();
-        return view('backend.hr.mix-package.index', compact('packages', 'package_for'));
-    }
 
     /**
      * Show the form for editing the specified resource.

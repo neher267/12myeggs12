@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Hr\MixPackage;
+use App\Models\Hr\MixProducts;
+use App\Models\Hr\Package;
+
 
 class MixProductsController extends Controller
 {
@@ -15,11 +17,12 @@ class MixProductsController extends Controller
      */
     public function index()
     {
-        $mix_packages = MixPackage::orderBy('name', 'asc')->get();
-        return view('backend.hr.mix-products.index', compact('mix_packages'));
+        $packages = MixProducts::orderBy('name', 'asc')->get();
+        return view('backend.hr.mix-products.index', compact('packages'));
     }
 
     /**
+
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,7 +40,7 @@ class MixProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $mix_package = new MixPackage;
+        $mix_package = new MixProducts;
         $mix_package->name = $request->name;
         $mix_package->save();
 

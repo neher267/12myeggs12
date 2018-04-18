@@ -4,36 +4,39 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Hr\MixProducts;
-use App\Image;
 
-class MixProductsImageController extends Controller
+use App\Image;
+use App\Models\Hr\Package;
+use App\Models\Hr\MixProducts;
+
+class MixProductsPackageImageController extends Controller
 {
-        private $path = "images/MixProducts";
+    private $path = "images/MixProductsImages";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($product_id, $package_id)
     {
-        $product = MixProducts::find($id);
-        $images = $product->images()->get();
-        $title = $product->name." All Images";
-        return view('backend.hr.mix-products.images.index', compact('images', 'product', 'title'));
-    }
+        $package = Package::find($package_id);
+        $images = $package->images()->get();        
+        $title = $package->packageable->name.'->'.$package->title."-> All Images";
+        return view('backend.hr.mixProducts-packages.images.index', compact('images', 'title', 'product_id', 'package_id'));
+    }       
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($product_id, $package_id)
     {
-        $product = MixProducts::find($id);
-        $images = $product->images()->get();      
-        $title = $product->name.": Add Images";
-        return view('backend.hr.mix-products.images.create', compact('images', 'product', 'title'));
+        $package = Package::find($package_id);
+        $images = $package->images()->get();        
+        $title = $package->packageable->name.'->'.$package->title."-> Add Image";        
+        return view('backend.hr.mixProducts-packages.images.create', compact('title', 'product_id', 'package_id', 'images'));
     }
 
     /**
@@ -42,19 +45,22 @@ class MixProductsImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $product_id, $package_id)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $product = MixProducts::find($id);        
+        $package = Package::find($package_id);
+
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;
-        $product->images()->save($image);  
+        $package->images()->save($image); 
 
-        return back()->withSuccess('You have successfully add an image.');
+        $images = $package->images();
+
+        return back()->with(compact('images'))->withSuccess('You have successfully save an image.');
     }
 
     /**
@@ -74,11 +80,12 @@ class MixProductsImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id, $image_id)
+    public function edit($product_id, $package_id, $image_id)
     {
         $image = Image::find($image_id);
-        $title = $image->imageable->name.': Edit Mix Products';
-        return view('backend.hr.mix-products.images.edit', compact('title', 'product_id', 'image'));
+        $package = Package::find($package_id);
+        $title = $package->packageable->name.'->'.$package->title."-> Edit Image";
+        return view('backend.hr.mixProducts-packages.images.edit', compact('title', 'product_id', 'package_id','image'));
     }
 
     /**
@@ -88,7 +95,7 @@ class MixProductsImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $product_id, $image_id)
+    public function update(Request $request, $product_id, $package_id, $image_id)
     {
         if(!empty($request->src))
         {
@@ -109,7 +116,7 @@ class MixProductsImageController extends Controller
             $image->save();
         }
 
-        return redirect("mix-products/$product_id/images")->withSuccess('Update success');
+        return redirect("MixProductss/$product_id/packages/$package_id/images")->withSuccess('Update success');
     }
 
     /**
@@ -118,11 +125,10 @@ class MixProductsImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $product_id, $image_id)
+    public function destroy(Request $request, $product_id, $package_id, $image_id)
     {
         unlink($request->avatar);
         $image = Image::find($image_id)->delete();
         return back()->withSuccess("Delation Success!");
-    }   
-
+    }
 }

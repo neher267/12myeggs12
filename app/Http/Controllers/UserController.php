@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Cartalyst\Sentinel\Roles\EloquentRole as Role;
 
-class RoleController extends Controller
+class UserController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $roles = Role::orderBy('weight', 'desc')->get();
-        return view('backend.settings.role.index', compact('roles'));
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.settings.role.create');
+        //
     }
 
     /**
@@ -37,17 +34,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-    	$data = $request->validate([
-    		'name' => 'required|string | min:3 | max:50',        
-    	]);
-        
-         $role = new Role;
-         $role->name = $request->name; 
-         $role->slug = strtolower(str_replace(' ', '_', $request->name)); 
-         $role->weight = $request->weight;   
-         $role->save();
-         
-         return back()->withSuccess('Success');
+        //
     }
 
     /**
@@ -69,9 +56,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
-        $title = 'Edit Role: '.$role->name;
-        return view('backend.settings.role.edit', compact('role', 'title'));
+        //
     }
 
     /**
@@ -83,13 +68,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
-        $role->name = $request->name; 
-        $role->slug = strtolower(str_replace(' ', '_', $request->name)); 
-        $role->weight = $request->weight;   
-        $role->save();
-
-        return redirect('roles')->withSuccess('Success');
+        //
     }
 
     /**

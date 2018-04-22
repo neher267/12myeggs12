@@ -13,32 +13,39 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
+						    <tr>
+								<th>No</th>
 								<th>Product</th>
+								@role('admin')								
 								<th>Buyer</th>
 								<th>Branch</th>
+								@endrole
 								<th>Merchant</th>
 								<th>Quantity</th>
 								<th>Price</th>
 								<th>Actions</th>
-						            </tr>
+						    </tr>
 						</thead>
 						<tbody>
+						<?php $i =0; ?>
 						@foreach($purchases as $purchase)
 							<tr>
-								<td>{{$purchase->product->name}}</td>							
+								<td>{{++$i}}</td>
+								<td>{{$purchase->product->name}}</td>
+								@role('admin')							
 								<td>{{$purchase->buyer->name}}</td>							
-								<td>{{$purchase->branch->name}}</td>							
+								<td>{{$purchase->branch->name}}</td>
+								@endrole					
 								<td>{{$purchase->merchant->name}}</td>							
 								<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>							
 								<td>{{$purchase->price}}</td>							
 								<td>
 									<a href="{{route('categories.edit', $purchase)}}" class="btn btn-default">Edit</a>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		            </table>
 				</div>
 			</div>
 		</div>

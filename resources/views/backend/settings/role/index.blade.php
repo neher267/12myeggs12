@@ -14,22 +14,34 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
+				            <tr>
+								<th>id</th>
 								<th>Name</th>
+								<th>Weight</th>
 								<th>Actions</th>
-						            </tr>
+				            </tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($roles as $role)
 							<tr>
+								<td>{{++$i}}</td>
 								<td>{{$role->name}}</td>
+								<td>{{$role->weight}}</td>
 								<td>
 									<a href="{{route('roles.edit', $role)}}" class="btn btn-default">Edit</a>
+
+									<form action="{{route('roles.destroy', $role)}}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+
+										<button type="submit" class="btn btn-danger" onclick="return alertUser('delete it?')">Delete</button>
+									</form>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		            </table>
 				</div>
 			</div>
 		</div>

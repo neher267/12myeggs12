@@ -66,6 +66,7 @@ class MigrationCartalystSentinel extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->string('name');
+            $table->double('weight',3,0); // add new (edit direct database not migrate command)
             $table->text('permissions')->nullable();
             $table->timestamps();
 

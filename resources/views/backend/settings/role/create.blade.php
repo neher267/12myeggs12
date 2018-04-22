@@ -9,6 +9,8 @@
 					<a href="{{route('roles.index')}}" class="btn btn-default">All Roles</a>
 					@include('common.flash-message')
 					<hr>
+					<p style="text-align: center; font-size: 22px;">Create Role</p>
+					<hr>
 				</div>
 
 				<div class="form-body">
@@ -18,7 +20,12 @@
 						<div class="form-group"> 
 							<label for="name">Role Name</label> 
 							<input type="text" name="name" class="form-control" id="name" placeholder="Name" required> 
-						</div>							
+						</div>			
+
+						<div class="form-group"> 
+							<label for="weight">Weight</label> 
+							<input type="number" name="weight" class="form-control" id="weight" placeholder="0-999" required> 
+						</div>				
 
 						<button type="submit" class="btn btn-default">Save</button>
 					</form> 

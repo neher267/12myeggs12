@@ -16,9 +16,16 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->get();
+        if(Sentinel::check()->roles()->first() == 'buyer'){
+            $purchases = Purchase::with(['product', 'branch'])->latest()->get();            
+        }        
+        else{
+            $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->latest()->get();
+        }
+        
         return view('backend.hr.purchases.index', compact('purchases'));
     }
 
@@ -29,8 +36,11 @@ class PurchaseController extends Controller
      */
     public function create()
     {
+        $branch_id = request()->user()->branch_id;
         $products = Product::orderBy('name', 'asc')->get();
-        $merchants = Sentinel::findRoleBySlug('marchant')->users()->get();
+        $merchants = Sentinel::findRoleBySlug('marchant')->users()
+        ->where('branch_id', $branch_id)
+        ->orWhere('branch_id','0')->get(); // 0 for all branch
         return view('backend.hr.purchases.create', compact('products', 'merchants'));
     }
 

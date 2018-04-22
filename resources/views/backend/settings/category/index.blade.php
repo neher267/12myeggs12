@@ -14,6 +14,8 @@
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 						            <tr>
+								<th  style="width: 20px">No</th>
+								<th>Image</th>
 								<th>Name</th>
 								<th>Department</th>
 								<th>Branch</th>
@@ -21,8 +23,13 @@
 						            </tr>
 						</thead>
 						<tbody>
+							<?php $i=0; ?>
 						@foreach($categories as $category)
 							<tr>
+								<td>{{++$i}}</td>
+								<td>
+									<img src="{{asset($category->thumbnail)}}" style="width: 120px; box-shadow: 2px 4px 5px darkgrey; margin: 5px;">
+								</td>
 								<td>{{$category->name}}</td>
 								<td>{{$category->department()->first()->name}}</td>
 								<td>
@@ -32,8 +39,17 @@
 								</td>
 								<td>
 									<a href="{{route('categories.edit', $category)}}" class="btn btn-default">Edit</a>
+
+									<a href="{{route('category.images.index', $category)}}" class="btn btn-default">Images</a>
+
+									<form action="{{route('categories.destroy', $category)}}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+
+										<button type="submit" class="btn btn-danger">Delete</button>
+									</form>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
 		                    		</table>

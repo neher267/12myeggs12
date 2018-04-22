@@ -13,12 +13,17 @@ trait SentinelTrait
      * @param  \Closure  $next
      * @return mixed
      */
-    public function authorize($role)
+    public function authorize(...$roles)
     {
         $slug = Sentinel::getUser()->roles()->first()->slug;
-        if($slug === strtolower($role))
-        	return true;
-        else 
-        	return false;
+        foreach ($roles as  $role) 
+        {
+            if($slug === strtolower($role))
+            {
+                return true;
+                break;
+            }                
+        }
+        return false;        
     }
 }

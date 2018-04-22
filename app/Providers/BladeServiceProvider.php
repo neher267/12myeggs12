@@ -15,14 +15,25 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::if('role', function($slug){
+        Blade::if('role', function(...$roles)
+        {
             if(Sentinel::check())
             {
-                return Sentinel::getUser()->roles()->first()->slug === $slug;
-            }
-            else{
+                $slug = Sentinel::getUser()->roles()->first()->slug;
+                foreach ($roles as  $role)
+                {
+                    if($slug === strtolower($role))
+                    {
+                        return true;
+                        break;
+                    }                
+                }
                 return false;
             }
+            else
+            {
+                return;
+            } 
         });
 
         Blade::if('guest', function(){

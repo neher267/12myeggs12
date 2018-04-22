@@ -35,9 +35,18 @@
 					<div class="sky_form1">
 						<ul>	
 							@if($roles->count())
-								@foreach($roles as $role)
-									<li><label class="radio left"><input type="radio" name="role" value="{{$role->slug}}" required><i></i>{{$role->name}}</label></li>
-								@endforeach
+								@if($user = Sentinel::check())
+									@foreach($roles as $role)									
+										@if($user->roles->first()->weight > $role->weight)									
+										<li>
+											<label class="radio left">
+												<input type="radio" name="role" value="{{$role->slug}}" required>
+												<i></i>{{$role->name}}
+											</label>
+										</li>
+										@endif
+									@endforeach
+								@endif
 							@else
 							<li>Insert roles first!</li>
 							@endif 
@@ -50,6 +59,7 @@
 					<label for="branch_id">Branch</label>
 					<select name="branch_id" id="branch_id" class="form-control" required>
 						<option value="">Select</option>
+						<option value="0">All</option>
 						@foreach($branches as $branch)
 						<option value="{{$branch->id}}">{{$branch->name}}</option>
 						@endforeach

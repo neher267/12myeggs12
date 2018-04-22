@@ -13,7 +13,7 @@ class CreateMixPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mix_packages', function (Blueprint $table) {
+        Schema::create('mix_products', function (Blueprint $table) { // dchange database name mix_packages to mix_products (edit direct database not migrate command)
             $table->increments('id');
             $table->integer('branch_id')->unsigned()->nullable();
             $table->string('name')->unique();

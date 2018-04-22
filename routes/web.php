@@ -17,7 +17,6 @@ Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentin
 
 
 Route::group(['namespace'=>'Auth', 'middleware'=>['guest']], function(){
-	Route::resource('register','SentinelRegisterController');
 	Route::post('login','SentinelLoginController@post_login');
 	Route::get('login','SentinelLoginController@login');
 });
@@ -35,16 +34,28 @@ Route::group(['namespace'=>'Auth', 'middleware'=>['sentinel.auth']], function(){
 	Route::get('profile','ProfileController@index');	
 });
 
-Route::group(['middleware'=>['sentinel.auth']], function(){
+Route::group(['middleware'=>['sentinel.auth','buyer']], function(){
 	Route::resource('packages','PackageController');
 	Route::resource('trets','TretController');
-	Route::resource('users','UserController');
+	Route::resource('register','Auth\SentinelRegisterController');	
 });
 
 Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('areas','AreaController');
 	Route::resource('branches','BranchController');
 	Route::resource('categories','CategoryController');
+
+	//category image
+	Route::get('categories/{id}/images', 'CategoryImageController@index')->name('category.images.index');
+	Route::post('categories/{id}/images', 'CategoryImageController@store')->name('category.images.store');
+	Route::get('categories/{id}/images/create', 'CategoryImageController@create')->name('category.images.create');
+	Route::get('categories/{category_id}/images/{image_id}/edit', 'CategoryImageController@edit')->name('category.images.edit');
+	Route::PUT('categories/{category_id}/images/{image_id}', 'CategoryImageController@update')->name('category.images.update');
+	Route::DELETE('categories/{category_id}/images/{image_id}', 'CategoryImageController@destroy')->name('category.images.destroy');
+
+
+	//end category image
+
 	Route::resource('departments','DepartmentController');
 	Route::resource('districts','DistrictController');
 	Route::resource('roles','RoleController');
@@ -136,13 +147,7 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::DELETE('mix-products/{product_id}/packages/{image_id}', 'MixProductsPackageController@destroy')->name('mix-products.packages.destroy');
 	//end mix-products package
 
-
-
-
 	Route::resource('product-packages','ProductPackageController');
-	
-		
-
 	Route::resource('stock','StockController');
 	Route::resource('expenses','ExpenseController');
 	Route::resource('trets','TretController');

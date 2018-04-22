@@ -13,7 +13,7 @@ class SentinelRegisterController extends Controller
 
     public function index()
     {
-        //
+        
     }
 
     /**

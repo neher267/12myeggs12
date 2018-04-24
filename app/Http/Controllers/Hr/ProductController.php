@@ -10,6 +10,7 @@ use App\Models\Settings\Category;
 
 class ProductController extends Controller
 {
+    private $path = "images/products";
     
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('for_sale', true)->orderBy('name', 'asc')->get();
+        $products = Product::where('for_sale', true)->orderBy('category_id', 'asc')->get();
         $title = "All Products";
         return view('backend.hr.product.index', compact('products', 'title'));
     }
@@ -42,12 +43,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+        
         $product = new Product;
         $product->name = $request->name;
         $product->category()->associate($request->category_id);
         $product->unit = $request->unit;
         $product->for_sale = true;
+        $product->thumbnail = $this->path.'/'.$imageName; 
         $product->save();
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $product->images()->save($image); 
 
         return back()->withSuccess('Create Success!');
     }

@@ -9,15 +9,14 @@ use App\Models\Settings\Category;
 
 class CategoryImageController extends Controller
 {
-    private $path = "images/categorys";
+    private $path = "images/Category";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Category $category)
     {
-        $category = Category::find($id);
         $images = $category->images()->get();
         $title = $category->name." All Images";
         return view('backend.settings.category.images.index', compact('images', 'category', 'title'));
@@ -28,9 +27,8 @@ class CategoryImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Category $category)
     {
-        $category = Category::find($id);
         $images = $category->images()->get();      
         $title = $category->name.": Add Images";
         return view('backend.settings.category.images.create', compact('images', 'category', 'title'));
@@ -42,13 +40,12 @@ class CategoryImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Category $category)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $category = Category::find($id);        
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;
@@ -88,29 +85,23 @@ class CategoryImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $category_id, $image_id)
-    {
-        if(!empty($request->src))
-        {
-            $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500']);
+    public function update(Request $request, Category $category, Image $image)
+    {       
 
-            unlink($request->avatar);
-            $imageName = time().'.'.$request->src->getClientOriginalExtension();
-            $request->src->move(public_path($this->path), $imageName);
-            $image = Image::find($image_id);
-            $image->type = $request->type;
-            $image->src = $this->path.'/'.$imageName;
-            $image->save();
+        if($request->has('src'))
+        {
+            $category->thumbnail = $request->src;
+            $category->save();
         }
         else
         {
-            $image = Image::find($image_id);
-            $image->type = $request->type;
+            $image->status = $request->status;
             $image->save();
-        }
+        }              
 
-        return redirect("categorys/$category_id/images")->withSuccess('Update success');
+        return redirect("categories/$category->name/images")->withSuccess('Success');
     }
+
 
     /**
      * Remove the specified resource from storage.

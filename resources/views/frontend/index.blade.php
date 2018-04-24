@@ -5,7 +5,7 @@
 	<!-- start content -->	
 	<div class="w_content">
 		<div class="women">
-			<a href="#"><h4>Categories - <span>4 items</span> </h4></a>
+			<a href="#"><h4>Categories - <span>{{$categories->count()}} items</span> </h4></a>
 			<ul class="w_nav">
 				<li>Sort : </li>
 	     			<li><a class="active" href="#">popular</a></li> |
@@ -16,17 +16,18 @@
 		     	</ul>
 		     	<div class="clearfix"></div>	
 		</div>
+		
 		<!-- grids_of_4 -->
 		<div class="grids_of_4">
 			@foreach($categories as $category)
 			<div class="grid1_of_4">
-				<div class="content_box"><a href="">
-					<img src="{{asset($category->thumbnail)}}" class="img-responsive">
+				<div class="content_box"><a href="{{url($category->slug.'/types')}}">
+					<img src="{{asset($category->thumbnail)}}" class="img-responsive" style="width: 100%">
 				   	</a>
-					<h4><a href="">{{$category->name}}</a></h4>
+					<h4><a href="{{url($category->slug.'/types')}}">{{$category->name}}</a></h4>
 					<div class="grid_1 simpleCart_shelfItem">
 				    
-						<div class="item_add"><span class="item_price"><a href="#">Packages</a></span></div>
+						<div class="item_add"><span class="item_price"><a href="{{url($category->slug.'/types')}}" style="border-radius: 50%">Packages</a></span></div>
 					 </div>
 			   	</div>
 			</div>
@@ -34,8 +35,7 @@
 
 			<div class="clearfix"></div>
 		</div>			
-		<!-- end grids_of_4 -->	
-			
+		<!-- end grids_of_4 -->			
 	</div>
   	<div class="clearfix"></div>
   </div>

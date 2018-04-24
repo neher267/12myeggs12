@@ -6,29 +6,29 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">					
-					<a href="{{route('categories.create')}}" class="btn btn-default">Add New Category</a>
+					<a href="{{route('categories.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>New Category</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
-								<th  style="width: 20px">No</th>
+				            <tr>
+								<th style="width: 20px">No</th>
 								<th>Image</th>
 								<th>Name</th>
 								<th>Department</th>
 								<th>Branch</th>
 								<th>Actions</th>
-						            </tr>
+				            </tr>
 						</thead>
 						<tbody>
-							<?php $i=0; ?>
+						<?php $i=0; ?>
 						@foreach($categories as $category)
 							<tr>
 								<td>{{++$i}}</td>
 								<td>
-									<img src="{{asset($category->thumbnail)}}" style="width: 120px; box-shadow: 2px 4px 5px darkgrey; margin: 5px;">
+									<img src="{{asset($category->thumbnail)}}" style="width: 80px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
 								</td>
 								<td>{{$category->name}}</td>
 								<td>{{$category->department()->first()->name}}</td>

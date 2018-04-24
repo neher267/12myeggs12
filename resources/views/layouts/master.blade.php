@@ -9,8 +9,17 @@
 <!-- Bootstrap Core CSS -->
 <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <!-- Custom CSS -->
 <link href="{{asset('css/style.css')}}" rel='stylesheet' type='text/css' />
+<!-- Neher -->
+<style type="text/css">
+	.green-btn{
+		color: green;
+		margin-right: 3px;
+	}	
+</style>
+<!-- end Neher -->
 <!-- Graph CSS -->
 <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet"> 
 <!-- jQuery -->

@@ -14,7 +14,7 @@
 				</div>
 				
 				<div class="form-body">
-					<form action="{{route('product-packages.store')}}" method="post">
+					<form action="{{route('product-packages.store')}}" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 						<div class="form-group"> 
@@ -29,6 +29,11 @@
 						<div class="form-group"> 
 							<label for="description">Package Discription</label>
 							<textarea name="description" id="description" cols="50" rows="4" class="form-control"></textarea>			
+						</div>
+
+						<div class="form-group"> 
+							<label for="src">Thumbnail Image</label>
+							<input type="file" name="src" class="form-control" required>			
 						</div>						
 
 						<button type="submit" class="btn btn-success">Save</button>

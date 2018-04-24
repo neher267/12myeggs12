@@ -18,6 +18,8 @@
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 		            		<tr>
+		            			<th style="width: 20px">No</th>
+								<th>Image</th>
 								<th>Title</th>
 								<th>Description</th>
 								<th>Status</th>
@@ -25,8 +27,13 @@
 		            		</tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($packages as $package)
 							<tr>
+								<td>{{++$i}}</td>
+								<td>
+									<img src="{{asset($package->thumbnail)}}" style="height: 50px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
+								</td>
 								<td>{{$package->title}}</td>
 								<td>{{$package->description}}</td>
 								<td>

@@ -19,6 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->string('name', 50);
             $table->string('slug')->unique();
+            $table->string('thumbnail', 50)->nullable();
+
             $table->timestamps();
         });
     }

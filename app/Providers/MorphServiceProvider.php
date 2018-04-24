@@ -15,8 +15,13 @@ class MorphServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap([
+            'category' => 'App\Models\Settings\Category',
             'product' => 'App\Models\Hr\Product',
-            'mix package' => 'App\Models\Hr\MixPackage',
+            'package' => 'App\Models\Hr\Package',
+            'gift' => 'App\Models\Settings\Gift',
+            'mix-products' => 'App\Models\Hr\MixProducts',
+            'mix-package' => 'App\Models\Hr\MixPackage',
+
 
             ]);
     }

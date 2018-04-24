@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 50)->unique();
             $table->string('unit', 10);
             $table->boolean('for_sale');//for sale or not
+            $table->string('thumbnail', 50);
             $table->timestamps();
         });
     }

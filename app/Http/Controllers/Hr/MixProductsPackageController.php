@@ -10,6 +10,8 @@ use App\Models\Hr\MixProducts;
 
 class MixProductsPackageController extends Controller
 {
+    private $path = "images/MixProductsPackages";
+
     /**
      * Display a listing of the resource.
      *
@@ -45,11 +47,19 @@ class MixProductsPackageController extends Controller
     public function store(Request $request, $id)
     {
         $mix_products = MixProducts::find($id);
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
 
         $package = new Package;
         $package->title = $request->title;
         $package->description = $request->description;
+        $package->thumbnail = $this->path.'/'.$imageName; 
         $mix_products->packages()->save($package);
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $package->images()->save($image);
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }

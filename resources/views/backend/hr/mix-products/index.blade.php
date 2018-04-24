@@ -7,6 +7,7 @@
 			<div class="row">
 				<div class="col-md-12">					
 					<a href="{{route('mix-products.create')}}" class="btn btn-default">Add Mix Products</a>
+					<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
@@ -14,15 +15,22 @@
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 				            <tr>
+								<th style="width: 20px">No</th>
+								<th>Image</th>
 								<th>Name</th>
 								<th>Branch</th>
 								<th>Actions</th>
 				            </tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($packages as $package)
 							<tr>
-								<td>{{$package->name}}</td>
+								<td>{{++$i}}</td>
+								<td>
+									<img src="{{asset($package->thumbnail)}}" style="height: 50px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
+								</td>
+								<td>{{$package->name}}</td>								
 								<td>
 									<?php
 									echo $package->branch_id == null ? 'All Branches' : $package->branch()->first()->name;

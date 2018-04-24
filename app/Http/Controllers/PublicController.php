@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Settings\Category;
+use App\Models\Hr\Product;
 
 class PublicController extends Controller
 {
@@ -13,9 +14,11 @@ class PublicController extends Controller
         return view('frontend.index', compact('categories'));
     }
 
-    public function products($category)
+    public function category_types(Category $category)
     {
-    	return view('frontend.products');
+        $products = $category->products()->with('packages')->get();
+
+        return view('frontend.category-products', compact('products'));
     }
 
     public function details()

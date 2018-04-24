@@ -20,6 +20,7 @@ class CreatePackagesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->boolean('status')->default(true); 
+            $table->string('thumbnail', 50);
             $table->timestamps();
         });
     }

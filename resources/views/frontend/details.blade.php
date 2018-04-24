@@ -10,6 +10,7 @@
 				<div class="flexslider">
 					<!-- FlexSlider -->
 					<script src="{{asset('js/imagezoom.js')}}"></script>
+
 					<script defer="" src="{{asset('js/jquery.flexslider.js')}}"></script>
 					<link rel="stylesheet" href="{{asset('css/flexslider.css')}}" type="text/css" media="screen">
 
@@ -39,6 +40,7 @@
 							<li data-thumb="{{asset('images/d3.jpg')}}" style="width: 288px; float: left; display: block;" class="flex-active-slide">
 								<div class="thumb-image"> <img src="{{asset('images/d3.jpg')}}" data-imagezoom="true" class="img-responsive" draggable="false"> </div>
 							</li>
+							
 
 						</ul>
 					</div>

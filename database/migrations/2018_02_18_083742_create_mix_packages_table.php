@@ -17,6 +17,7 @@ class CreateMixPackagesTable extends Migration
             $table->increments('id');
             $table->integer('branch_id')->unsigned()->nullable();
             $table->string('name')->unique();
+            $table->string('thumbnail', 50);
             $table->timestamps();
         });
     }

@@ -10,6 +10,8 @@ use App\Models\Hr\Product;
 
 class ProductPackageController extends Controller
 {
+    private $path = "images/ProductPackages";
+
     /**
      * Display a listing of the resource.
      *
@@ -45,11 +47,21 @@ class ProductPackageController extends Controller
      */
     public function store(Request $request)
     {
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+
         $package = new Package;
         $package->title = $request->title;
         $package->description = $request->description;
+        $package->thumbnail = $this->path.'/'.$imageName;
+
         $product = Product::find($request->product_id);
         $product->packages()->save($package);
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $package->images()->save($image); 
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }

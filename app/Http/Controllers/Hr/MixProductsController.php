@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Hr\MixProducts;
 use App\Models\Hr\Package;
+use App\Image;
 
 
 class MixProductsController extends Controller
 {
+    private $path = "images/MixProducts";
+
     /**
      * Display a listing of the resource.
      *
@@ -40,9 +43,18 @@ class MixProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+
         $mix_package = new MixProducts;
         $mix_package->name = $request->name;
+        $mix_package->thumbnail = $this->path.'/'.$imageName; 
         $mix_package->save();
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $mix_package->images()->save($image);
 
         return redirect()->back()->withSuccess('Saved Successfully!');
     }

@@ -10,7 +10,7 @@
 Route::get('/', 'PublicController@index');
 Route::get('contact-us', 'PublicController@contact_us');
 Route::get('about-us', 'PublicController@about_us');
-Route::get('/{category}/products','PublicController@products');
+Route::get('/{category}/types','PublicController@category_types');
 Route::get('details','PublicController@details');
 
 Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentinel.auth');
@@ -46,12 +46,17 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 	Route::resource('categories','CategoryController');
 
 	//category image
-	Route::get('categories/{id}/images', 'CategoryImageController@index')->name('category.images.index');
-	Route::post('categories/{id}/images', 'CategoryImageController@store')->name('category.images.store');
-	Route::get('categories/{id}/images/create', 'CategoryImageController@create')->name('category.images.create');
-	Route::get('categories/{category_id}/images/{image_id}/edit', 'CategoryImageController@edit')->name('category.images.edit');
-	Route::PUT('categories/{category_id}/images/{image_id}', 'CategoryImageController@update')->name('category.images.update');
-	Route::DELETE('categories/{category_id}/images/{image_id}', 'CategoryImageController@destroy')->name('category.images.destroy');
+	Route::get('categories/{category}/images', 'CategoryImageController@index')->name('category.images.index');
+	Route::post('categories/{category}/images', 'CategoryImageController@store')->name('category.images.store');
+	Route::get('categories/{category}/images/create', 'CategoryImageController@create')->name('category.images.create');
+	//Route::get('categories/{category}/images/{image_id}/edit', 'CategoryImageController@edit')->name('category.images.edit');
+
+	Route::PUT('categories/{category}/images/{image}', 'CategoryImageController@update')->name('category.images.update');
+	
+	Route::DELETE('categories/{category}/images/{image_id}', 'CategoryImageController@destroy')->name('category.images.destroy');
+
+	/*Route::get('categories/{category}/images/{image_id}/active', 'CategoryImageController@active')->name('category.images.active');
+	Route::PUT('categories/{category}/images/{image_id}/dactive', 'CategoryImageController@dactive')->name('category.images.dactive');*/
 
 
 	//end category image
@@ -76,6 +81,7 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 
 Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
+	
 	//Product Image
 	Route::get('products/{id}/images', 'ProductImageController@index')->name('product.images.index');
 	Route::post('products/{id}/images', 'ProductImageController@store')->name('product.images.store');

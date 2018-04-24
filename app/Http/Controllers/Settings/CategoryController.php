@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\Category;
 use App\Models\Settings\Department;
+use App\Image;
 
 class CategoryController extends Controller
 {
+    private $path = "images/Category";
     /**
      * Display a listing of the resource.
      *
@@ -39,12 +41,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         $category = new Category;
-         $category->name = $request->name; 
-         $category->slug = strtolower(str_replace(' ', '_', $request->name));
-         $category->department()->associate($request->department_id);                
-         $category->save();
-         return redirect()->back()->withSuccess('Create Success!');
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+
+        $category = new Category;
+        $category->name = $request->name; 
+        $category->slug = strtolower(str_replace(' ', '_', $request->name));
+        $category->department()->associate($request->department_id);    
+        $category->thumbnail = $this->path.'/'.$imageName;             
+        $category->save();
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $category->images()->save($image); 
+        
+        return redirect()->back()->withSuccess('Create Success!');
     }
 
     /**

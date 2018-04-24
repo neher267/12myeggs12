@@ -6,7 +6,7 @@
 		<div class="forms">			
 			<div class="row">
 				<div class="col-md-12">					
-					<a href="{{route('products.create')}}" class="btn btn-default">Add New Product</a>
+					<a href="{{route('products.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>New Product</a>
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
@@ -17,7 +17,8 @@
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 				            <tr>
-								<th style="width: 50px;">No</th>
+								<th style="width: 20px">No</th>
+								<th>Image</th>
 								<th>Name</th>
 								<th>Category</th>
 								<th>Unit</th>
@@ -30,6 +31,9 @@
 						@foreach($products as $product)
 							<tr>
 								<td>{{++$i}}</td>
+								<td>
+									<img src="{{asset($product->thumbnail)}}" style="height: 50px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
+								</td>
 								<td>{{$product->name}}</td>
 								<td>{{$product->category()->first()->name}}</td>
 								<td>{{$product->unit}}</td>

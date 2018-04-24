@@ -15,18 +15,25 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-					            		<tr>					            		
+					        <tr>
+					        	<th style="width: 20px">No</th>
+								<th>Image</th>					            		
 								<th>Name</th>
 								<th>Type</th>
 								<th>Title</th>
 								<th>Description</th>
 								<th>Status</th>
 								<th>Actions</th>
-					            		</tr>
+					        </tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($packages as $package)
 							<tr>
+								<td>{{++$i}}</td>
+								<td>
+									<img src="{{asset($package->thumbnail)}}" style="height: 50px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
+								</td>
 								<td>{{$package->packageable()->first()->name}}</td>
 								<td style="text-transform: capitalize;">{{$package->packageable_type}}</td>
 								<td>{{$package->title}}</td>

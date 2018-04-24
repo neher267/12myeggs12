@@ -12,12 +12,17 @@
 				</div>
 				
 				<div class="form-body">
-					<form action="{{route('mix-products.store')}}" method="post">
+					<form action="{{route('mix-products.store')}}" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 						<div class="form-group"> 
 							<label for="name">Mix Package Name</label> 
 							<input type="text" name="name" class="form-control" id="name" placeholder="Ex: Chal + dim + tel" required> 
+						</div>
+
+						<div class="form-group"> 
+							<label for="src">Thumbnail Image</label>
+							<input type="file" name="src" class="form-control" required>			
 						</div>	
 
 						<button type="submit" class="btn btn-default">Save</button>

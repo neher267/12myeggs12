@@ -103,5 +103,12 @@ deliveryboy
 
 
 
+price:
 
-
+product 	qty 	total_price 	unit_price 		p_date
+dim 		100		500				5				1 april
+chal 		10		500				50				1 april
+tel 		10 		500				50 				1 April
+khoros 				300					
+					1800			105
+							

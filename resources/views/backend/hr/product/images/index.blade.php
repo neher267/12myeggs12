@@ -34,17 +34,85 @@
 									<img src="{{asset($image->src)}}" style="height: 50px; widows: 40px">
 								</td>
 								<td style="text-transform: capitalize;">{{$image->type}}</td>
-								<td>
+								<!-- <td>
 									@if($image->status == true)
 									<span>Active</span>
 									@else
 									<span>Disable</span>									
 									@endif
+								</td> -->
+
+								<td>
+									@if($image->type == "Thumbnail")
+										@if($product->thumbnail == $image->src)
+											<span>Active</span>
+										@else
+											<span>Disable</span>									
+										@endif
+									@else
+										@if($image->status)
+											<span>Active</span>
+										@else
+											<span>Disable</span>									
+										@endif
+									@endif									
 								</td>
 								
-								<td>
+								<!-- <td>
 									<a href="{{route('product.images.edit', [$product, $image])}}" class="btn btn-default">Edit</a>
 
+									<form action="{{route('product.images.destroy',[$product, $image])}}" method="POST" style="display: inline;">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+
+										<input type="hidden" name="avatar" value="{{$image->src}}">
+										<button type="submit" class="btn btn-danger" onclick="return alertUser('delete it?')">Delete</button>
+									</form>								
+								</td> -->
+
+								<td>									
+									@if($image->type == "Thumbnail")
+										@if($product->thumbnail == $image->src)
+											<form action="{{route('product.images.update',[$product, $image])}}" method="POST" style="display: inline;">
+												{{ csrf_field() }}
+												{{ method_field('PUT') }}
+												<input type="hidden" name="src" value="">
+												<button type="submit" class="btn btn-danger" onclick="return alertUser('desable it?')">
+													<i class="fas fa-thumbs-down"></i>
+												</button>
+											</form>
+										@else
+											<form action="{{route('product.images.update',[$product, $image])}}" method="POST" style="display: inline;">
+												{{ csrf_field() }}
+												{{ method_field('PUT') }}
+												<input type="hidden" name="src" value="{{$image->src}}">
+												<button type="submit" class="btn btn-success" onclick="return alertUser('active it?')">
+													<i class="fas fa-thumbs-up"></i>
+												</button>
+											</form>
+										@endif
+									@else
+										@if($image->status)
+											<form action="{{route('product.images.update',[$product, $image])}}" method="POST" style="display: inline;">
+												{{ csrf_field() }}
+												{{ method_field('PUT') }}
+												<input type="hidden" name="status" value="false">
+												<button type="submit" class="btn btn-danger" onclick="return alertUser('disable it?')">
+													<i class="fas fa-thumbs-down"></i>
+												</button>
+											</form>
+										@else
+											<form action="{{route('product.images.update',[$product, $image])}}" method="POST" style="display: inline;">
+												{{ csrf_field() }}
+												{{ method_field('PUT') }}
+												<input type="hidden" name="status" value="true">
+												<button type="submit" class="btn btn-success" onclick="return alertUser('active it?')">
+													<i class="fas fa-thumbs-up"></i>
+												</button>
+											</form>
+										@endif
+									@endif
+									
 									<form action="{{route('product.images.destroy',[$product, $image])}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}

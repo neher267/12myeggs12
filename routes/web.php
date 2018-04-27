@@ -87,7 +87,7 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::post('products/{id}/images', 'ProductImageController@store')->name('product.images.store');
 	Route::get('products/{id}/images/create', 'ProductImageController@create')->name('product.images.create');
 	Route::get('products/{product_id}/images/{image_id}/edit', 'ProductImageController@edit')->name('product.images.edit');
-	Route::PUT('products/{product_id}/images/{image_id}', 'ProductImageController@update')->name('product.images.update');
+	Route::PUT('products/{product}/images/{image}', 'ProductImageController@update')->name('product.images.update');
 	Route::DELETE('products/{product_id}/images/{image_id}', 'ProductImageController@destroy')->name('product.images.destroy');
 	//end product image
 	

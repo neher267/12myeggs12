@@ -29,7 +29,7 @@
 						<?php $i=0; ?>
 						@foreach($images as $image)
 							<tr>
-								<td>{{++$i}}</td>
+								<td>{{++$i}}</td>update
 								<td>
 									<img src="{{asset($image->src)}}" style="height: 50px; widows: 40px">
 								</td>
@@ -53,7 +53,7 @@
 								<td>									
 									@if($image->type == "Thumbnail")
 										@if($category->thumbnail == $image->src)
-											<form action="{{route('category.images.destroy',[$category, $image])}}" method="POST" style="display: inline;">
+											<form action="{{route('category.images.update',[$category, $image])}}" method="POST" style="display: inline;">
 												{{ csrf_field() }}
 												{{ method_field('PUT') }}
 												<input type="hidden" name="src" value="">
@@ -62,7 +62,7 @@
 												</button>
 											</form>
 										@else
-											<form action="{{route('category.images.destroy',[$category, $image])}}" method="POST" style="display: inline;">
+											<form action="{{route('category.images.update',[$category, $image])}}" method="POST" style="display: inline;">
 												{{ csrf_field() }}
 												{{ method_field('PUT') }}
 												<input type="hidden" name="src" value="{{$image->src}}">
@@ -73,7 +73,7 @@
 										@endif
 									@else
 										@if($image->status)
-											<form action="{{route('category.images.destroy',[$category, $image])}}" method="POST" style="display: inline;">
+											<form action="{{route('category.images.update',[$category, $image])}}" method="POST" style="display: inline;">
 												{{ csrf_field() }}
 												{{ method_field('PUT') }}
 												<input type="hidden" name="status" value="false">
@@ -82,7 +82,7 @@
 												</button>
 											</form>
 										@else
-											<form action="{{route('category.images.destroy',[$category, $image])}}" method="POST" style="display: inline;">
+											<form action="{{route('category.images.update',[$category, $image])}}" method="POST" style="display: inline;">
 												{{ csrf_field() }}
 												{{ method_field('PUT') }}
 												<input type="hidden" name="status" value="true">

@@ -89,28 +89,21 @@ class ProductImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $product_id, $image_id)
-    {
-        if(!empty($request->src))
-        {
-            $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500']);
+    public function update(Request $request, Product $product, Image $image)
+    {       
 
-            unlink($request->avatar);
-            $imageName = time().'.'.$request->src->getClientOriginalExtension();
-            $request->src->move(public_path($this->path), $imageName);
-            $image = Image::find($image_id);
-            $image->type = $request->type;
-            $image->src = $this->path.'/'.$imageName;
-            $image->save();
+        if($request->has('src'))
+        {
+            $product->thumbnail = $request->src;
+            $product->save();
         }
         else
         {
-            $image = Image::find($image_id);
-            $image->type = $request->type;
+            $image->status = $request->status;
             $image->save();
-        }
+        }              
 
-        return redirect("products/$product_id/images")->withSuccess('Update success');
+        return back()->withSuccess('Success');
     }
 
     /**

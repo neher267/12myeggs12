@@ -38,6 +38,7 @@
 		@role('buyer','admin')	
 		<li><a href="{{route('register.create')}}">Add User</a></li> 
 		<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.index')}}">Purcheases</a></li>
+		<li id="menu-academico-avaliacoes" ><a href="{{url('my-expenses')}}">Expense</a></li>		   	
 		@endrole
 
 		@guest

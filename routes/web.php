@@ -155,9 +155,15 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 
 	Route::resource('product-packages','ProductPackageController');
 	Route::resource('stock','StockController');
-	Route::resource('expenses','ExpenseController');
 	Route::resource('trets','TretController');
 	Route::resource('avatar','ImageController');
+
+	// expense
+	Route::resource('expenses','ExpenseController');
+	Route::get('my-expenses', 'ExpenseController@individualIndex');
+
+	//end expense
+	
 
 	
 });

@@ -20,6 +20,7 @@ class StockController extends Controller
     {
 
         $s_products = Stock::with(['product', 'trets'])->where('branch_id', Sentinel::getUser()->branch_id)->get();
+        
         return view('backend.hr.stock.index', compact('s_products'));
     }
 

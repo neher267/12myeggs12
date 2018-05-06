@@ -16,7 +16,16 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        $slug = request()->user()->roles()->first()->slug;
         $expenses = Expense::with(['user', 'user.branch'])->latest()->get();
+        return view('backend.hr.expense.index', compact('expenses'));
+    }
+
+
+    public function individualIndex()
+    {
+        dd(request()->user());
+        $expenses = request()->user()->expenses()->latest()->get();
         return view('backend.hr.expense.index', compact('expenses'));
     }
 

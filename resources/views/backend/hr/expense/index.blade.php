@@ -13,14 +13,14 @@
 				<div class="col-md-12">
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
-						            <tr>
+				            <tr>
 								<th>Name</th>
 								<th>Branch</th>								
 								<th>Title</th>
 								<th>Description</th>
 								<th>Amount</th>
 								<th>Actions</th>
-						            </tr>
+				            </tr>
 						</thead>
 						<tbody>
 						@foreach($expenses as $expense)

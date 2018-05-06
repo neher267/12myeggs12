@@ -20,13 +20,24 @@ class PurchaseController extends Controller
     public function index()
     {
         $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->latest()->get();
-
         return view('backend.hr.purchases.index', compact('purchases'));
+    }
+
+    public function branchIndex()
+    {
+        $purchases = Purchase::with(['merchant', 'product'])
+                    ->where('branch_id', request()->user()->branch_id)
+                    ->latest()->get();
+                    
+        return view('backend.hr.purchases.individual-index', compact('purchases'));
     }
 
     public function individualIndex()
     {
-        $purchases = request()->user()->purchases()->latest()->get();
+        $purchases = request()->user()->purchases()
+                    ->with(['merchant', 'product'])
+                    ->latest()->get();
+
         return view('backend.hr.purchases.individual-index', compact('purchases'));
     }
 

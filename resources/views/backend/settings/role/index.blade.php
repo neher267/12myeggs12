@@ -7,7 +7,7 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('roles.create')}}" class="btn btn-default">Create Role</a>
+					<a href="{{route('roles.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>Add Role</a>
 					@include('common.flash-message')
 					<hr>
 				</div>

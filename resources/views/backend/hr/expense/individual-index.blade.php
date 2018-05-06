@@ -14,29 +14,30 @@
 					<table class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 						<thead>
 				            <tr>
-								<th>Name</th>
-								<th>Branch</th>								
+								<th>Sr.No</th>								
 								<th>Title</th>
 								<th>Description</th>
 								<th>Amount</th>
+								<th>Date</th>
 								<th>Actions</th>
 				            </tr>
 						</thead>
 						<tbody>
+						<?php $i=0; ?>
 						@foreach($expenses as $expense)
 							<tr>
-								<td>{{$expense->user->name}}</td>
-								<td>{{$expense->user->branch->name}}</td>
+								<td>{{++$i}}</td>
 								<td>{{$expense->title}}</td>
 								<td>{{$expense->description}}</td>
 								<td>{{$expense->amount}}</td>								
+								<td>{{$expense->created_at->format('d M, Y')}}</td>								
 								<td>
 									<a href="{{route('expenses.edit', $expense)}}" class="btn btn-default">Edit</a>
 								</td>
-						            </tr>
+						    </tr>
 						@endforeach
 						</tbody>
-		                    		</table>
+		                </table>
 				</div>
 			</div>
 		</div>

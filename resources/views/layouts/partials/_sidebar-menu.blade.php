@@ -33,11 +33,19 @@
 			   	<li id="menu-academico-avaliacoes" ><a href="{{route('product-packages.index')}}">Products Packages</a></li>   	
 			</ul>
 		 </li>
-		@endrole	
+		@endrole
 
-		@role('buyer','admin')	
+		@role('manager')	
 		<li><a href="{{route('register.create')}}">Add User</a></li> 
 		<li id="menu-academico-avaliacoes" ><a href="{{route('purchases.index')}}">Purcheases</a></li>
+		<li id="menu-academico-avaliacoes" ><a href="{{route('expenses.index')}}">Expense</a></li>	
+		<li id="menu-academico-avaliacoes" ><a href="{{route('stock.index')}}">Stock</a></li>	   				   	
+		<li id="menu-academico-avaliacoes" ><a href="{{route('trets.index')}}">Trets</a></li>	   	
+		@endrole	
+
+		@role('buyer')	
+		<li><a href="{{route('register.create')}}">Add User</a></li> 
+		<li id="menu-academico-avaliacoes" ><a href="{{url('my-purchases')}}">Purcheases</a></li>
 		<li id="menu-academico-avaliacoes" ><a href="{{url('my-expenses')}}">Expense</a></li>		   	
 		@endrole
 

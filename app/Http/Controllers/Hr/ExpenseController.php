@@ -24,9 +24,8 @@ class ExpenseController extends Controller
 
     public function individualIndex()
     {
-        dd(request()->user());
         $expenses = request()->user()->expenses()->latest()->get();
-        return view('backend.hr.expense.index', compact('expenses'));
+        return view('backend.hr.expense.individual-index', compact('expenses'));
     }
 
     /**

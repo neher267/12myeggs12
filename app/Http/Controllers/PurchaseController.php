@@ -19,14 +19,15 @@ class PurchaseController extends Controller
 
     public function index()
     {
-        if(Sentinel::check()->roles()->first() == 'buyer'){
-            $purchases = Purchase::with(['product', 'branch'])->latest()->get();            
-        }        
-        else{
-            $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->latest()->get();
-        }
-        
+        $purchases = Purchase::with(['buyer', 'merchant', 'product', 'branch'])->latest()->get();
+
         return view('backend.hr.purchases.index', compact('purchases'));
+    }
+
+    public function individualIndex()
+    {
+        $purchases = request()->user()->purchases()->latest()->get();
+        return view('backend.hr.purchases.individual-index', compact('purchases'));
     }
 
     /**

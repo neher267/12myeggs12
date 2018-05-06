@@ -31,7 +31,10 @@ class StockController extends Controller
      */
     public function create()
     {
-        $purchases = Purchase::with('product')->where('update_stock', false)->get();
+        $purchases = Purchase::with('buyer','product')
+                    ->where('branch_id', request()->user()->branch_id)
+                    ->where('update_stock', false)->get();
+        //dd($purchases);
         return view('backend.hr.stock.create', compact('purchases'));
     }
 

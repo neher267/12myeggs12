@@ -6,7 +6,12 @@
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				<div class="col-md-12">
+					<a href="{{url('my-expenses')}}" class="btn btn-default"><i class="fas fa-arrow-circle-left green-btn"></i>Back</a>
+					@role('admin')
 					<a href="{{route('expenses.index')}}" class="btn btn-default">All Expense</a>
+					@endrole
+
+
 					@include('common.flash-message')
 					<hr>
 				</div>

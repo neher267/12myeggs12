@@ -6,7 +6,7 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">					
-					<a href="{{route('purchases.create')}}" class="btn btn-default">Enter Purchases Record</a>
+					<a href="{{route('purchases.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>Purchases Record</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
@@ -16,8 +16,6 @@
 						    <tr>
 								<th>No</th>
 								<th>Product</th>
-								<th>Buyer Name</th>
-								<th>Branch</th>
 								<th>Merchant</th>
 								<th>Quantity</th>
 								<th>Price</th>
@@ -31,12 +29,10 @@
 							<tr>
 								<td>{{++$i}}</td>
 								<td>{{$purchase->product->name}}</td>
-								<td>{{$purchase->buyer->name}}</td>							
-								<td>{{$purchase->branch->name}}</td>
 								<td>{{$purchase->merchant->name}}</td>							
 								<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>							
 								<td>{{$purchase->price}}</td>
-								<td>{{$purchase->created_at->format('d M, Y')}}</td>							
+								<td>{{$purchase->created_at->format('d M, Y')}}</td>								
 								<td>
 									<a href="{{route('categories.edit', $purchase)}}" class="btn btn-default">Edit</a>
 								</td>

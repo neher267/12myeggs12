@@ -33,15 +33,6 @@ class User extends Authenticatable
     public function branch()
     {
         return $this->belongsTo(Branch::class);
-    }
-
-    public function purchases()
-    {
-        return $this->hasMany(Purchase::class);
-    }
-
-    public function expenses()
-    {
-        return $this->hasMany(Expense::class);
-    }
+    }   
+    
 }

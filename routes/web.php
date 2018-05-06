@@ -21,8 +21,9 @@ Route::group(['namespace'=>'Auth', 'middleware'=>['guest']], function(){
 	Route::get('login','SentinelLoginController@login');
 });
 
-Route::group(['middleware'=>['sentinel.auth', 'buyer']], function(){
+Route::group(['middleware'=>['sentinel.auth']], function(){
 	Route::resource('purchases','PurchaseController');
+	Route::get('my-purchases', 'PurchaseController@individualIndex');
 });
 
 Route::group(['middleware'=>['sentinel.auth', 'customer']], function(){
@@ -161,6 +162,7 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	// expense
 	Route::resource('expenses','ExpenseController');
 	Route::get('my-expenses', 'ExpenseController@individualIndex');
+
 
 	//end expense
 	

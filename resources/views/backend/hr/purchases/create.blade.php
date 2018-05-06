@@ -5,8 +5,13 @@
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
-				<div class="col-md-12">					
-					<a href="{{route('purchases.index')}}" class="btn btn-default">All Purchases</a>
+				<div class="col-md-12">	
+					@role('buyer')	
+					<a href="{{url('my-purchases')}}" class="btn btn-default"><i class="fas fa-arrow-circle-left green-btn"></i>Back</a>
+					@else			
+					<a href="{{route('purchases.index')}}" class="btn btn-default"><i class="fas fa-arrow-circle-left green-btn"></i>Back</a></a>
+					@endrole				
+
 					@include('common.flash-message')
 					<hr>
 				</div>

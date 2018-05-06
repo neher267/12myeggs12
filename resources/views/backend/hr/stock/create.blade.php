@@ -24,16 +24,23 @@
 						<table class="table table-striped table-bordered datatable"  cellspacing="0" width="100%">
 							<thead>
 								<tr>
+									<td>No</td>
 									<td>Product Name</td>
 									<td>Purchase Quantity</td>
+									<td>Buyer Name</td>
+									<td>Date</td>
 									<td>Action</td>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $i=0; ?>
 								@foreach($purchases as $purchase)	
 								<tr>
+									<td>{{++$i}}</td>
 									<td>{{$purchase->product->name}}</td>
 									<td>{{$purchase->quantity}} {{$purchase->product->unit}}</td>
+									<td>{{$purchase->buyer->name}}</td>
+									<td>{{$purchase->created_at->format('d M, Y')}}</td>	
 									<td>
 										<form class="form-inline" action="{{route('stock.store')}}" method="post">
 										{{ csrf_field() }}

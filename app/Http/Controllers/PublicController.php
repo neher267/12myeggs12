@@ -10,7 +10,8 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        //$categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->where('id', '>', 100)->get();
         return view('frontend.index', compact('categories'));
     }
 

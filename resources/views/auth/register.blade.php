@@ -3,11 +3,13 @@
 @section('content')
 <div class="registration">
 		<div class="registration_left">
-		<h2>create an account</h2>	 
+		<hr>
+		<h2>create an account</h2>	
+		<hr> 
 		
 		 <div class="registration_form">
-		 <!-- Form -->
 		 	@include('common.flash-message')
+
 			<form action="{{route('register.store')}}" method="post">
 			{{ csrf_field() }}
 
@@ -59,7 +61,7 @@
 					<label for="branch_id">Branch</label>
 					<select name="branch_id" id="branch_id" class="form-control" required>
 						<option value="">Select</option>
-						<option value="0">All</option>
+						<option value="*">All</option>
 						@foreach($branches as $branch)
 						<option value="{{$branch->id}}">{{$branch->name}}</option>
 						@endforeach
@@ -74,15 +76,14 @@
 					<label>
 						<input name="confirmed_password" placeholder="retype password" type="password" tabindex="4" required="">
 					</label>
+				</div>
+				<div class="sky-form">
+					<label class="checkbox"><input type="checkbox" name="checkbox" required><i></i>I agree to shoppe.com &nbsp;<a class="" href="#"> terms of service</a> </label>
 				</div>	
 				<div>
 					<input type="submit" value="create an account">
-				</div>
-				<div class="sky-form">
-					<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>i agree to shoppe.com &nbsp;<a class="terms" href="#"> terms of service</a> </label>
-				</div>
+				</div>				
 			</form>
-			<!-- /Form -->
 		</div>
 	</div>
 	<div class="clearfix"></div>

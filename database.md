@@ -17,12 +17,12 @@ id 	branch_id	department_id		name
 
 product:
 id 	category_id		name 	 		unit	sale(boolean) 	branch_id(nullable)
-1 	1			layer-egg		pcs
-2	1			deshi-dim-murgi	pcs
-3 	1			egg-hash		pcs
-4 	2 			balam-chal		KG
-5 	2  			kalijira-chal		KG
-6 	5			basket			pcs 		
+1 	1				layer-egg		pcs
+2	1				deshi-dim-murgi	pcs
+3 	1				egg-hash		pcs
+4 	2 				balam-chal		KG
+5 	2  				kalijira-chal		KG
+6 	5				basket			pcs 		
 
 images:
 id 	imageable_id 	imageable_type 	type 		status  	src
@@ -42,10 +42,6 @@ id 	packageable_id 	packgeable_type 	title 				description
 2	1			mix 			For you mom!			10 kg chal. 10 pcs dim. 2L oil.
 3	1			product 		Bachelor Jindabat!		25pcs layer egges.
 
-purchases
-id 	merchant_id(user_id)  	buyer_id(user_id)	product_id 	quantity 		price 		branch_id
-1	1				10			1		500		2500
-2	1				11			5		100		5000	
 
 prices:
 id 	priceable_id 		priceable_type 	price(unit)
@@ -62,17 +58,11 @@ tret(nosto howa):
 id	branch_id	product_id 	reason  	quantity 
 1	1		1		broken		20
 
-expences:
-id 	user_id 	title 		amount 	short_description
-1 	1		transport	500		
-2 	1		laborer 	120
-3 	1		tea 		50		5 persons
-
 
 gifts:
 id 	name		points
-1 	pen		2
-2 	box		4
+1 	pen			2
+2 	box			4
 3 	ball		4
 
 users:
@@ -100,15 +90,59 @@ salesman
 deliveryboy
 
 
-
-
-
 price:
-
 product 	qty 	total_price 	unit_price 		p_date
 dim 		100		500				5				1 april
 chal 		10		500				50				1 april
 tel 		10 		500				50 				1 April
 khoros 				300					
 					1800			105
+
+
+# Manager Create a purchases. This time status is 0
+# Add required products
+# Send Notification to Buyer
+# Buyer buy all products
+# Buyer Add All Expences
+# Send Notification to Manger
+# After Sending Notification Buyer cann't edit purchese history. Only see.
+# Manager Check Purchase Products and Update stock
+# Manger Update staus 0 to 1
+# After Updating Manager cant not edit
+
+# debit = Total amount of tk given by manage
+# credit = purchese products price + other expence
+# status = 0, before update stock. 1, after update stock
+# merchent_id = nullable. Manager can also assign a merchant.
+# product_id, quantity column fill by Manage
+# price, deposit, tret = nullable
+# required_quantity = null, when create a new purchases recore by buyer
+
+CompanyAccount:
+
+id 		user_id 	debit 	credit 	balance
+1		6			6000	4570	430
+
+purcheses:
+id 	purcheseID  buyer_id	manager_id	debit  credit	fine 	 approve_by
+1   2312451		6			8			5000   4000		100		 1
+
+
+purchase_details:
+id 	purchese_id		merchant_id  	product_id 	required_quantity 	purchase_qty 	price 	deposit  tret  update_stock
+1	1				4				6			500					450				2250	500		 0		1	
+1	1				7				6			null				50				50		500		 0		1			
+							
+expences:
+id 	user_id 	title 		amount 	 fine 	short_description  date 			approve_by
+1 	6			transport	500		 0		Van vara		   May 15, 2018 	1 (approved)
+2 	6			laborer 	120 	 0		kuli			   May 15, 2018 	1
+3 	6			tea 		50		 0		5 persons		   May 15, 2018 	1
+
+
+# manager purchase assign korbe
+# buyer purchase korbe
+# manager er kache purchase repprt korbe
+# manager stock update korbe
+
 							

@@ -11,6 +11,8 @@ Route::get('/', 'PublicController@index');
 Route::get('contact-us', 'PublicController@contact_us');
 Route::get('about-us', 'PublicController@about_us');
 Route::get('/{category}/types','PublicController@category_types');
+Route::get('{product}/packages', 'PublicController@product_packages');
+Route::get('{title}/{package}', 'PublicController@package_details');
 Route::get('details','PublicController@details');
 
 Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentinel.auth');
@@ -93,23 +95,23 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	//end product image
 	
 	//product package
-	Route::get('products/{id}/packages', 'ProductPackageController@packages')->name('product.packages');
-	Route::get('products/{id}/packages/create','ProductPackageController@create')->name('product.packages.create');
+	Route::get('products/{product}/packages', 'ProductPackageController@packages')->name('product.packages');
+	Route::get('products/{product}/packages/create','ProductPackageController@create')->name('product.packages.create');
 	Route::get('products/{product_id}/packages/{package_id}/edit','ProductPackageController@edit')->name('product.packages.edit');
 	//end product package
 
 	//product package image
-	Route::get('products/{product_id}/packages/{package_id}/images', 'ProductPackageImageController@index')->name('product.package.images.index');
+	Route::get('products/{product_id}/packages/{package}/images', 'ProductPackageImageController@index')->name('product.package.images.index');
 
-	Route::get('products/{product_id}/packages/{package_id}/images/create', 'ProductPackageImageController@create')->name('product.package.images.create');	
+	Route::get('products/{product_id}/packages/{package}/images/create', 'ProductPackageImageController@create')->name('product.package.images.create');	
 
-	Route::post('products/{product_id}/packages/{package_id}/images', 'ProductPackageImageController@store')->name('product.package.images.store');
+	Route::post('products/{product_id}/packages/{package}/images', 'ProductPackageImageController@store')->name('product.package.images.store');
 
-	Route::get('products/{product_id}/packages/{package_id}/images/{image_id}/edit', 'ProductPackageImageController@edit')->name('product.package.images.edit');
+	Route::get('products/{product_id}/packages/{package}/images/{image_id}/edit', 'ProductPackageImageController@edit')->name('product.package.images.edit');
 
-	Route::PUT('products/{product_id}/packages/{package_id}/images/{image_id}', 'ProductPackageImageController@update')->name('product.package.images.update');
+	Route::PUT('products/{product_id}/packages/{package}/images/{image_id}', 'ProductPackageImageController@update')->name('product.package.images.update');
 
-	Route::DELETE('products/{product_id}/packages/{package_id}/images/{image_id}', 'ProductPackageImageController@destroy')->name('product.package.images.destroy');
+	Route::DELETE('products/{product_id}/packages/{package}/images/{image_id}', 'ProductPackageImageController@destroy')->name('product.package.images.destroy');
 	//end product package image
 
 	Route::resource('mix-products','MixProductsController');

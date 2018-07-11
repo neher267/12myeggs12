@@ -16,12 +16,11 @@ class ProductPackageImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($product_id, $package_id)
+    public function index($product_id, Package $package)
     {
-        $package = Package::find($package_id);
         $images = $package->images()->get();        
         $title = $package->packageable->name.'->'.$package->title."-> All Images";
-        return view('backend.hr.product-package.images.index', compact('images', 'title', 'product_id', 'package_id'));
+        return view('backend.hr.product-package.images.index', compact('images', 'title', 'product_id', 'package'));
     }       
 
 
@@ -30,12 +29,11 @@ class ProductPackageImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($product_id, $package_id)
+    public function create($product_id, Package $package)
     {
-        $package = Package::find($package_id);
         $images = $package->images()->get();        
         $title = $package->packageable->name.'->'.$package->title."-> Add Image";        
-        return view('backend.hr.product-package.images.create', compact('title', 'product_id', 'package_id', 'images'));
+        return view('backend.hr.product-package.images.create', compact('title', 'product_id', 'package', 'images'));
     }
 
     /**
@@ -44,14 +42,12 @@ class ProductPackageImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $product_id, $package_id)
+    public function store(Request $request, $product_id, Package $package)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $package = Package::find($package_id);
-
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;
@@ -79,12 +75,11 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id, $package_id, $image_id)
+    public function edit($product_id, Package $package, $image_id)
     {
         $image = Image::find($image_id);
-        $package = Package::find($package_id);
         $title = $package->packageable->name.'->'.$package->title."-> Edit Image";
-        return view('backend.hr.product-package.images.edit', compact('title', 'product_id', 'package_id','image'));
+        return view('backend.hr.product-package.images.edit', compact('title', 'product_id', 'package','image'));
     }
 
     /**
@@ -94,7 +89,7 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $product_id, $package_id, $image_id)
+    public function update(Request $request, $product_id, Package $package, $image_id)
     {
         if(!empty($request->src))
         {
@@ -115,7 +110,7 @@ class ProductPackageImageController extends Controller
             $image->save();
         }
 
-        return redirect("products/$product_id/packages/$package_id/images")->withSuccess('Update success');
+        return redirect("products/$product_id/packages/$package/images")->withSuccess('Update success');
     }
 
     /**
@@ -124,7 +119,7 @@ class ProductPackageImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $product_id, $package_id, $image_id)
+    public function destroy(Request $request, $product_id, Package $package, $image_id)
     {
         unlink($request->avatar);
         $image = Image::find($image_id)->delete();

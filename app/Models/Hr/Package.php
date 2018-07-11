@@ -7,6 +7,11 @@ use App\Image;
 
 class Package extends Model
 {
+	public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function packageable()
     {
     	return $this->morphTo();

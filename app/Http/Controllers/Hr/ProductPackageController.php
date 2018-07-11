@@ -23,17 +23,16 @@ class ProductPackageController extends Controller
         return view('backend.hr.package.index', compact('packages'));
     }
 
-    public function packages($id)
+    public function packages(Product $product)
     {
-        $product = Product::find($id);
         $packages = $product->packages()->get();
         $title = $product->name." All Packages";
         return view('backend.hr.product-package.index', compact('packages', 'product', 'title'));
     }
 
-    public function create($id)
+    public function create(Product $product)
     {
-        $package_for = Product::find($id);
+        $package_for = $product;
         $title = "Create Package For: ".$package_for->name;
         return view('backend.hr.product-package.create', compact('package_for', 'title'));
     }   
@@ -51,6 +50,7 @@ class ProductPackageController extends Controller
 
         $package = new Package;
         $package->title = $request->title;
+        $package->slug = time();
         $package->description = $request->description;
         $package->thumbnail = $this->path.'/'.$imageName;
 

@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<a href="{{route('product.packages', $product_id)}}" class="btn btn-default">Back</a>
-					<a href="{{route('product.package.images.create', [$product_id, $package_id])}}" class="btn btn-default">Add New Image</a>		
+					<a href="{{route('product.package.images.create', [$product_id, $package])}}" class="btn btn-default">Add New Image</a>		
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
@@ -43,9 +43,9 @@
 								</td>
 								
 								<td>
-									<a href="{{route('product.package.images.edit',[$product_id, $package_id, $image])}}" class="btn btn-default">Edit</a>
+									<a href="{{route('product.package.images.edit',[$product_id, $package, $image])}}" class="btn btn-default">Edit</a>
 
-									<form action="{{route('product.package.images.destroy',[$product_id, $package_id, $image])}}" method="POST" style="display: inline;">
+									<form action="{{route('product.package.images.destroy',[$product_id, $package, $image])}}" method="POST" style="display: inline;">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 

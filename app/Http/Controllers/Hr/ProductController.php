@@ -47,6 +47,7 @@ class ProductController extends Controller
         
         $product = new Product;
         $product->name = $request->name;
+        $product->slug = strtolower(str_replace(' ', '-', $request->name));
         $product->category()->associate($request->category_id);
         $product->unit = $request->unit;
         $product->for_sale = true;

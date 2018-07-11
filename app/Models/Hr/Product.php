@@ -9,6 +9,12 @@ use App\Models\Hr\Price;
 
 class Product extends Model
 {
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function category()
     {
     	return $this->belongsTo(Category::class);
@@ -28,4 +34,5 @@ class Product extends Model
     {
         return $this->morphMany(Price::class, 'priceable');
     }
+
 }

@@ -17,9 +17,10 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->integer('branch_id')->unsigned()->nullable();
-            $table->string('name', 50)->unique();
+            $table->string('name', 100)->unique();
+            $table->string('slug', 100);
             $table->string('unit', 10);
-            $table->boolean('for_sale');//for sale or not
+            $table->boolean('for_sale'); //for sale or not
             $table->string('thumbnail', 50);
             $table->timestamps();
         });

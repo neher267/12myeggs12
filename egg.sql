@@ -179,21 +179,24 @@ INSERT INTO `expenses` (`id`, `user_id`, `title`, `description`, `amount`, `crea
 CREATE TABLE IF NOT EXISTS `gifts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `points` decimal(6,0) NOT NULL,
+  `thumbnail` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `gifts_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.gifts: ~5 rows (approximately)
+-- Dumping data for table test.gifts: ~6 rows (approximately)
 /*!40000 ALTER TABLE `gifts` DISABLE KEYS */;
-INSERT INTO `gifts` (`id`, `name`, `points`, `created_at`, `updated_at`) VALUES
-	(1, 'Pen', 5, '2018-03-06 10:21:42', '2018-03-06 10:21:42'),
-	(2, 'Hand Wash', 20, '2018-03-09 05:47:58', '2018-03-09 05:47:58'),
-	(3, 'Mobile', 5000, '2018-03-09 05:48:12', '2018-03-09 05:48:12'),
-	(4, 'Bi cycle', 3000, '2018-03-09 05:48:32', '2018-03-09 05:48:32'),
-	(5, 'Android tv', 4000, '2018-03-09 05:48:47', '2018-03-09 05:48:47');
+INSERT INTO `gifts` (`id`, `name`, `slug`, `points`, `thumbnail`, `created_at`, `updated_at`) VALUES
+	(1, 'Pen', 'pen', 5, '', '2018-03-06 10:21:42', '2018-03-06 10:21:42'),
+	(2, 'Hand Wash', 'hand-wash', 20, '', '2018-03-09 05:47:58', '2018-03-09 05:47:58'),
+	(3, 'Mobile', 'mobile', 5000, '', '2018-03-09 05:48:12', '2018-03-09 05:48:12'),
+	(4, 'Bi cycle', 'bi-cycle', 3000, 'images/Gifts/1531391133.jpg', '2018-03-09 05:48:32', '2018-07-12 10:25:41'),
+	(5, 'Android tv', 'android-tv', 4000, 'images/Gifts/1531389449.png', '2018-03-09 05:48:47', '2018-07-12 10:20:41'),
+	(7, 'School Bag', 'school-bag', 500, 'images/Gifts/1531388069.jpg', '2018-07-12 09:34:29', '2018-07-12 10:20:21');
 /*!40000 ALTER TABLE `gifts` ENABLE KEYS */;
 
 -- Dumping structure for table test.images
@@ -208,9 +211,9 @@ CREATE TABLE IF NOT EXISTS `images` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `images_src_unique` (`src`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.images: ~19 rows (approximately)
+-- Dumping data for table test.images: ~23 rows (approximately)
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
 INSERT INTO `images` (`id`, `imageable_id`, `imageable_type`, `type`, `status`, `src`, `created_at`, `updated_at`) VALUES
 	(2, 1, 'category', 'Thumbnail', 1, 'images/Category/1524564481.png', '2018-04-24 10:08:01', '2018-04-24 10:08:01'),
@@ -232,7 +235,10 @@ INSERT INTO `images` (`id`, `imageable_id`, `imageable_type`, `type`, `status`, 
 	(20, 1, 'package', 'Details', 1, 'images/products/packages/1531291830.jpg', '2018-07-11 06:50:30', '2018-07-11 06:50:30'),
 	(21, 1, 'package', 'Details', 1, 'images/products/packages/1531291859.jpg', '2018-07-11 06:50:59', '2018-07-11 06:50:59'),
 	(22, 1, 'package', 'Details', 1, 'images/products/packages/1531291878.jpg', '2018-07-11 06:51:18', '2018-07-11 06:51:18'),
-	(23, 1, 'package', 'Details', 1, 'images/products/packages/1531305838.jpg', '2018-07-11 10:43:58', '2018-07-11 10:43:58');
+	(23, 1, 'package', 'Details', 1, 'images/products/packages/1531305838.jpg', '2018-07-11 10:43:58', '2018-07-11 10:43:58'),
+	(24, 7, 'gift', 'Thumbnail', 1, 'images/Gifts/1531388069.jpg', '2018-07-12 09:34:29', '2018-07-12 09:34:29'),
+	(25, 5, 'gift', 'Thumbnail', 1, 'images/Gifts/1531389415.jpg', '2018-07-12 09:56:55', '2018-07-12 09:56:55'),
+	(26, 5, 'gift', 'Thumbnail', 1, 'images/Gifts/1531389449.png', '2018-07-12 09:57:29', '2018-07-12 09:57:29');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 -- Dumping structure for table test.migrations
@@ -327,15 +333,13 @@ CREATE TABLE IF NOT EXISTS `persistences` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `persistences_code_unique` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.persistences: ~5 rows (approximately)
+-- Dumping data for table test.persistences: ~3 rows (approximately)
 /*!40000 ALTER TABLE `persistences` DISABLE KEYS */;
 INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'VHsNZW51LDbUG9x06MvpadRPGl7VxE82', '2018-03-07 07:25:36', '2018-03-07 07:25:36'),
-	(2, 1, 'zNNSkEBDehi9HrenrS4nZRMdNhGVjGKj', '2018-03-07 08:13:04', '2018-03-07 08:13:04'),
-	(41, 8, 'ecWXThxk439XN2ArJzS2MXcUVMsTKddX', '2018-05-15 06:17:04', '2018-05-15 06:17:04'),
-	(42, 8, 'grS1TP6eaTttaUKQqzBrwkTjSBUzjj3g', '2018-05-15 09:15:02', '2018-05-15 09:15:02');
+	(2, 1, 'zNNSkEBDehi9HrenrS4nZRMdNhGVjGKj', '2018-03-07 08:13:04', '2018-03-07 08:13:04');
 /*!40000 ALTER TABLE `persistences` ENABLE KEYS */;
 
 -- Dumping structure for table test.prices
@@ -376,7 +380,7 @@ INSERT INTO `products` (`id`, `category_id`, `branch_id`, `name`, `slug`, `unit`
 	(2, 3, NULL, 'সয়াবিন তেল', 'সয়াবিন-তেল', 'L', 1, 'images/products/1524758697.jpg', '2018-04-26 16:04:57', '2018-04-26 16:04:57'),
 	(3, 4, NULL, 'মিষ্টি আলু (লাল)', 'মিষ্টি-আলু-(লাল)', 'KG', 1, 'images/products/1524758833.jpg', '2018-04-26 16:07:13', '2018-04-26 16:07:13'),
 	(4, 4, NULL, 'মিষ্টি আলু (সাদা)', 'মিষ্টি-আলু-(সাদা)', 'KG', 1, 'images/products/1524758967.jpg', '2018-04-26 16:09:27', '2018-04-26 16:09:27'),
-	(5, 2, NULL, 'হাঁসের ডিম', 'হাঁসের-ডিম', 'PCS', 1, 'images/products/1524804330.jpg', '2018-04-27 04:45:30', '2018-04-27 11:22:29'),
+	(5, 2, NULL, 'হাঁসের ডিম', 'হাঁসের-ডিম', 'PCS', 1, 'images/products/1524804330.jpg', '2018-04-27 04:45:30', '2018-07-12 10:07:46'),
 	(6, 2, NULL, 'লেয়ার ডিম', 'লেয়ার-ডিম', 'PCS', 1, 'images/products/1524804832.jpg', '2018-04-27 04:50:10', '2018-04-27 04:50:10');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
@@ -497,9 +501,9 @@ CREATE TABLE IF NOT EXISTS `throttle` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `throttle_user_id_index` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.throttle: ~15 rows (approximately)
+-- Dumping data for table test.throttle: ~17 rows (approximately)
 /*!40000 ALTER TABLE `throttle` DISABLE KEYS */;
 INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at`) VALUES
 	(1, NULL, 'global', NULL, '2018-03-08 05:51:41', '2018-03-08 05:51:41'),
@@ -516,7 +520,9 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 	(12, NULL, 'ip', '127.0.0.1', '2018-03-09 07:25:05', '2018-03-09 07:25:05'),
 	(13, NULL, 'global', NULL, '2018-04-19 14:27:32', '2018-04-19 14:27:32'),
 	(14, NULL, 'ip', '127.0.0.1', '2018-04-19 14:27:32', '2018-04-19 14:27:32'),
-	(15, 6, 'user', NULL, '2018-04-19 14:27:32', '2018-04-19 14:27:32');
+	(15, 6, 'user', NULL, '2018-04-19 14:27:32', '2018-04-19 14:27:32'),
+	(16, NULL, 'global', NULL, '2018-07-12 08:49:24', '2018-07-12 08:49:24'),
+	(17, NULL, 'ip', '127.0.0.1', '2018-07-12 08:49:24', '2018-07-12 08:49:24');
 /*!40000 ALTER TABLE `throttle` ENABLE KEYS */;
 
 -- Dumping structure for table test.trets
@@ -558,12 +564,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table test.users: ~6 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `branch_id`, `mobile`, `name`, `points`, `password`, `permissions`, `last_login`, `created_at`, `updated_at`) VALUES
-	(3, 1, '01784255196', 'Admin', 0, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-07-11 06:41:56', '2018-03-08 05:56:21', '2018-07-11 06:41:56'),
+	(3, 1, '01784255196', 'Admin', 0, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-07-12 10:36:35', '2018-03-08 05:56:21', '2018-07-12 10:36:35'),
 	(4, 1, '01784255111', 'Marchant', 0, '$2y$10$M2nCkps8ougSXwubhZYMIuPZ8Y13JztyaBfIwD80/0SLLtb7Qu10e', NULL, NULL, '2018-03-08 06:32:39', '2018-03-08 06:32:39'),
 	(5, 1, '01765768609', 'Admin', 0, '$2y$10$krIXbjHasYkPtwVINVhMAOmFRDv3F4t9wy2qy4pXAUuZOZssNH1fG', NULL, '2018-05-15 05:50:17', '2018-03-09 07:13:22', '2018-05-15 05:50:17'),
 	(6, 1, '01784255199', 'Buyer', 0, '$2y$10$Md4XMRqfJ3DfbPOBi3hSf.P8t0MHbVLjEIg7CGFAwb5v48b2ci0u6', NULL, '2018-05-15 05:50:32', '2018-03-10 11:36:28', '2018-05-15 05:50:32'),
 	(7, 1, '0178425166', 'Marchant', 0, '$2y$10$HczcMjTPi2KiicCxIeRFyu1TiVsxerpFAlS3s5CKYeh/UNJH5g0RC', NULL, NULL, '2018-04-20 15:18:35', '2018-04-20 15:18:35'),
-	(8, 1, '01784255188', 'Manager', 0, '$2y$10$WN15GCnF6IsJo/C6KYHsc.pV2nTSskGKYIhHISskHvZdkluGsPhWK', NULL, '2018-05-15 09:15:02', '2018-05-15 06:11:28', '2018-05-15 09:15:02');
+	(8, 1, '01784255188', 'Manager', 0, '$2y$10$WN15GCnF6IsJo/C6KYHsc.pV2nTSskGKYIhHISskHvZdkluGsPhWK', NULL, '2018-07-12 08:55:02', '2018-05-15 06:11:28', '2018-07-12 08:55:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

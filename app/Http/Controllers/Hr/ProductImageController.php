@@ -16,9 +16,8 @@ class ProductImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Product $product)
     {
-        $product = Product::find($id);
         $images = $product->images()->get();
         $title = $product->name." All Images";
         return view('backend.hr.product.images.index', compact('images', 'product', 'title'));
@@ -29,9 +28,8 @@ class ProductImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Product $product)
     {
-        $product = Product::find($id);
         $images = $product->images()->get();      
         $title = $product->name.": Add Images";
         return view('backend.hr.product.images.create', compact('images', 'product', 'title'));
@@ -43,13 +41,12 @@ class ProductImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Product $product)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $product = Product::find($id);        
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;

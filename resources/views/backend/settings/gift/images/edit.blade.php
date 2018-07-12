@@ -7,7 +7,7 @@
 			<div class="form-grids widget-shadow" data-example-id="basic-forms"> 
 				
 				<div class="col-md-12">
-					<a href="{{route('gift.images.index', $gift_id)}}" class="btn btn-default">Back</a>
+					<a href="{{route('gift.images.index', $gift)}}" class="btn btn-default">Back</a>
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>
@@ -15,7 +15,7 @@
 				</div>
 				
 				<div class="form-body">
-					<form action="{{route('gift.images.update',[$gift_id, $image])}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('gift.images.update',[$gift, $image])}}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}		
 					{{ method_field('PUT') }}					
 

@@ -9,15 +9,14 @@ use App\Models\Settings\Gift;
 
 class GiftImageController extends Controller
 {
-    private $path = "images/gifts";
+    private $path = "images/Gifts";
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Gift $gift)
     {
-        $gift = Gift::find($id);
         $images = $gift->images()->get();
         $title = $gift->name." All Gifts";
         return view('backend.settings.gift.images.index', compact('images', 'gift', 'title'));
@@ -28,9 +27,8 @@ class GiftImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Gift $gift)
     {
-        $gift = Gift::find($id);
         $images = $gift->images()->get();      
         $title = $gift->name.": Add Image";
         return view('backend.settings.gift.images.create', compact('images', 'gift', 'title'));
@@ -42,13 +40,12 @@ class GiftImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Gift $gift)
     {
         $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100']);
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
         $request->src->move(public_path($this->path), $imageName);
         
-        $gift = Gift::find($id);        
         $image = new Image;
         $image->type = $request->type;
         $image->src = $this->path.'/'.$imageName;
@@ -74,11 +71,9 @@ class GiftImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($gift_id, $image_id)
+    public function edit(Gift $gift, $image_id)
     {
-        $image = Image::find($image_id);
-        $title = $image->imageable->name.': Edit Image';
-        return view('backend.settings.gift.images.edit', compact('title', 'gift_id', 'image'));
+        //
     }
 
     /**
@@ -88,28 +83,20 @@ class GiftImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $gift_id, $image_id)
+    public function update(Request $request, Gift $gift, $image_id)
     {
-        if(!empty($request->src))
+        if($request->has('src'))
         {
-            $request->validate(['src' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500']);
-
-            unlink($request->avatar);
-            $imageName = time().'.'.$request->src->getClientOriginalExtension();
-            $request->src->move(public_path($this->path), $imageName);
-            $image = Image::find($image_id);
-            $image->type = $request->type;
-            $image->src = $this->path.'/'.$imageName;
-            $image->save();
+            $gift->thumbnail = $request->src;
+            $gift->save();
         }
         else
         {
-            $image = Image::find($image_id);
-            $image->type = $request->type;
+            $image->status = $request->status;
             $image->save();
-        }
+        }              
 
-        return redirect("gifts/$gift_id/images")->withSuccess('Update success');
+        return back()->withSuccess('Success');
     }
 
     /**

@@ -80,9 +80,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::find($id);
         $title = 'Edit '.$product->name;
         $categories = Category::orderBy('name', 'asc')->get();
         return view('backend.hr.product.edit', compact('categories','title', 'product'));

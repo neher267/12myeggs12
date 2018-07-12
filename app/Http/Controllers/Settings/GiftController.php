@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\Gift;
+use App\Image;
+
 
 class GiftController extends Controller
 {
+    private $path = "images/Gifts";
+
     /**
      * Display a listing of the resource.
      *
@@ -37,8 +41,22 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        Gift::create($request->all());
-        return redirect()->back()->withSuccess('Create Success!');
+        $imageName = time().'.'.$request->src->getClientOriginalExtension();
+        
+        $gift = new Gift;
+        $gift->name = $request->name;
+        $gift->slug = strtolower(str_replace(' ', '-', $request->name));
+        $gift->points = (int)$request->points;
+        $gift->thumbnail = $this->path.'/'.$imageName; 
+        $gift->save();
+
+        $request->src->move(public_path($this->path), $imageName);
+        $image = new Image;
+        $image->type = 'Thumbnail';
+        $image->src = $this->path.'/'.$imageName;
+        $gift->images()->save($image); 
+
+        return back()->withSuccess('Create Success!');
     }
 
     /**
@@ -58,9 +76,10 @@ class GiftController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Gift $gift)
     {
-        //
+        $title = 'Edit '.$gift->name;
+        return view('backend.settings.gift.edit', compact('title', 'gift'));
     }
 
     /**
@@ -70,9 +89,14 @@ class GiftController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Gift $gift)
     {
-        //
+        $gift->name = $request->name;
+        $gift->slug = strtolower(str_replace(' ', '-', $request->name));
+        $gift->points = (int)$request->points;
+        $gift->save();
+
+        return redirect("gifts")->withSuccess("Edit Successful!");
     }
 
     /**

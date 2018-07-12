@@ -12,7 +12,6 @@ Route::get('contact-us', 'PublicController@contact_us');
 Route::get('about-us', 'PublicController@about_us');
 Route::get('/{category}/types','PublicController@category_types');
 Route::get('{product}/packages', 'PublicController@product_packages');
-Route::get('{title}/{package}', 'PublicController@package_details');
 Route::get('details','PublicController@details');
 
 Route::post('logout', 'Auth\SentinelLoginController@logout')->middleware('sentinel.auth');
@@ -70,12 +69,12 @@ Route::group(['namespace'=>'Settings', 'middleware'=>['sentinel.auth']], functio
 	Route::resource('gifts','GiftController');
 
 	// gift image
-	Route::get('gifts/{id}/images', 'GiftImageController@index')->name('gift.images.index');
-	Route::post('gifts/{id}/images', 'GiftImageController@store')->name('gift.images.store');
-	Route::get('gifts/{id}/images/create', 'GiftImageController@create')->name('gift.images.create');
-	Route::get('gifts/{gift_id}/images/{image_id}/edit', 'GiftImageController@edit')->name('gift.images.edit');
-	Route::PUT('gifts/{gift_id}/images/{image_id}', 'GiftImageController@update')->name('gift.images.update');
-	Route::DELETE('gifts/{gift_id}/images/{image_id}', 'GiftImageController@destroy')->name('gift.images.destroy');
+	Route::get('gifts/{gift}/images', 'GiftImageController@index')->name('gift.images.index');
+	Route::post('gifts/{gift}/images', 'GiftImageController@store')->name('gift.images.store');
+	Route::get('gifts/{gift}/images/create', 'GiftImageController@create')->name('gift.images.create');
+	Route::get('gifts/{gift}/images/{image_id}/edit', 'GiftImageController@edit')->name('gift.images.edit');
+	Route::PUT('gifts/{gift}/images/{image_id}', 'GiftImageController@update')->name('gift.images.update');
+	Route::DELETE('gifts/{gift}/images/{image_id}', 'GiftImageController@destroy')->name('gift.images.destroy');
 	//end gift image
 	
 });
@@ -86,9 +85,9 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::resource('products','ProductController');
 	
 	//Product Image
-	Route::get('products/{id}/images', 'ProductImageController@index')->name('product.images.index');
-	Route::post('products/{id}/images', 'ProductImageController@store')->name('product.images.store');
-	Route::get('products/{id}/images/create', 'ProductImageController@create')->name('product.images.create');
+	Route::get('products/{product}/images', 'ProductImageController@index')->name('product.images.index');
+	Route::post('products/{product}/images', 'ProductImageController@store')->name('product.images.store');
+	Route::get('products/{product}/images/create', 'ProductImageController@create')->name('product.images.create');
 	Route::get('products/{product_id}/images/{image_id}/edit', 'ProductImageController@edit')->name('product.images.edit');
 	Route::PUT('products/{product}/images/{image}', 'ProductImageController@update')->name('product.images.update');
 	Route::DELETE('products/{product_id}/images/{image_id}', 'ProductImageController@destroy')->name('product.images.destroy');
@@ -171,5 +170,8 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 
 	
 });
+
+Route::get('{title}/{package}', 'PublicController@package_details');
+
 
 

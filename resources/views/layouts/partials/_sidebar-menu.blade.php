@@ -51,9 +51,15 @@
 		@endrole
 
 		@guest		
-		<li><a href="{{url('bag/products')}}"><i class="lnr lnr-envelope"></i> <span>Bags</span></a></li>
+		<!-- <li><a href="{{url('bag/products')}}"><i class="lnr lnr-envelope"></i> <span>Bags</span></a></li>
 		<li><a href="{{url('details')}}"><i class="lnr lnr-envelope"></i> <span>Details</span></a></li>
 		<li><a href="{{route('checkout.index')}}"><i class="lnr lnr-envelope"></i> <span>Checkout</span></a></li>
+		 -->
+		<li><a href="#"><i class="fa fa-gift" aria-hidden="true"></i> <span>Gifts</span></a></li>
+		<li><a href="#"><i class="fa fa-fire" aria-hidden="true"></i><span>Popular</span></a></li>
+		<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i><span>Egg Packages</span></a></li>
+		
+
 		@endguest
 	</ul>
 </div>

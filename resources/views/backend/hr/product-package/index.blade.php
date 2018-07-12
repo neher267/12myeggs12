@@ -6,8 +6,9 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('products.index')}}" class="btn btn-default">Back</a>					
-					<a href="{{route('product.packages.create', $product)}}" class="btn btn-default">Add New Package</a>
+					<a href="{{route('products.index')}}" class="btn btn-default"><i class="fas fa-arrow-circle-left green-btn"></i>Back</a>					
+					<a href="{{route('product.packages.create', $product)}}" class="btn btn-default">
+					<i class="fas fa-plus-circle green-btn"></i>Add New Package</a>
 					@include('common.flash-message')
 					<hr>
 					<p style="text-align: center; font-size: 22px;">{{$title}}</p>

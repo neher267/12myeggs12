@@ -7,7 +7,7 @@
 		<div class="forms">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{route('gifts.create')}}" class="btn btn-default">Create Gift</a>
+					<a href="{{route('gifts.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>Add Gift</a>
 					@include('common.flash-message')
 					<hr>
 				</div>
@@ -25,7 +25,9 @@
 						@foreach($gifts as $gift)
 							<tr>
 								<td>{{$gift->name}}</td>
-								<td></td>
+								<td>
+									<img src="{{asset($gift->thumbnail)}}" style="height: 50px; box-shadow: 2px 4px 5px darkgrey; margin: 3px;">
+								</td>
 								<td>{{$gift->points}}</td>
 								<td>
 									<a href="{{route('gifts.edit', $gift)}}" class="btn btn-default">Edit</a>

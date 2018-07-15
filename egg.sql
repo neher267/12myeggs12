@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `activations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.activations: ~7 rows (approximately)
+-- Dumping data for table test.activations: ~2 rows (approximately)
 /*!40000 ALTER TABLE `activations` DISABLE KEYS */;
 INSERT INTO `activations` (`id`, `user_id`, `code`, `completed`, `completed_at`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'wHcbkzpgQja5OoOyaapsDyNRlv10t6Nj', 1, '2018-03-07 07:25:12', '2018-03-07 07:25:12', '2018-03-07 07:25:12'),
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `categories_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table test.categories: ~4 rows (approximately)
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
@@ -116,7 +116,8 @@ INSERT INTO `categories` (`id`, `branch_id`, `department_id`, `name`, `slug`, `t
 	(1, NULL, 1, 'Rice', 'rice', 'images/Category/1524585917.jpg', '2018-04-24 08:20:15', '2018-04-24 16:06:01'),
 	(2, NULL, 1, 'Eggs', 'eggs', 'images/Category/1524804382.jpg', '2018-04-24 16:07:39', '2018-04-27 04:46:37'),
 	(3, NULL, 1, 'Oil', 'oil', 'images/Category/1524586327.jpg', '2018-04-24 16:10:24', '2018-04-24 16:12:19'),
-	(4, NULL, 1, 'Potato', 'potato', 'images/Category/1524586610.jpg', '2018-04-24 16:16:50', '2018-04-24 16:16:50');
+	(4, NULL, 1, 'Potato', 'potato', 'images/Category/1524586610.jpg', '2018-04-24 16:16:50', '2018-04-24 16:16:50'),
+	(6, NULL, 1, 'Potato', 'potato2', 'images/Category/1524586610.jpg', '2018-04-24 16:16:50', '2018-04-24 16:16:50');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Dumping structure for table test.departments
@@ -191,10 +192,10 @@ CREATE TABLE IF NOT EXISTS `gifts` (
 -- Dumping data for table test.gifts: ~6 rows (approximately)
 /*!40000 ALTER TABLE `gifts` DISABLE KEYS */;
 INSERT INTO `gifts` (`id`, `name`, `slug`, `points`, `thumbnail`, `created_at`, `updated_at`) VALUES
-	(1, 'Pen', 'pen', 5, '', '2018-03-06 10:21:42', '2018-03-06 10:21:42'),
-	(2, 'Hand Wash', 'hand-wash', 20, '', '2018-03-09 05:47:58', '2018-03-09 05:47:58'),
-	(3, 'Mobile', 'mobile', 5000, '', '2018-03-09 05:48:12', '2018-03-09 05:48:12'),
-	(4, 'Bi cycle', 'bi-cycle', 3000, 'images/Gifts/1531391133.jpg', '2018-03-09 05:48:32', '2018-07-12 10:25:41'),
+	(1, 'Pen', 'pen', 5, 'images/Gifts/1531633585.jpg', '2018-03-06 10:21:42', '2018-07-15 05:46:33'),
+	(2, 'Hand Wash', 'hand-wash', 20, 'images/Gifts/1531633506.png', '2018-03-09 05:47:58', '2018-07-15 05:45:11'),
+	(3, 'Mobile', 'mobile', 5000, 'images/Gifts/1531633524.jpg', '2018-03-09 05:48:12', '2018-07-15 05:45:29'),
+	(4, 'Bi cycle', 'bi-cycle', 3000, 'images/Gifts/1531633483.jpg', '2018-03-09 05:48:32', '2018-07-15 05:44:50'),
 	(5, 'Android tv', 'android-tv', 4000, 'images/Gifts/1531389449.png', '2018-03-09 05:48:47', '2018-07-12 10:20:41'),
 	(7, 'School Bag', 'school-bag', 500, 'images/Gifts/1531388069.jpg', '2018-07-12 09:34:29', '2018-07-12 10:20:21');
 /*!40000 ALTER TABLE `gifts` ENABLE KEYS */;
@@ -211,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `images_src_unique` (`src`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table test.images: ~23 rows (approximately)
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
@@ -238,7 +239,13 @@ INSERT INTO `images` (`id`, `imageable_id`, `imageable_type`, `type`, `status`, 
 	(23, 1, 'package', 'Details', 1, 'images/products/packages/1531305838.jpg', '2018-07-11 10:43:58', '2018-07-11 10:43:58'),
 	(24, 7, 'gift', 'Thumbnail', 1, 'images/Gifts/1531388069.jpg', '2018-07-12 09:34:29', '2018-07-12 09:34:29'),
 	(25, 5, 'gift', 'Thumbnail', 1, 'images/Gifts/1531389415.jpg', '2018-07-12 09:56:55', '2018-07-12 09:56:55'),
-	(26, 5, 'gift', 'Thumbnail', 1, 'images/Gifts/1531389449.png', '2018-07-12 09:57:29', '2018-07-12 09:57:29');
+	(26, 5, 'gift', 'Thumbnail', 1, 'images/Gifts/1531389449.png', '2018-07-12 09:57:29', '2018-07-12 09:57:29'),
+	(27, 4, 'gift', 'Thumbnail', 1, 'images/Gifts/1531633483.jpg', '2018-07-15 05:44:43', '2018-07-15 05:44:43'),
+	(28, 2, 'gift', 'Thumbnail', 1, 'images/Gifts/1531633506.png', '2018-07-15 05:45:06', '2018-07-15 05:45:06'),
+	(29, 3, 'gift', 'Thumbnail', 1, 'images/Gifts/1531633524.jpg', '2018-07-15 05:45:24', '2018-07-15 05:45:24'),
+	(30, 1, 'gift', 'Thumbnail', 1, 'images/Gifts/1531633585.jpg', '2018-07-15 05:46:25', '2018-07-15 05:46:25'),
+	(31, 1, 'gift', 'Details', 1, 'images/Gifts/1531635902.png', '2018-07-15 06:25:02', '2018-07-15 06:25:02'),
+	(32, 1, 'gift', 'Details', 1, 'images/Gifts/1531635915.jpg', '2018-07-15 06:25:15', '2018-07-15 06:25:15');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 -- Dumping structure for table test.migrations
@@ -333,9 +340,9 @@ CREATE TABLE IF NOT EXISTS `persistences` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `persistences_code_unique` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.persistences: ~3 rows (approximately)
+-- Dumping data for table test.persistences: ~2 rows (approximately)
 /*!40000 ALTER TABLE `persistences` DISABLE KEYS */;
 INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'VHsNZW51LDbUG9x06MvpadRPGl7VxE82', '2018-03-07 07:25:36', '2018-03-07 07:25:36'),
@@ -503,7 +510,7 @@ CREATE TABLE IF NOT EXISTS `throttle` (
   KEY `throttle_user_id_index` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.throttle: ~17 rows (approximately)
+-- Dumping data for table test.throttle: ~0 rows (approximately)
 /*!40000 ALTER TABLE `throttle` DISABLE KEYS */;
 INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at`) VALUES
 	(1, NULL, 'global', NULL, '2018-03-08 05:51:41', '2018-03-08 05:51:41'),
@@ -536,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `trets` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.trets: ~4 rows (approximately)
+-- Dumping data for table test.trets: ~0 rows (approximately)
 /*!40000 ALTER TABLE `trets` DISABLE KEYS */;
 INSERT INTO `trets` (`id`, `stock_id`, `reason`, `quantity`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Broken', 10, '2018-03-08 09:38:14', '2018-03-08 09:38:14'),
@@ -561,10 +568,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_mobile_unique` (`mobile`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table test.users: ~6 rows (approximately)
+-- Dumping data for table test.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `branch_id`, `mobile`, `name`, `points`, `password`, `permissions`, `last_login`, `created_at`, `updated_at`) VALUES
-	(3, 1, '01784255196', 'Admin', 0, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-07-12 10:36:35', '2018-03-08 05:56:21', '2018-07-12 10:36:35'),
+	(3, 1, '01784255196', 'Admin', 100, '$2y$10$ooXlQwxjbZVVqoO5ncmTU.Q0TTpl8Kt69U4qSZLWArLyEsPldk.y6', NULL, '2018-07-15 08:42:17', '2018-03-08 05:56:21', '2018-07-15 08:42:17'),
 	(4, 1, '01784255111', 'Marchant', 0, '$2y$10$M2nCkps8ougSXwubhZYMIuPZ8Y13JztyaBfIwD80/0SLLtb7Qu10e', NULL, NULL, '2018-03-08 06:32:39', '2018-03-08 06:32:39'),
 	(5, 1, '01765768609', 'Admin', 0, '$2y$10$krIXbjHasYkPtwVINVhMAOmFRDv3F4t9wy2qy4pXAUuZOZssNH1fG', NULL, '2018-05-15 05:50:17', '2018-03-09 07:13:22', '2018-05-15 05:50:17'),
 	(6, 1, '01784255199', 'Buyer', 0, '$2y$10$Md4XMRqfJ3DfbPOBi3hSf.P8t0MHbVLjEIg7CGFAwb5v48b2ci0u6', NULL, '2018-05-15 05:50:32', '2018-03-10 11:36:28', '2018-05-15 05:50:32'),

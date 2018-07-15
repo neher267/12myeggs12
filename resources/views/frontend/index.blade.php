@@ -17,8 +17,9 @@
     </div>
 
     <!-- grids_of_4 -->
+    @foreach($categories as $category_chunked)
     <div class="grids_of_4">
-        @foreach($categories as $category)
+        @foreach($category_chunked as $category)
         <div class="grid1_of_4">
             <div class="content_box"><a href="{{url($category->slug.'/types')}}">
 					<img src="{{asset($category->thumbnail)}}" class="img-responsive" style="width: 100%">
@@ -31,9 +32,9 @@
             </div>
         </div>
         @endforeach
-
         <div class="clearfix"></div>
     </div>
+    @endforeach
     <!-- end grids_of_4 -->
 </div>
 <div class="clearfix"></div>

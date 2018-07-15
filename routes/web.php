@@ -10,6 +10,8 @@
 Route::get('/', 'PublicController@index');
 Route::get('contact-us', 'PublicController@contact_us');
 Route::get('about-us', 'PublicController@about_us');
+Route::get('all-gifts', 'PublicController@gifts');
+Route::get('all-gifts/{gift}', 'PublicController@gift_details');
 Route::get('/{category}/types','PublicController@category_types');
 Route::get('{product}/packages', 'PublicController@product_packages');
 Route::get('details','PublicController@details');

@@ -21,6 +21,7 @@ class CreatePackagesTable extends Migration
             $table->text('description');
             $table->boolean('status')->default(true); 
             $table->string('thumbnail', 50);
+            $table->decimal('hit_count', 10, 0)->default(0);
             $table->timestamps();
         });
     }

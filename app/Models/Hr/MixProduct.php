@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Image;
 
 
-class MixProducts extends Model
+class MixProduct extends Model
 {
+	public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function packages()
     {

@@ -282,6 +282,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Dumping structure for table test.mix_products
 CREATE TABLE IF NOT EXISTS `mix_products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(10) unsigned NOT NULL,
   `branch_id` int(10) unsigned DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `thumbnail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -293,8 +294,8 @@ CREATE TABLE IF NOT EXISTS `mix_products` (
 
 -- Dumping data for table test.mix_products: ~0 rows (approximately)
 /*!40000 ALTER TABLE `mix_products` DISABLE KEYS */;
-INSERT INTO `mix_products` (`id`, `branch_id`, `name`, `thumbnail`, `created_at`, `updated_at`) VALUES
-	(1, NULL, 'হাঁসের ডিম + সরিষার তেল', 'images/MixProducts/1524840681.jpg', '2018-04-27 14:51:21', '2018-04-27 14:51:21');
+INSERT INTO `mix_products` (`id`, `category_id`, `branch_id`, `name`, `thumbnail`, `created_at`, `updated_at`) VALUES
+	(1, 2,  NULL, 'হাঁসের ডিম + সরিষার তেল', 'images/MixProducts/1524840681.jpg', '2018-04-27 14:51:21', '2018-04-27 14:51:21');
 /*!40000 ALTER TABLE `mix_products` ENABLE KEYS */;
 
 -- Dumping structure for table test.packages

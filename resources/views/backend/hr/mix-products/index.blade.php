@@ -5,9 +5,9 @@
 	<div class="panel panel-widget forms-panel">
 		<div class="forms">
 			<div class="row">
-				<div class="col-md-12">					
-					<a href="{{route('mix-products.create')}}" class="btn btn-default">Add Mix Products</a>
-					<a href="{{route('products.index')}}" class="btn btn-default">Products</a>
+				<div class="col-md-12">	
+					<a href="{{route('mix-products.index')}}" class="btn btn-default"><i class="fas fa-arrow-circle-left green-btn"></i>Back</a>				
+					<a href="{{route('mix-products.create')}}" class="btn btn-default"><i class="fas fa-plus-circle green-btn"></i>Add Mix Products</a>					
 					@include('common.flash-message')
 					<hr>
 				</div>

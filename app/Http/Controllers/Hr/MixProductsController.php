@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Hr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Hr\MixProducts;
+use App\Models\Settings\Category;
+use App\Models\Hr\MixProduct;
 use App\Models\Hr\Package;
 use App\Image;
 
 
 class MixProductsController extends Controller
 {
-    private $path = "images/MixProducts";
+    private $path = "images/MixProduct";
 
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class MixProductsController extends Controller
      */
     public function index()
     {
-        $packages = MixProducts::orderBy('name', 'asc')->get();
+        $packages = MixProduct::orderBy('name', 'asc')->get();
         return view('backend.hr.mix-products.index', compact('packages'));
     }
 
@@ -45,8 +46,11 @@ class MixProductsController extends Controller
     {
         $imageName = time().'.'.$request->src->getClientOriginalExtension();
 
-        $mix_package = new MixProducts;
+        $mix_package = new MixProduct;
         $mix_package->name = $request->name;
+        $slug = strtolower(str_replace(' + ', '+', $request->name));
+        $mix_package->slug = str_replace(' ', '-', $slug);
+
         $mix_package->thumbnail = $this->path.'/'.$imageName; 
         $mix_package->save();
 
@@ -76,9 +80,11 @@ class MixProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MixProduct $mix_product)
     {
-        //
+        $title = 'Edit '.$mix_product->name;
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('backend.hr.mix-products.edit', compact('categories','title', 'mix_product'));
     }
 
     /**

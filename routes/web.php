@@ -144,9 +144,6 @@ Route::group(['namespace'=>'Hr', 'middleware'=>['sentinel.auth']], function(){
 	Route::DELETE('mix-products/{mix_products_id}/packages/{package_id}/images/{image_id}', 'MixProductsPackageImageController@destroy')->name('mix-products.package.images.destroy');
 	//end mix-products package image
 
-	Route::resource('mix-packages','MixProductsController');
-
-
 	//mix-products package
 
 	Route::get('mix-products/{id}/packages', 'MixProductsPackageController@index')->name('mix-products.packages.index');
